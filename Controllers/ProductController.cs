@@ -13,7 +13,7 @@ namespace InventorySystem.Controllers
         public ViewResult List(ProductsGridDTO values)
         {
             var builder = new ProductsGridBuilder(HttpContext.Session, values, 
-                defaultSortField: nameof(Product.Title));
+                defaultSortField: nameof(Product.Name));
 
             var options = new ProductQueryOptions {
                 Include = "ProductCategories.Category, Warehouse",

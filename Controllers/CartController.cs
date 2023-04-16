@@ -53,7 +53,7 @@ namespace InventorySystem.Controllers
                 cart.Add(item);
                 cart.Save();
 
-                TempData["message"] = $"{product.Title} added to cart";
+                TempData["message"] = $"{product.Name} added to cart";
             }
 
             var builder = new ProductsGridBuilder(HttpContext.Session);
@@ -68,7 +68,7 @@ namespace InventorySystem.Controllers
             cart.Remove(item);
             cart.Save();
 
-            TempData["message"] = $"{item.Product.Title} removed from cart.";
+            TempData["message"] = $"{item.Product.Name} removed from cart.";
             return RedirectToAction("Index");
         }
                 
@@ -106,7 +106,7 @@ namespace InventorySystem.Controllers
             cart.Edit(item);
             cart.Save();
 
-            TempData["message"] = $"{item.Product.Title} updated";
+            TempData["message"] = $"{item.Product.Name} updated";
             return RedirectToAction("Index");
         }
 

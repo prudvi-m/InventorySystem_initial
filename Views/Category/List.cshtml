@@ -49,8 +49,8 @@
                     <p>
                         <a asp-action="Details" asp-controller="Product"
                            asp-route-id="@ba.ProductId"
-                           asp-route-slug="@ba.Product.Title.Slug()">
-                            @ba.Product.Title
+                           asp-route-slug="@ba.Product.Name.Slug()">
+                            @ba.Product.Name
                         </a>
                     </p>
                 }

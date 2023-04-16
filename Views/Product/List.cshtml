@@ -52,7 +52,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>
-                    @{ routes.SetSortAndDirection(nameof(Product.Title), current); }
+                    @{ routes.SetSortAndDirection(nameof(Product.Name), current); }
                     <a asp-action="List" asp-all-route-data="@routes"
                        class="text-white">Title</a>
                 </th>
@@ -78,8 +78,8 @@
                 <tr>
                     <td>
                         <a asp-action="Details" asp-route-id="@product.ProductId"
-                           asp-route-slug="@product.Title.Slug()">
-                            @product.Title
+                           asp-route-slug="@product.Name.Slug()">
+                            @product.Name
                         </a>
                     </td>
                     <td>

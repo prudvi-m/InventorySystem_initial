@@ -90,7 +90,7 @@ namespace InventorySystem.Areas.Manager.Controllers
                 data.Products.Insert(vm.Product);
                 data.Save();
 
-                TempData["message"] = $"{vm.Product.Title} added to Products.";
+                TempData["message"] = $"{vm.Product.Name} added to Products.";
                 return RedirectToAction("Index");  
             }
             else {
@@ -111,7 +111,7 @@ namespace InventorySystem.Areas.Manager.Controllers
                 data.Products.Update(vm.Product);
                 data.Save(); 
                 
-                TempData["message"] = $"{vm.Product.Title} updated.";
+                TempData["message"] = $"{vm.Product.Name} updated.";
                 return RedirectToAction("Search");  
             }
             else {
@@ -128,7 +128,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         {
             data.Products.Delete(vm.Product); 
             data.Save();
-            TempData["message"] = $"{vm.Product.Title} removed from Products.";
+            TempData["message"] = $"{vm.Product.Name} removed from Products.";
             return RedirectToAction("Search");  
         }
 

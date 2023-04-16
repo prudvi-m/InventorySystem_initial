@@ -48,8 +48,8 @@
                     <td>
                         <a asp-action="Details" asp-controller="Product"
                            asp-route-id="@item.Product.ProductId"
-                           asp-route-slug="@item.Product.Title.Slug()">
-                            @item.Product.Title
+                           asp-route-slug="@item.Product.Name.Slug()">
+                            @item.Product.Name
                         </a>
                     </td>
                     <td>
@@ -70,7 +70,7 @@
                         <div class="float-right">
                             <a asp-action="Edit" asp-controller="Cart"
                                asp-route-id="@item.Product.ProductId"
-                               asp-route-slug="@item.Product.Title.Slug()"
+                               asp-route-slug="@item.Product.Name.Slug()"
                                class="btn btn-primary btn-sm">Edit</a>
                             <button type="submit" name="id" value="@item.Product.ProductId"
                                     class="btn btn-primary btn-sm">Remove</button>

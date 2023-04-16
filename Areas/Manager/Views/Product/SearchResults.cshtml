@@ -22,7 +22,7 @@
             <td>
                 <a asp-action="Details" asp-controller="Product"
                    asp-area="" asp-route-id="@product.ProductId"
-                   asp-route-slug="@product.Title.Slug()">@product.Title</a>
+                   asp-route-slug="@product.Name.Slug()">@product.Name</a>
             </td>
             <td>@product.Warehouse.Name</td>
             <td>

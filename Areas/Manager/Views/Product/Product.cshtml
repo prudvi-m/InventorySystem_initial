@@ -20,15 +20,15 @@
         @* if deleting, display title in a label and put value in hidden field
            for delete message. Otherwise, provide a text box*@
         @if (Operation.IsDelete(action)) {
-            <div class="col-sm-4"><label>@Model.Product.Title</label></div>
-            <input type="hidden" asp-for="Product.Title" />
+            <div class="col-sm-4"><label>@Model.Product.Name</label></div>
+            <input type="hidden" asp-for="Product.Name" />
         }
         else {
             <div class="col-sm-4">
-                <input type="text" asp-for="Product.Title" class="form-control" />
+                <input type="text" asp-for="Product.Name" class="form-control" />
             </div>
             <div class="col-sm-6">
-                <span asp-validation-for="Product.Title" class="text-danger"></span>
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
         }
     </div>
