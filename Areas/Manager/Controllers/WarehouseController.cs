@@ -5,11 +5,12 @@ using InventorySystem.Models;
 namespace InventorySystem.Areas.Manager.Controllers
 {
 
-    [Authorize(Roles = "manager")]
-    public class GenreController : Controller
+    [Authorize(Roles = "Manager")]
+    [Area("Manager")]
+    public class WarehouseController : Controller
     {
         private Repository<Warehouse> data { get; set; }
-        public GenreController(InventorySystemContext ctx) => data = new Repository<Warehouse>(ctx);
+        public WarehouseController(InventorySystemContext ctx) => data = new Repository<Warehouse>(ctx);
 
         public ViewResult Index()
         {

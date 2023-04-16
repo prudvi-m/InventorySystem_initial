@@ -5,8 +5,8 @@ using InventorySystem.Models;
 namespace InventorySystem.Areas.Manager.Controllers
 {
     
-    [Authorize(Roles = "manager")]
-    [Area("manager")]
+    [Authorize(Roles = "Manager")]
+    [Area("Manager")]
     public class CategoryController : Controller
     {
         private Repository<Category> data { get; set; }
