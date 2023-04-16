@@ -14,10 +14,10 @@ namespace InventorySystem.Areas.Manager.Controllers
 
         public ViewResult Index()
         {
-            var authors = data.List(new QueryOptions<Category> {
+            var categories = data.List(new QueryOptions<Category> {
                 OrderBy = a => a.FirstName
             });
-            return View(authors);
+            return View(categories);
         }
 
         public RedirectToActionResult Select(int id, string operation)
@@ -39,25 +39,25 @@ namespace InventorySystem.Areas.Manager.Controllers
         public ViewResult Add() => View("Category", new Category());
 
         [HttpPost]
-        public IActionResult Add(Category author, string operation)
+        public IActionResult Add(Category category, string operation)
         {
             var validate = new Validate(TempData);
             if (!validate.IsAuthorChecked) {
-                validate.CheckAuthor(author.FirstName, author.LastName, operation, data);
+                validate.CheckAuthor(category.FirstName, category.LastName, operation, data);
                 if (!validate.IsValid) {
-                    ModelState.AddModelError(nameof(author.LastName), validate.ErrorMessage);
+                    ModelState.AddModelError(nameof(category.LastName), validate.ErrorMessage);
                 }    
             }
             
             if (ModelState.IsValid) {
-                data.Insert(author);
+                data.Insert(category);
                 data.Save();
                 validate.ClearAuthor();
-                TempData["message"] = $"{author.FullName} added to Categories.";
+                TempData["message"] = $"{category.FullName} added to Categories.";
                 return RedirectToAction("Index");  
             }
             else {
-                return View("Category", author);
+                return View("Category", category);
             }
         }
 
@@ -65,56 +65,56 @@ namespace InventorySystem.Areas.Manager.Controllers
         public ViewResult Edit(int id) => View("Category", data.Get(id));
 
         [HttpPost]
-        public IActionResult Edit(Category author)
+        public IActionResult Edit(Category category)
         {
             if (ModelState.IsValid) {
-                data.Update(author);
+                data.Update(category);
                 data.Save();
-                TempData["message"] = $"{author.FullName} updated.";
+                TempData["message"] = $"{category.FullName} updated.";
                 return RedirectToAction("Index");  
             }
             else {
-                return View("Category", author);
+                return View("Category", category);
             }
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var author = data.Get(new QueryOptions<Category> {
+            var category = data.Get(new QueryOptions<Category> {
                 Include = "ProductCategories",
                 Where = a => a.CategoryId == id
             });
 
-            if (author.ProductCategories.Count > 0) {
-                TempData["message"] = $"Can't delete author {author.FullName} because they are associated with these books.";
-                return GoToAuthorSearch(author);
+            if (category.ProductCategories.Count > 0) {
+                TempData["message"] = $"Can't delete category {category.FullName} because they are associated with these books.";
+                return GoToAuthorSearch(category);
             }
             else {
-                return View("Category", author);
+                return View("Category", category);
             }
         }
 
         [HttpPost]
-        public RedirectToActionResult Delete(Category author)
+        public RedirectToActionResult Delete(Category category)
         {
-            data.Delete(author);
+            data.Delete(category);
             data.Save();
-            TempData["message"] = $"{author.FullName} removed from Categories.";
+            TempData["message"] = $"{category.FullName} removed from Categories.";
             return RedirectToAction("Index");  
         }
 
         public RedirectToActionResult ViewProducts(int id)
         {
-            var author = data.Get(id);
-            return GoToAuthorSearch(author);
+            var category = data.Get(id);
+            return GoToAuthorSearch(category);
         }
 
-        private RedirectToActionResult GoToAuthorSearch(Category author)
+        private RedirectToActionResult GoToAuthorSearch(Category category)
         {
             var search = new SearchData(TempData) {
-                SearchTerm = author.FullName,
-                Type = "author"
+                SearchTerm = category.FullName,
+                Type = "category"
             };
             return RedirectToAction("Search", "Product");
         }

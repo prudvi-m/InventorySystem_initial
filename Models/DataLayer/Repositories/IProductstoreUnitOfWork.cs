@@ -8,7 +8,7 @@
         Repository<Warehouse> Warehouses { get; }
 
         void DeleteCurrentProductCategories(Product product);
-        void LoadNewProductCategories(Product product, int[] authorids);
+        void LoadNewProductCategories(Product product, int[] categoryids);
         void Save();
     }
 }

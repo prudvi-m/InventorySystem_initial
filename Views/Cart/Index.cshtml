@@ -19,8 +19,8 @@
                 </div>
                 <div class="col">
                     <div class="float-right">
-                        <a asp-action="Checkout" class="btn btn-primary">Checkout</a>
-                        <button type="submit" class="btn btn-primary">Clear Cart</button>
+                        <a asp-action="Checkout" class="btn btn-primary btn-sm">Checkout</a>
+                        <button type="submit" class="btn btn-primary btn-sm">Clear Cart</button>
                         <a asp-action="List" asp-controller="Product"
                            asp-all-route-data="@Model.ProductGridRoute">Back to Shopping</a>
                     </div>
@@ -71,9 +71,9 @@
                             <a asp-action="Edit" asp-controller="Cart"
                                asp-route-id="@item.Product.ProductId"
                                asp-route-slug="@item.Product.Title.Slug()"
-                               class="btn btn-primary">Edit</a>
+                               class="btn btn-primary btn-sm">Edit</a>
                             <button type="submit" name="id" value="@item.Product.ProductId"
-                                    class="btn btn-primary">Remove</button>
+                                    class="btn btn-primary btn-sm">Remove</button>
                         </div>
                     </td>
                 </tr>

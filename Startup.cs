@@ -69,7 +69,7 @@ namespace InventorySystem
                 // route for paging, sorting, and filtering
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}/filter/{author}/{warehouse}/{price}");
+                    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}/filter/{category}/{warehouse}/{price}");
 
                 // route for paging and sorting only
                 endpoints.MapControllerRoute(

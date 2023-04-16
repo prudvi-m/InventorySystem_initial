@@ -11,19 +11,19 @@ namespace InventorySystem.Models
         {
             bool isInitial = values.Warehouse.IndexOf(FilterPrefix.Warehouse) == -1;
             routes.AuthorFilter = (isInitial) ? FilterPrefix.Category + values.Category : values.Category;
-            routes.GenreFilter = (isInitial) ? FilterPrefix.Warehouse + values.Warehouse : values.Warehouse;
+            routes.WarehouseFilter = (isInitial) ? FilterPrefix.Warehouse + values.Warehouse : values.Warehouse;
             routes.PriceFilter = (isInitial) ? FilterPrefix.Price + values.Price : values.Price;
         }
 
-        public void LoadFilterSegments(string[] filter, Category author)
+        public void LoadFilterSegments(string[] filter, Category category)
         {
-            if (author == null) { 
+            if (category == null) { 
                 routes.AuthorFilter = FilterPrefix.Category + filter[0];
             } else {
                 routes.AuthorFilter = FilterPrefix.Category + filter[0]
-                    + "-" + author.FullName.Slug();
+                    + "-" + category.FullName.Slug();
             }
-            routes.GenreFilter = FilterPrefix.Warehouse + filter[1];
+            routes.WarehouseFilter = FilterPrefix.Warehouse + filter[1];
             routes.PriceFilter = FilterPrefix.Price + filter[2];
         }
 
@@ -31,10 +31,10 @@ namespace InventorySystem.Models
 
         string def = ProductsGridDTO.DefaultFilter;   
         public bool IsFilterByAuthor => routes.AuthorFilter != def;
-        public bool IsFilterByGenre => routes.GenreFilter != def;
+        public bool IsFilterByWarehouse => routes.WarehouseFilter != def;
         public bool IsFilterByPrice => routes.PriceFilter != def;
 
-        public bool IsSortByGenre =>
+        public bool IsSortByWarehouse =>
             routes.SortField.EqualsNoCase(nameof(Warehouse));
         public bool IsSortByPrice =>
             routes.SortField.EqualsNoCase(nameof(Product.Price));

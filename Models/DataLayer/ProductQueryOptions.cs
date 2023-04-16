@@ -6,8 +6,8 @@ namespace InventorySystem.Models
     {
         public void SortFilter(ProductsGridBuilder builder)
         {
-            if (builder.IsFilterByGenre) {
-                Where = b => b.WarehouseId == builder.CurrentRoute.GenreFilter;
+            if (builder.IsFilterByWarehouse) {
+                Where = b => b.WarehouseId == builder.CurrentRoute.WarehouseFilter;
             }
             if (builder.IsFilterByPrice) {
                 if (builder.CurrentRoute.PriceFilter == "under7")
@@ -23,7 +23,7 @@ namespace InventorySystem.Models
                     Where = b => b.ProductCategories.Any(ba => ba.Category.CategoryId == id);
             }
 
-            if (builder.IsSortByGenre) {
+            if (builder.IsSortByWarehouse) {
                 OrderBy = b => b.Warehouse.Name;
             }
             else if (builder.IsSortByPrice) {

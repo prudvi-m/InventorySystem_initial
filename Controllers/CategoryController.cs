@@ -39,11 +39,11 @@ namespace InventorySystem.Controllers
 
         public IActionResult Details(int id)
         {
-            var author = data.Get(new QueryOptions<Category> {
+            var category = data.Get(new QueryOptions<Category> {
                 Include = "ProductCategories.Product",
                 Where = a => a.CategoryId == id
             });
-            return View(author);
+            return View(category);
         }
     }
 }

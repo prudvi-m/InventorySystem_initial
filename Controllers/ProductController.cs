@@ -54,8 +54,8 @@ namespace InventorySystem.Controllers
                 builder.ClearFilterSegments();
             }
             else {
-                var author = data.Categories.Get(filter[0].ToInt());
-                builder.LoadFilterSegments(filter, author);
+                var category = data.Categories.Get(filter[0].ToInt());
+                builder.LoadFilterSegments(filter, category);
             }
 
             builder.SaveRouteSegments();

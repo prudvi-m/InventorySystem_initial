@@ -16,31 +16,31 @@ namespace InventorySystem.Models
             }
         }
 
-        private Repository<Category> authorData;
+        private Repository<Category> categoryData;
         public Repository<Category> Categories {
             get {
-                if (authorData == null)
-                    authorData = new Repository<Category>(context);
-                return authorData;
+                if (categoryData == null)
+                    categoryData = new Repository<Category>(context);
+                return categoryData;
             }
         }
 
-        private Repository<ProductCategory> bookauthorData;
+        private Repository<ProductCategory> bookcategoryData;
         public Repository<ProductCategory> ProductCategories {
             get {
-                if (bookauthorData == null)
-                    bookauthorData = new Repository<ProductCategory>(context);
-                return bookauthorData;
+                if (bookcategoryData == null)
+                    bookcategoryData = new Repository<ProductCategory>(context);
+                return bookcategoryData;
             }
         }
 
-        private Repository<Warehouse> genreData;
+        private Repository<Warehouse> warehouseData;
         public Repository<Warehouse> Warehouses
         {
             get {
-                if (genreData == null)
-                    genreData = new Repository<Warehouse>(context);
-                return genreData;
+                if (warehouseData == null)
+                    warehouseData = new Repository<Warehouse>(context);
+                return warehouseData;
             }
         }
 
@@ -54,9 +54,9 @@ namespace InventorySystem.Models
             }
         }
 
-        public void LoadNewProductCategories(Product product, int[] authorids)
+        public void LoadNewProductCategories(Product product, int[] categoryids)
         {
-            product.ProductCategories = authorids.Select(i =>
+            product.ProductCategories = categoryids.Select(i =>
                 new ProductCategory { Product = product, CategoryId = i })
                 .ToList();
         }

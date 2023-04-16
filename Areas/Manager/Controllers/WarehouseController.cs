@@ -17,10 +17,10 @@ namespace InventorySystem.Areas.Manager.Controllers
             var search = new SearchData(TempData);
             search.Clear();
 
-            var genres = data.List(new QueryOptions<Warehouse> {
+            var warehouses = data.List(new QueryOptions<Warehouse> {
                 OrderBy = g => g.Name
             });
-            return View(genres);
+            return View(warehouses);
         }
 
         [HttpGet]
@@ -30,8 +30,8 @@ namespace InventorySystem.Areas.Manager.Controllers
         public IActionResult Add(Warehouse warehouse)
         {
             var validate = new Validate(TempData);
-            if (!validate.IsGenreChecked) {
-                validate.CheckGenre(warehouse.WarehouseId, data);
+            if (!validate.IsWarehouseChecked) {
+                validate.CheckWarehouse(warehouse.WarehouseId, data);
                 if (!validate.IsValid) {
                     ModelState.AddModelError(nameof(warehouse.WarehouseId), validate.ErrorMessage);
                 }     
@@ -40,7 +40,7 @@ namespace InventorySystem.Areas.Manager.Controllers
             if (ModelState.IsValid) {
                 data.Insert(warehouse);
                 data.Save();
-                validate.ClearGenre();
+                validate.ClearWarehouse();
                 TempData["message"] = $"{warehouse.Name} added to Warehouses.";
                 return RedirectToAction("Index");  
             }

@@ -73,11 +73,11 @@
     }
     <div class="row">
         <div class="col-sm-4 offset-sm-2">
-            <button type="submit" class="btn btn-primary">@action</button>
+            <button type="submit" class="btn btn-primary btn-sm">@action</button>
 
             @* return user to main manager page after add, or to search page otherwise *@
             <a asp-action="@(Operation.IsAdd(action) ? "Index" : "Search")"
-               class="btn btn-primary">Cancel</a>
+               class="btn btn-primary btn-sm">Cancel</a>
         </div>
     </div>
 </form>

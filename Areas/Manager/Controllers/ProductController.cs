@@ -65,9 +65,9 @@ namespace InventorySystem.Areas.Manager.Controllers
                             ba => ba.Category.FirstName.Contains(first) && 
                             ba.Category.LastName.Contains(last));
                     }
-                    vm.Header = $"Search results for author '{vm.SearchTerm}'";
+                    vm.Header = $"Search results for category '{vm.SearchTerm}'";
                 }
-                if (search.IsGenre) {                  
+                if (search.IsWarehouse) {                  
                     options.Where = b => b.WarehouseId.Contains(vm.SearchTerm);
                     vm.Header = $"Search results for warehouse ID '{vm.SearchTerm}'";
                 }

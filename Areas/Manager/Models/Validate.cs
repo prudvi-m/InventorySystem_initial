@@ -4,7 +4,7 @@ namespace InventorySystem.Models
 {
     public class Validate
     {
-        private const string GenreKey = "validGenre";
+        private const string WarehouseKey = "validWarehouse";
         private const string AuthorKey = "validAuthor";
         private const string EmailKey = "validEmail";
 
@@ -14,16 +14,16 @@ namespace InventorySystem.Models
         public bool IsValid { get; private set; }
         public string ErrorMessage { get; private set; }
 
-        public void CheckGenre(string genreId, Repository<Warehouse> data)
+        public void CheckWarehouse(string warehouseId, Repository<Warehouse> data)
         {
-            Warehouse entity = data.Get(genreId);
+            Warehouse entity = data.Get(warehouseId);
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" : 
-                $"Warehouse id {genreId} is already in the database.";
+                $"Warehouse id {warehouseId} is already in the database.";
         }
-        public void MarkGenreChecked() => tempData[GenreKey] = true;
-        public void ClearGenre() => tempData.Remove(GenreKey);
-        public bool IsGenreChecked => tempData.Keys.Contains(GenreKey);
+        public void MarkWarehouseChecked() => tempData[WarehouseKey] = true;
+        public void ClearWarehouse() => tempData.Remove(WarehouseKey);
+        public bool IsWarehouseChecked => tempData.Keys.Contains(WarehouseKey);
 
         public void CheckAuthor(string firstName, string lastName, string operation, Repository<Category> data)
         {

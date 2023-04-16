@@ -14,7 +14,7 @@ namespace InventorySystem.Models
             if (SelectedCategories == null)
             {
                 yield return new ValidationResult(
-                  "Please select at least one author.",
+                  "Please select at least one category.",
                   new[] { nameof(SelectedCategories) });
             }
         }

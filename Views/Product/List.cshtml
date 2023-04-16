@@ -26,7 +26,7 @@
     <label>Warehouse: </label>
     <select name="filter" class="form-control m-2"
             asp-items="@(new SelectList(
-            Model.Warehouses, "WarehouseId", "Name", current.GenreFilter))">
+            Model.Warehouses, "WarehouseId", "Name", current.WarehouseFilter))">
         <option value="@ProductsGridDTO.DefaultFilter">All</option>
     </select>
 
@@ -37,8 +37,8 @@
         <option value="@ProductsGridDTO.DefaultFilter">All</option>
     </select>
 
-    <button type="submit" class="btn btn-primary mr-2">Filter</button>
-    <button type="submit" class="btn btn-primary"
+    <button type="submit" class="btn btn-primary btn-sm mr-2">Filter</button>
+    <button type="submit" class="btn btn-primary btn-sm"
             name="clear" value="true">
         Clear
     </button>
@@ -98,7 +98,7 @@
                     <td>@product.Price.ToString("c", culture)</td>
                     <td>
                         <button type="submit" name="id" value="@product.ProductId"
-                                class="btn btn-primary">
+                                class="btn btn-primary btn-sm">
                             Add To Cart
                         </button>
                     </td>

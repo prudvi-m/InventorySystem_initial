@@ -8,7 +8,7 @@ namespace InventorySystem.Models
     {
         public const string Warehouse = "warehouse-";
         public const string Price = "price-";
-        public const string Category = "author-";
+        public const string Category = "category-";
     }
 
     public class RouteDictionary : Dictionary<string, string>
@@ -43,7 +43,7 @@ namespace InventorySystem.Models
                 this[nameof(GridDTO.SortDirection)] = "asc";
         }
 
-        public string GenreFilter {
+        public string WarehouseFilter {
             get => Get(nameof(ProductsGridDTO.Warehouse))?.Replace(FilterPrefix.Warehouse, "");
             set => this[nameof(ProductsGridDTO.Warehouse)] = value;
         }
@@ -64,7 +64,7 @@ namespace InventorySystem.Models
         }
 
         public void ClearFilters() =>
-            GenreFilter = PriceFilter = AuthorFilter = ProductsGridDTO.DefaultFilter;
+            WarehouseFilter = PriceFilter = AuthorFilter = ProductsGridDTO.DefaultFilter;
 
         private string Get(string key) => Keys.Contains(key) ? this[key] : null;
 
