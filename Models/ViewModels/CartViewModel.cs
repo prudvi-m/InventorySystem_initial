@@ -6,6 +6,6 @@ namespace InventorySystem.Models
     {
         public IEnumerable<CartItem> List { get; set; }
         public double Subtotal { get; set; }
-        public RouteDictionary BookGridRoute { get; set; }
+        public RouteDictionary ProductGridRoute { get; set; }
     }
 }

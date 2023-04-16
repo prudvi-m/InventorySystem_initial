@@ -60,11 +60,11 @@ namespace InventorySystem
 
             app.UseEndpoints(endpoints =>
             {
-                // route for Admin area
+                // route for Manager area
                 endpoints.MapAreaControllerRoute(
                     name: "manager",
                     areaName: "Manager",
-                    pattern: "Admin/{controller=Product}/{action=Index}/{id?}");
+                    pattern: "Manager/{controller=Product}/{action=Index}/{id?}");
 
                 // route for paging, sorting, and filtering
                 endpoints.MapControllerRoute(

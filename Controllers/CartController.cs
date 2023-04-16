@@ -21,12 +21,12 @@ namespace InventorySystem.Controllers
         public ViewResult Index() 
         {
             var cart = GetCart();
-            var builder = new BooksGridBuilder(HttpContext.Session);
+            var builder = new ProductsGridBuilder(HttpContext.Session);
 
             var vm = new CartViewModel {
                 List = cart.List,
                 Subtotal = cart.Subtotal,
-                BookGridRoute = builder.CurrentRoute
+                ProductGridRoute = builder.CurrentRoute
             };
             return View(vm);
         }
@@ -35,14 +35,14 @@ namespace InventorySystem.Controllers
         public RedirectToActionResult Add(int id)
         {
             var product = data.Get(new QueryOptions<Product> {
-                Include = "BookCategories.Category, Warehouse",
-                Where = b => b.BookId == id
+                Include = "ProductCategories.Category, Warehouse",
+                Where = b => b.ProductId == id
             });
             if (product == null){
                 TempData["message"] = "Unable to add product to cart.";   
             }
             else {
-                var dto = new BookDTO();
+                var dto = new ProductDTO();
                 dto.Load(product);
                 CartItem item = new CartItem {
                     Product = dto,
@@ -56,7 +56,7 @@ namespace InventorySystem.Controllers
                 TempData["message"] = $"{product.Title} added to cart";
             }
 
-            var builder = new BooksGridBuilder(HttpContext.Session);
+            var builder = new ProductsGridBuilder(HttpContext.Session);
             return RedirectToAction("List", "Product", builder.CurrentRoute);
         }
 

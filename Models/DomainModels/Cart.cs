@@ -33,11 +33,11 @@ namespace InventorySystem.Models
             if (storedItems?.Count > items?.Count) {
                 foreach (CartItemDTO storedItem in storedItems) {
                     var product = data.Get(new QueryOptions<Product> {
-                        Include = "BookCategories.Category, Warehouse",
-                        Where = b => b.BookId == storedItem.BookId
+                        Include = "ProductCategories.Category, Warehouse",
+                        Where = b => b.ProductId == storedItem.ProductId
                     });
                     if (product != null) {
-                        var dto = new BookDTO();
+                        var dto = new ProductDTO();
                         dto.Load(product);
 
                         CartItem item = new CartItem {
@@ -56,10 +56,10 @@ namespace InventorySystem.Models
         public IEnumerable<CartItem> List => items;
 
         public CartItem GetById(int id) => 
-            items.FirstOrDefault(ci => ci.Product.BookId == id);
+            items.FirstOrDefault(ci => ci.Product.ProductId == id);
 
         public void Add(CartItem item) {
-            var itemInCart = GetById(item.Product.BookId);
+            var itemInCart = GetById(item.Product.ProductId);
             
             if (itemInCart == null) {
                 items.Add(item);
@@ -71,7 +71,7 @@ namespace InventorySystem.Models
 
         public void Edit(CartItem item)
         {
-            var itemInCart = GetById(item.Product.BookId);
+            var itemInCart = GetById(item.Product.ProductId);
             if (itemInCart != null) {
                 itemInCart.Quantity = item.Quantity;
             }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using InventorySystem.Models;
 
-namespace InventorySystem.Areas.Admin.Controllers
+namespace InventorySystem.Areas.Manager.Controllers
 {
     // [Area("Manager")]
     [Area("manager")]

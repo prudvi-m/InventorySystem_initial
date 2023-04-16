@@ -4,7 +4,7 @@ namespace InventorySystem.Models
 {
     public class CartItem
     {
-        public BookDTO Product { get; set; }
+        public ProductDTO Product { get; set; }
         public int Quantity { get; set; }
 
         [JsonIgnore]

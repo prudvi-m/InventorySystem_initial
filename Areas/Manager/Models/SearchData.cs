@@ -23,7 +23,7 @@ namespace InventorySystem.Models
         }
 
         public bool HasSearchTerm => !string.IsNullOrEmpty(SearchTerm);
-        public bool IsBook => Type.EqualsNoCase("product");
+        public bool IsProduct => Type.EqualsNoCase("product");
         public bool IsAuthor => Type.EqualsNoCase("author");
         public bool IsGenre => Type.EqualsNoCase("warehouse");
 

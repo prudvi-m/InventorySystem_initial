@@ -7,7 +7,7 @@ namespace InventorySystem.Models
     {
         public static List<CartItemDTO> ToDTO(this List<CartItem> list) =>
             list.Select(ci => new CartItemDTO {
-                BookId = ci.Product.BookId,
+                ProductId = ci.Product.ProductId,
                 Quantity = ci.Quantity
             }).ToList();
     }

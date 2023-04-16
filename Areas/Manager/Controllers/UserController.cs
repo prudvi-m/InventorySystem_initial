@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using InventorySystem.Models;
 
-namespace InventorySystem.Areas.Admin.Controllers
+namespace InventorySystem.Areas.Manager.Controllers
 {
     
     [Authorize(Roles = "Manager")]
@@ -89,16 +89,16 @@ namespace InventorySystem.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToAdmin(string id)
         {
-            IdentityRole adminRole = await roleManager.FindByNameAsync("Manager");
-            if (adminRole == null)
+            IdentityRole managerRole = await roleManager.FindByNameAsync("Manager");
+            if (managerRole == null)
             {
-                TempData["message"] = "Admin role does not exist. "
-                    + "Click 'Create Admin Role' button to create it.";
+                TempData["message"] = "Manager role does not exist. "
+                    + "Click 'Create Manager Role' button to create it.";
             }
             else
             {
                 User user = await userManager.FindByIdAsync(id);
-                await userManager.AddToRoleAsync(user, adminRole.Name);
+                await userManager.AddToRoleAsync(user, managerRole.Name);
             }
             return RedirectToAction("Index");
         }

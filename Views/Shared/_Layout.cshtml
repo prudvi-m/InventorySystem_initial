@@ -92,17 +92,17 @@
 
                     <li class="nav-item @Nav.Active("Manager", current)">
                         <a class="nav-link" asp-action="Index" asp-controller="Product" asp-area="Manager">
-                            <span class="fas fa-cog"></span>&nbsp;Admin
+                            <span class="fas fa-cog"></span>&nbsp;Manager
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <header class="jumbotron text-center">
-            <a asp-action="Index" asp-controller="Home">
-                <img src="~/images/logo.png" class="img-fluid center-block" />
-            </a>
-        </header>
+            <header class="jumbotron text-center">
+                <a asp-action="Index" asp-controller="Home">
+                    <img src="~/images/logo.jpg" class="w-50" />
+                </a>
+            </header>
         <main>
             @if (TempData.Keys.Contains("message")) {
                 <h4 class="bg-info text-center text-white p-2">@TempData["message"]</h4>

@@ -44,27 +44,27 @@ namespace InventorySystem.Models
         }
 
         public string GenreFilter {
-            get => Get(nameof(BooksGridDTO.Warehouse))?.Replace(FilterPrefix.Warehouse, "");
-            set => this[nameof(BooksGridDTO.Warehouse)] = value;
+            get => Get(nameof(ProductsGridDTO.Warehouse))?.Replace(FilterPrefix.Warehouse, "");
+            set => this[nameof(ProductsGridDTO.Warehouse)] = value;
         }
 
         public string PriceFilter {
-            get => Get(nameof(BooksGridDTO.Price))?.Replace(FilterPrefix.Price, "");
-            set => this[nameof(BooksGridDTO.Price)] = value;
+            get => Get(nameof(ProductsGridDTO.Price))?.Replace(FilterPrefix.Price, "");
+            set => this[nameof(ProductsGridDTO.Price)] = value;
         }
 
         public string AuthorFilter {
             get
             {
-                string s = Get(nameof(BooksGridDTO.Category))?.Replace(FilterPrefix.Category, "");
+                string s = Get(nameof(ProductsGridDTO.Category))?.Replace(FilterPrefix.Category, "");
                 int index = s?.IndexOf('-') ?? -1;
                 return (index == -1) ? s : s.Substring(0, index);
             }
-            set => this[nameof(BooksGridDTO.Category)] = value;
+            set => this[nameof(ProductsGridDTO.Category)] = value;
         }
 
         public void ClearFilters() =>
-            GenreFilter = PriceFilter = AuthorFilter = BooksGridDTO.DefaultFilter;
+            GenreFilter = PriceFilter = AuthorFilter = ProductsGridDTO.DefaultFilter;
 
         private string Get(string key) => Keys.Contains(key) ? this[key] : null;
 

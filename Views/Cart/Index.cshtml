@@ -22,7 +22,7 @@
                         <a asp-action="Checkout" class="btn btn-primary">Checkout</a>
                         <button type="submit" class="btn btn-primary">Clear Cart</button>
                         <a asp-action="List" asp-controller="Product"
-                           asp-all-route-data="@Model.BookGridRoute">Back to Shopping</a>
+                           asp-all-route-data="@Model.ProductGridRoute">Back to Shopping</a>
                     </div>
                     
                 </div>
@@ -47,7 +47,7 @@
                 <tr>
                     <td>
                         <a asp-action="Details" asp-controller="Product"
-                           asp-route-id="@item.Product.BookId"
+                           asp-route-id="@item.Product.ProductId"
                            asp-route-slug="@item.Product.Title.Slug()">
                             @item.Product.Title
                         </a>
@@ -69,10 +69,10 @@
                     <td>
                         <div class="float-right">
                             <a asp-action="Edit" asp-controller="Cart"
-                               asp-route-id="@item.Product.BookId"
+                               asp-route-id="@item.Product.ProductId"
                                asp-route-slug="@item.Product.Title.Slug()"
                                class="btn btn-primary">Edit</a>
-                            <button type="submit" name="id" value="@item.Product.BookId"
+                            <button type="submit" name="id" value="@item.Product.ProductId"
                                     class="btn btn-primary">Remove</button>
                         </div>
                     </td>
