@@ -17,25 +17,25 @@
 
 <table class="table">
     <tbody>
-        @foreach (var book in Model.Books) {
+        @foreach (var product in Model.Products) {
         <tr>
             <td>
-                <a asp-action="Details" asp-controller="Book"
-                   asp-area="" asp-route-id="@book.BookId"
-                   asp-route-slug="@book.Title.Slug()">@book.Title</a>
+                <a asp-action="Details" asp-controller="Product"
+                   asp-area="" asp-route-id="@product.BookId"
+                   asp-route-slug="@product.Title.Slug()">@product.Title</a>
             </td>
-            <td>@book.Genre.Name</td>
+            <td>@product.Warehouse.Name</td>
             <td>
-                @foreach(BookAuthor ba in book.BookAuthors)
+                @foreach(BookAuthor ba in product.BookCategories)
                 {
-                    <div>@ba.Author.FullName</div>
+                    <div>@ba.Category.FullName</div>
                 }
             </td>
             <td>
                 <div class="float-right">
-                    <a asp-action="Edit" asp-route-id="@book.BookId"
+                    <a asp-action="Edit" asp-route-id="@product.BookId"
                        class="btn btn-primary">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@book.BookId"
+                    <a asp-action="Delete" asp-route-id="@product.BookId"
                        class="btn btn-primary">Delete</a>
                 </div>
             </td>

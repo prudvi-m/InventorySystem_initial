@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
-    public class BookstoreContext : IdentityDbContext<User>
+    public class InventorySystemContext : IdentityDbContext<User>
     {
-        public BookstoreContext(DbContextOptions<BookstoreContext> options)
+        public InventorySystemContext(DbContextOptions<InventorySystemContext> options)
             : base(options)
         { }
 
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Book> Books { get; set; }
-        public DbSet<BookAuthor> BookAuthors { get; set; }
-        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<BookAuthor> BookCategories { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,23 +28,23 @@ namespace Bookstore.Models
             modelBuilder.Entity<BookAuthor>().HasKey(ba => new { ba.BookId, ba.AuthorId });
 
             // BookAuthor: set foreign keys 
-            modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Book)
-                .WithMany(b => b.BookAuthors)
+            modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Product)
+                .WithMany(b => b.BookCategories)
                 .HasForeignKey(ba => ba.BookId);
-            modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Author)
-                .WithMany(a => a.BookAuthors)
+            modelBuilder.Entity<BookAuthor>().HasOne(ba => ba.Category)
+                .WithMany(a => a.BookCategories)
                 .HasForeignKey(ba => ba.AuthorId);
 
-            // Book: remove cascading delete with Genre
-            modelBuilder.Entity<Book>().HasOne(b => b.Genre)
-                .WithMany(g => g.Books)
+            // Product: remove cascading delete with Warehouse
+            modelBuilder.Entity<Product>().HasOne(b => b.Warehouse)
+                .WithMany(g => g.Products)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // seed initial data
             modelBuilder.ApplyConfiguration(new SeedGenres());
             modelBuilder.ApplyConfiguration(new SeedBooks());
-            modelBuilder.ApplyConfiguration(new SeedAuthors());
-            modelBuilder.ApplyConfiguration(new SeedBookAuthors());
+            modelBuilder.ApplyConfiguration(new SeedCategories());
+            modelBuilder.ApplyConfiguration(new SeedBookCategories());
         }
 
         public static async Task CreateAdminUser(IServiceProvider serviceProvider)
@@ -54,13 +54,8 @@ namespace Bookstore.Models
             RoleManager<IdentityRole> roleManager =
                 serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-            
+            //Initial Sample Users            
             var userCreationList = new List<UserCreation>{
-                // new UserCreation() {
-                //     username = "manager",
-                //     password = "Sesame",
-                //     roleName = "Manager"
-                // },
                 new UserCreation() {
                     username = "manager",
                     password = "Sesame",
@@ -88,7 +83,6 @@ namespace Bookstore.Models
                 }
             }
         }
-        
     }
 
     public class UserCreation {

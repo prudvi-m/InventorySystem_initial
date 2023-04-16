@@ -1,13 +1,13 @@
 ﻿@model AuthorListViewModel
 @{
-    ViewData["Title"] = " | Author Catalog";
+    ViewData["Title"] = " | Category Catalog";
 
     // aliases to make paging and sorting code shorter
     RouteDictionary current = Model.CurrentRoute;
     RouteDictionary routes = Model.CurrentRoute.Clone();
 }
 
-<h1>Author Catalog</h1>
+<h1>Category Catalog</h1>
 
 <table class="table table-bordered table-striped table-sm">
     @* for the name columns, update the route dictionary with the field to sort by, and then use
@@ -15,20 +15,20 @@
     <thead class="thead-dark">
         <tr>
             <th>
-                @{ routes.SetSortAndDirection(nameof(Author.FirstName), current); }
+                @{ routes.SetSortAndDirection(nameof(Category.FirstName), current); }
                 <a asp-action="List" asp-all-route-data="@routes"
                    class="text-white">First Name</a>
             </th>
             <th>
-                @{ routes.SetSortAndDirection(nameof(Author.LastName), current); }
+                @{ routes.SetSortAndDirection(nameof(Category.LastName), current); }
                 <a asp-action="List" asp-all-route-data="@routes"
                    class="text-white">Last Name</a>
             </th>
-            <th>Book(s)</th>
+            <th>Product(s)</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (Author author in Model.Authors)
+        @foreach (Category author in Model.Categories)
         {
         <tr>
             <td>
@@ -44,13 +44,13 @@
                 </a>
             </td>
             <td>
-                @foreach (var ba in author.BookAuthors)
+                @foreach (var ba in author.BookCategories)
                 {
                     <p>
-                        <a asp-action="Details" asp-controller="Book"
+                        <a asp-action="Details" asp-controller="Product"
                            asp-route-id="@ba.BookId"
-                           asp-route-slug="@ba.Book.Title.Slug()">
-                            @ba.Book.Title
+                           asp-route-slug="@ba.Product.Title.Slug()">
+                            @ba.Product.Title
                         </a>
                     </p>
                 }

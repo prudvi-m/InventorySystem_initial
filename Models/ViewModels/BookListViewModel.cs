@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class BookListViewModel 
     {
-        public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Product> Products { get; set; }
         public RouteDictionary CurrentRoute { get; set; }
         public int TotalPages { get; set; }
 
-        public IEnumerable<Author> Authors { get; set; }
-        public IEnumerable<Genre> Genres { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Warehouse> Warehouses { get; set; }
         public Dictionary<string, string> Prices =>
             new Dictionary<string, string> {
                 { "under7", "Under $7" },

@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Bookstore.Models;
+using InventorySystem.Models;
 
-namespace Bookstore.Areas.Admin.Controllers
+namespace InventorySystem.Areas.Admin.Controllers
 {
     
     [Authorize(Roles = "manager")]
     [Area("manager")]
     public class AuthorController : Controller
     {
-        private Repository<Author> data { get; set; }
-        public AuthorController(BookstoreContext ctx) => data = new Repository<Author>(ctx);
+        private Repository<Category> data { get; set; }
+        public AuthorController(InventorySystemContext ctx) => data = new Repository<Category>(ctx);
 
         public ViewResult Index()
         {
-            var authors = data.List(new QueryOptions<Author> {
+            var authors = data.List(new QueryOptions<Category> {
                 OrderBy = a => a.FirstName
             });
             return View(authors);
@@ -36,10 +36,10 @@ namespace Bookstore.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ViewResult Add() => View("Author", new Author());
+        public ViewResult Add() => View("Category", new Category());
 
         [HttpPost]
-        public IActionResult Add(Author author, string operation)
+        public IActionResult Add(Category author, string operation)
         {
             var validate = new Validate(TempData);
             if (!validate.IsAuthorChecked) {
@@ -53,19 +53,19 @@ namespace Bookstore.Areas.Admin.Controllers
                 data.Insert(author);
                 data.Save();
                 validate.ClearAuthor();
-                TempData["message"] = $"{author.FullName} added to Authors.";
+                TempData["message"] = $"{author.FullName} added to Categories.";
                 return RedirectToAction("Index");  
             }
             else {
-                return View("Author", author);
+                return View("Category", author);
             }
         }
 
         [HttpGet]
-        public ViewResult Edit(int id) => View("Author", data.Get(id));
+        public ViewResult Edit(int id) => View("Category", data.Get(id));
 
         [HttpPost]
-        public IActionResult Edit(Author author)
+        public IActionResult Edit(Category author)
         {
             if (ModelState.IsValid) {
                 data.Update(author);
@@ -74,33 +74,33 @@ namespace Bookstore.Areas.Admin.Controllers
                 return RedirectToAction("Index");  
             }
             else {
-                return View("Author", author);
+                return View("Category", author);
             }
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var author = data.Get(new QueryOptions<Author> {
-                Include = "BookAuthors",
+            var author = data.Get(new QueryOptions<Category> {
+                Include = "BookCategories",
                 Where = a => a.AuthorId == id
             });
 
-            if (author.BookAuthors.Count > 0) {
+            if (author.BookCategories.Count > 0) {
                 TempData["message"] = $"Can't delete author {author.FullName} because they are associated with these books.";
                 return GoToAuthorSearch(author);
             }
             else {
-                return View("Author", author);
+                return View("Category", author);
             }
         }
 
         [HttpPost]
-        public RedirectToActionResult Delete(Author author)
+        public RedirectToActionResult Delete(Category author)
         {
             data.Delete(author);
             data.Save();
-            TempData["message"] = $"{author.FullName} removed from Authors.";
+            TempData["message"] = $"{author.FullName} removed from Categories.";
             return RedirectToAction("Index");  
         }
 
@@ -110,13 +110,13 @@ namespace Bookstore.Areas.Admin.Controllers
             return GoToAuthorSearch(author);
         }
 
-        private RedirectToActionResult GoToAuthorSearch(Author author)
+        private RedirectToActionResult GoToAuthorSearch(Category author)
         {
             var search = new SearchData(TempData) {
                 SearchTerm = author.FullName,
                 Type = "author"
             };
-            return RedirectToAction("Search", "Book");
+            return RedirectToAction("Search", "Product");
         }
     }
 }

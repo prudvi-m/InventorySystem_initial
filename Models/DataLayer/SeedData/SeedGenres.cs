@@ -1,22 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
-    internal class SeedGenres : IEntityTypeConfiguration<Genre>
+    internal class SeedGenres : IEntityTypeConfiguration<Warehouse>
     {
-        public void Configure(EntityTypeBuilder<Genre> entity)
+        public void Configure(EntityTypeBuilder<Warehouse> entity)
         {
             entity.HasData(
-                new Genre { GenreId = "novel", Name = "Novel" },
-                new Genre { GenreId = "memoir", Name = "Memoir" },
-                new Genre { GenreId = "mystery", Name = "Mystery" },
-                new Genre { GenreId = "scifi", Name = "Science Fiction" },
-                new Genre { GenreId = "history", Name = "History" }
+                new Warehouse { GenreId = "novel", Name = "Novel" },
+                new Warehouse { GenreId = "memoir", Name = "Memoir" },
+                new Warehouse { GenreId = "mystery", Name = "Mystery" },
+                new Warehouse { GenreId = "scifi", Name = "Science Fiction" },
+                new Warehouse { GenreId = "history", Name = "History" }
             );
         }
     }
 
 }
 
-// dotnet aspnet-codegenerator identity -dc BookstoreContext create "manager" -email "manager@gmail.com" -pw "1234" -role "manager"
+// dotnet aspnet-codegenerator identity -dc InventorySystemContext create "manager" -email "manager@gmail.com" -pw "1234" -role "manager"

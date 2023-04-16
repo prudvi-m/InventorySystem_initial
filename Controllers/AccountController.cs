@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Bookstore.Models;
+using InventorySystem.Models;
 
-namespace Bookstore.Controllers
+namespace InventorySystem.Controllers
 {
     public class AccountController : Controller
     {
@@ -28,7 +28,7 @@ namespace Bookstore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Bookstore.Models.User { 
+                var user = new InventorySystem.Models.User { 
                     UserName = model.Username,
                     Firstname = model.Firstname,
                     Lastname = model.Lastname,

@@ -2,19 +2,19 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
-    public class Genre
+    public class Warehouse
     {
         [MaxLength(10)]
-        [Required(ErrorMessage = "Please enter a genre id.")]
+        [Required(ErrorMessage = "Please enter a warehouse id.")]
         [Remote("CheckGenre", "Validation", "Area")]
         public string GenreId { get; set; }
         
         [StringLength(25)]
-        [Required(ErrorMessage = "Please enter a genre name.")]
+        [Required(ErrorMessage = "Please enter a warehouse name.")]
         public string Name { get; set; }
 
-        public ICollection<Book> Books { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

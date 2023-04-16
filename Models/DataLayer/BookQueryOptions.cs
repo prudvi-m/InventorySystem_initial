@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
-    public class BookQueryOptions : QueryOptions<Book>
+    public class BookQueryOptions : QueryOptions<Product>
     {
         public void SortFilter(BooksGridBuilder builder)
         {
@@ -20,11 +20,11 @@ namespace Bookstore.Models
             if (builder.IsFilterByAuthor) {
                 int id = builder.CurrentRoute.AuthorFilter.ToInt();
                 if (id > 0)
-                    Where = b => b.BookAuthors.Any(ba => ba.Author.AuthorId == id);
+                    Where = b => b.BookCategories.Any(ba => ba.Category.AuthorId == id);
             }
 
             if (builder.IsSortByGenre) {
-                OrderBy = b => b.Genre.Name;
+                OrderBy = b => b.Warehouse.Name;
             }
             else if (builder.IsSortByPrice) {
                 OrderBy = b => b.Price;

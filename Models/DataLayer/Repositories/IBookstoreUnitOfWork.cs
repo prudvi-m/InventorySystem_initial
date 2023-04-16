@@ -1,14 +1,14 @@
-﻿namespace Bookstore.Models
+﻿namespace InventorySystem.Models
 {
-    public interface IBookstoreUnitOfWork
+    public interface IInventorySystemUnitOfWork
     {
-        Repository<Book> Books { get; }
-        Repository<Author> Authors { get; }
-        Repository<BookAuthor> BookAuthors { get; }
-        Repository<Genre> Genres { get; }
+        Repository<Product> Products { get; }
+        Repository<Category> Categories { get; }
+        Repository<BookAuthor> BookCategories { get; }
+        Repository<Warehouse> Warehouses { get; }
 
-        void DeleteCurrentBookAuthors(Book book);
-        void LoadNewBookAuthors(Book book, int[] authorids);
+        void DeleteCurrentBookCategories(Product product);
+        void LoadNewBookCategories(Product product, int[] authorids);
         void Save();
     }
 }

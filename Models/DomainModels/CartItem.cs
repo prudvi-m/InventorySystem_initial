@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class CartItem
     {
-        public BookDTO Book { get; set; }
+        public BookDTO Product { get; set; }
         public int Quantity { get; set; }
 
         [JsonIgnore]
-        public double Subtotal => Book.Price * Quantity;
+        public double Subtotal => Product.Price * Quantity;
     }
 }

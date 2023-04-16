@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Bookstore.Models;
+using InventorySystem.Models;
 
-namespace Bookstore.Controllers
+namespace InventorySystem.Controllers
 {
     [Authorize]
     public class CartController : Controller
     {
-        private Repository<Book> data { get; set; }
-        public CartController(BookstoreContext ctx) => data = new Repository<Book>(ctx);
+        private Repository<Product> data { get; set; }
+        public CartController(InventorySystemContext ctx) => data = new Repository<Product>(ctx);
 
 
         private Cart GetCart()
@@ -34,18 +34,18 @@ namespace Bookstore.Controllers
         [HttpPost]
         public RedirectToActionResult Add(int id)
         {
-            var book = data.Get(new QueryOptions<Book> {
-                Include = "BookAuthors.Author, Genre",
+            var product = data.Get(new QueryOptions<Product> {
+                Include = "BookCategories.Category, Warehouse",
                 Where = b => b.BookId == id
             });
-            if (book == null){
-                TempData["message"] = "Unable to add book to cart.";   
+            if (product == null){
+                TempData["message"] = "Unable to add product to cart.";   
             }
             else {
                 var dto = new BookDTO();
-                dto.Load(book);
+                dto.Load(product);
                 CartItem item = new CartItem {
-                    Book = dto,
+                    Product = dto,
                     Quantity = 1  // default value
                 };
 
@@ -53,11 +53,11 @@ namespace Bookstore.Controllers
                 cart.Add(item);
                 cart.Save();
 
-                TempData["message"] = $"{book.Title} added to cart";
+                TempData["message"] = $"{product.Title} added to cart";
             }
 
             var builder = new BooksGridBuilder(HttpContext.Session);
-            return RedirectToAction("List", "Book", builder.CurrentRoute);
+            return RedirectToAction("List", "Product", builder.CurrentRoute);
         }
 
         [HttpPost]
@@ -68,7 +68,7 @@ namespace Bookstore.Controllers
             cart.Remove(item);
             cart.Save();
 
-            TempData["message"] = $"{item.Book.Title} removed from cart.";
+            TempData["message"] = $"{item.Product.Title} removed from cart.";
             return RedirectToAction("Index");
         }
                 
@@ -106,7 +106,7 @@ namespace Bookstore.Controllers
             cart.Edit(item);
             cart.Save();
 
-            TempData["message"] = $"{item.Book.Title} updated";
+            TempData["message"] = $"{item.Product.Title} updated";
             return RedirectToAction("Index");
         }
 

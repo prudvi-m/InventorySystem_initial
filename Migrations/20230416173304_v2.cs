@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Bookstore.Migrations
+namespace InventorySystem.Migrations
 {
     /// <inheritdoc />
     public partial class v2 : Migration
@@ -55,7 +55,7 @@ namespace Bookstore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Authors",
+                name: "Categories",
                 columns: table => new
                 {
                     AuthorId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -65,11 +65,11 @@ namespace Bookstore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Authors", x => x.AuthorId);
+                    table.PrimaryKey("PK_Categories", x => x.AuthorId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Genres",
+                name: "Warehouses",
                 columns: table => new
                 {
                     GenreId = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
@@ -187,7 +187,7 @@ namespace Bookstore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Books",
+                name: "Products",
                 columns: table => new
                 {
                     BookId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -202,13 +202,13 @@ namespace Bookstore.Migrations
                     table.ForeignKey(
                         name: "FK_Books_Genres_GenreId",
                         column: x => x.GenreId,
-                        principalTable: "Genres",
+                        principalTable: "Warehouses",
                         principalColumn: "GenreId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookAuthors",
+                name: "BookCategories",
                 columns: table => new
                 {
                     BookId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -216,23 +216,23 @@ namespace Bookstore.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookAuthors", x => new { x.BookId, x.AuthorId });
+                    table.PrimaryKey("PK_BookCategories", x => new { x.BookId, x.AuthorId });
                     table.ForeignKey(
-                        name: "FK_BookAuthors_Authors_AuthorId",
+                        name: "FK_BookCategories_Categories_AuthorId",
                         column: x => x.AuthorId,
-                        principalTable: "Authors",
+                        principalTable: "Categories",
                         principalColumn: "AuthorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookAuthors_Books_BookId",
+                        name: "FK_BookCategories_Books_BookId",
                         column: x => x.BookId,
-                        principalTable: "Books",
+                        principalTable: "Products",
                         principalColumn: "BookId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Authors",
+                table: "Categories",
                 columns: new[] { "AuthorId", "FirstName", "LastName" },
                 values: new object[,]
                 {
@@ -264,7 +264,7 @@ namespace Bookstore.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Genres",
+                table: "Warehouses",
                 columns: new[] { "GenreId", "Name" },
                 values: new object[,]
                 {
@@ -276,7 +276,7 @@ namespace Bookstore.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Books",
+                table: "Products",
                 columns: new[] { "BookId", "GenreId", "Price", "Title" },
                 values: new object[,]
                 {
@@ -312,7 +312,7 @@ namespace Bookstore.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "BookAuthors",
+                table: "BookCategories",
                 columns: new[] { "AuthorId", "BookId" },
                 values: new object[,]
                 {
@@ -386,13 +386,13 @@ namespace Bookstore.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookAuthors_AuthorId",
-                table: "BookAuthors",
+                name: "IX_BookCategories_AuthorId",
+                table: "BookCategories",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_GenreId",
-                table: "Books",
+                table: "Products",
                 column: "GenreId");
         }
 
@@ -415,7 +415,7 @@ namespace Bookstore.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BookAuthors");
+                name: "BookCategories");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -424,13 +424,13 @@ namespace Bookstore.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Authors");
+                name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Genres");
+                name: "Warehouses");
         }
     }
 }

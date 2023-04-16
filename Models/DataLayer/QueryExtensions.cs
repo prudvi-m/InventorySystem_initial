@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public static class QueryExtensions
     {

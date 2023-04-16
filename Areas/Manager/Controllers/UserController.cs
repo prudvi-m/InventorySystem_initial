@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Bookstore.Models;
+using InventorySystem.Models;
 
-namespace Bookstore.Areas.Admin.Controllers
+namespace InventorySystem.Areas.Admin.Controllers
 {
     
     [Authorize(Roles = "Manager")]

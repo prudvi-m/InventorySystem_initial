@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class Validate
     {
@@ -14,27 +14,27 @@ namespace Bookstore.Models
         public bool IsValid { get; private set; }
         public string ErrorMessage { get; private set; }
 
-        public void CheckGenre(string genreId, Repository<Genre> data)
+        public void CheckGenre(string genreId, Repository<Warehouse> data)
         {
-            Genre entity = data.Get(genreId);
+            Warehouse entity = data.Get(genreId);
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" : 
-                $"Genre id {genreId} is already in the database.";
+                $"Warehouse id {genreId} is already in the database.";
         }
         public void MarkGenreChecked() => tempData[GenreKey] = true;
         public void ClearGenre() => tempData.Remove(GenreKey);
         public bool IsGenreChecked => tempData.Keys.Contains(GenreKey);
 
-        public void CheckAuthor(string firstName, string lastName, string operation, Repository<Author> data)
+        public void CheckAuthor(string firstName, string lastName, string operation, Repository<Category> data)
         {
-            Author entity = null; 
+            Category entity = null; 
             if (Operation.IsAdd(operation)) {
-                entity = data.Get(new QueryOptions<Author> {
+                entity = data.Get(new QueryOptions<Category> {
                     Where = a => a.FirstName == firstName && a.LastName == lastName });
             }
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" : 
-                $"Author {entity.FullName} is already in the database.";
+                $"Category {entity.FullName} is already in the database.";
         }
         public void MarkAuthorChecked() => tempData[AuthorKey] = true;
         public void ClearAuthor() => tempData.Remove(AuthorKey);

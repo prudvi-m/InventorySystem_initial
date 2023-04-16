@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class AuthorListViewModel
     {
-        public IEnumerable<Author> Authors { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
         public RouteDictionary CurrentRoute { get; set; }
         public int TotalPages { get; set; }
     }

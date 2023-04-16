@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class CartViewModel 
     {

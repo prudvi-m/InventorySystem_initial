@@ -1,4 +1,4 @@
-// dotnet aspnet-codegenerator identity -dc BookstoreContext create "manager" -email "admin@gmail.com" -pw "1234" -role "AdminRoleName"
+// dotnet aspnet-codegenerator identity -dc InventorySystemContext create "manager" -email "admin@gmail.com" -pw "1234" -role "AdminRoleName"
 // dotnet aspnet-codegenerator identity -dc <YourDbContext> create "AdminUserName" -email "AdminEmail" -pw "AdminPassword" -role "AdminRoleName"
 // dotnet aspnet-codegenerator identity -dc <YourDbContext> create "NormalUserName" -email "NormalEmail" -pw "NormalPassword"
 

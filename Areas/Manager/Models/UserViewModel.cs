@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class UserViewModel
     {

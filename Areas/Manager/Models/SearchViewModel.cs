@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class SearchViewModel
     {
-        public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Product> Products { get; set; }
 
         [Required(ErrorMessage = "Please enter a search term.")]
         public string SearchTerm { get; set; }

@@ -1,18 +1,18 @@
-﻿@model Author
+﻿@model Category
 
 @{
     // this view is used for add, edit, and delete. 
     // Which one is determined by the action method name.
     var action = ViewContext.RouteData.Values["action"].ToString().Capitalize();
 
-    ViewData["Title"] = $" | {action} Genre";
+    ViewData["Title"] = $" | {action} Warehouse";
 }
 
-<h1>@action Author</h1>
+<h1>@action Category</h1>
 
 <form asp-action="@action" asp-area="Manager" method="post">
 
-    @* Author ID needed by both delete and edit *@
+    @* Category ID needed by both delete and edit *@
     <input type="hidden" asp-for="AuthorId" />
 
     @* Operation field needed by remote validation *@

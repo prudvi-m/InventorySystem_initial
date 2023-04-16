@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
-    internal class SeedBookAuthors : IEntityTypeConfiguration<BookAuthor>
+    internal class SeedBookCategories : IEntityTypeConfiguration<BookAuthor>
     {
         public void Configure(EntityTypeBuilder<BookAuthor> entity)
         {

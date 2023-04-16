@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class Cart
     {
@@ -23,7 +23,7 @@ namespace Bookstore.Models
             responseCookies = ctx.Response.Cookies;
         }
 
-        public void Load(Repository<Book> data)
+        public void Load(Repository<Product> data)
         {
             items = session.GetObject<List<CartItem>>(CartKey);
             if (items == null) {
@@ -32,16 +32,16 @@ namespace Bookstore.Models
             }
             if (storedItems?.Count > items?.Count) {
                 foreach (CartItemDTO storedItem in storedItems) {
-                    var book = data.Get(new QueryOptions<Book> {
-                        Include = "BookAuthors.Author, Genre",
+                    var product = data.Get(new QueryOptions<Product> {
+                        Include = "BookCategories.Category, Warehouse",
                         Where = b => b.BookId == storedItem.BookId
                     });
-                    if (book != null) {
+                    if (product != null) {
                         var dto = new BookDTO();
-                        dto.Load(book);
+                        dto.Load(product);
 
                         CartItem item = new CartItem {
-                            Book = dto,
+                            Product = dto,
                             Quantity = storedItem.Quantity
                         };
                         items.Add(item);
@@ -56,10 +56,10 @@ namespace Bookstore.Models
         public IEnumerable<CartItem> List => items;
 
         public CartItem GetById(int id) => 
-            items.FirstOrDefault(ci => ci.Book.BookId == id);
+            items.FirstOrDefault(ci => ci.Product.BookId == id);
 
         public void Add(CartItem item) {
-            var itemInCart = GetById(item.Book.BookId);
+            var itemInCart = GetById(item.Product.BookId);
             
             if (itemInCart == null) {
                 items.Add(item);
@@ -71,7 +71,7 @@ namespace Bookstore.Models
 
         public void Edit(CartItem item)
         {
-            var itemInCart = GetById(item.Book.BookId);
+            var itemInCart = GetById(item.Product.BookId);
             if (itemInCart != null) {
                 itemInCart.Quantity = item.Quantity;
             }

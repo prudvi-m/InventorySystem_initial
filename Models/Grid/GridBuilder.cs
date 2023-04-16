@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class GridBuilder
     {

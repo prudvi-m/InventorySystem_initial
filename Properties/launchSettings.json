@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Bookstore": {
+    "InventorySystem": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public static class CookieExtensions
     {

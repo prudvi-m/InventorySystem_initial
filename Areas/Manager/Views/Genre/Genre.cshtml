@@ -1,14 +1,14 @@
-﻿@model Genre
+﻿@model Warehouse
 
 @{
     // this view is used for add, edit, and delete. 
     // Which one is determined by the action method name.
     var action = ViewContext.RouteData.Values["action"].ToString().Capitalize();
 
-    ViewData["Title"] = $" | {action} Genre";
+    ViewData["Title"] = $" | {action} Warehouse";
 }
 
-<h1>@action Genre</h1>
+<h1>@action Warehouse</h1>
 
 <form asp-action="@action" asp-area="Manager" method="post">
 

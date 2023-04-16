@@ -1,16 +1,16 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Bookstore.Models;
+using InventorySystem.Models;
 
-namespace Bookstore.Areas.Admin.Controllers
+namespace InventorySystem.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Manager")]
     [Area("Manager")]
     public class BookController : Controller
     {
-        private BookstoreUnitOfWork data { get; set; }
-        public BookController(BookstoreContext ctx) => data = new BookstoreUnitOfWork(ctx);
+        private InventorySystemUnitOfWork data { get; set; }
+        public BookController(InventorySystemContext ctx) => data = new InventorySystemUnitOfWork(ctx);
 
         public ViewResult Index() {
             var search = new SearchData(TempData);
@@ -44,34 +44,34 @@ namespace Bookstore.Areas.Admin.Controllers
                     SearchTerm = search.SearchTerm
                 };
 
-                var options = new QueryOptions<Book> {
-                    Include = "Genre, BookAuthors.Author"
+                var options = new QueryOptions<Product> {
+                    Include = "Warehouse, BookCategories.Category"
                 };
                 if (search.IsBook) { 
                     options.Where = b => b.Title.Contains(vm.SearchTerm);
-                    vm.Header = $"Search results for book title '{vm.SearchTerm}'";
+                    vm.Header = $"Search results for product title '{vm.SearchTerm}'";
                 }
                 if (search.IsAuthor) {
                     int index = vm.SearchTerm.LastIndexOf(' ');
                     if (index == -1) {
-                        options.Where = b => b.BookAuthors.Any(
-                            ba => ba.Author.FirstName.Contains(vm.SearchTerm) || 
-                            ba.Author.LastName.Contains(vm.SearchTerm));
+                        options.Where = b => b.BookCategories.Any(
+                            ba => ba.Category.FirstName.Contains(vm.SearchTerm) || 
+                            ba.Category.LastName.Contains(vm.SearchTerm));
                     }
                     else {
                         string first = vm.SearchTerm.Substring(0, index);
                         string last = vm.SearchTerm.Substring(index + 1); 
-                        options.Where = b => b.BookAuthors.Any(
-                            ba => ba.Author.FirstName.Contains(first) && 
-                            ba.Author.LastName.Contains(last));
+                        options.Where = b => b.BookCategories.Any(
+                            ba => ba.Category.FirstName.Contains(first) && 
+                            ba.Category.LastName.Contains(last));
                     }
                     vm.Header = $"Search results for author '{vm.SearchTerm}'";
                 }
                 if (search.IsGenre) {                  
                     options.Where = b => b.GenreId.Contains(vm.SearchTerm);
-                    vm.Header = $"Search results for genre ID '{vm.SearchTerm}'";
+                    vm.Header = $"Search results for warehouse ID '{vm.SearchTerm}'";
                 }
-                vm.Books = data.Books.List(options);
+                vm.Products = data.Products.List(options);
                 return View("SearchResults", vm);
             }
             else {
@@ -86,16 +86,16 @@ namespace Bookstore.Areas.Admin.Controllers
         public IActionResult Add(BookViewModel vm)
         {
             if (ModelState.IsValid) {
-                data.LoadNewBookAuthors(vm.Book, vm.SelectedAuthors);
-                data.Books.Insert(vm.Book);
+                data.LoadNewBookCategories(vm.Product, vm.SelectedCategories);
+                data.Products.Insert(vm.Product);
                 data.Save();
 
-                TempData["message"] = $"{vm.Book.Title} added to Books.";
+                TempData["message"] = $"{vm.Product.Title} added to Products.";
                 return RedirectToAction("Index");  
             }
             else {
                 Load(vm, "Add");
-                return View("Book", vm);
+                return View("Product", vm);
             }
         }
 
@@ -106,17 +106,17 @@ namespace Bookstore.Areas.Admin.Controllers
         public IActionResult Edit(BookViewModel vm)
         {
             if (ModelState.IsValid) {
-                data.DeleteCurrentBookAuthors(vm.Book);
-                data.LoadNewBookAuthors(vm.Book, vm.SelectedAuthors);
-                data.Books.Update(vm.Book);
+                data.DeleteCurrentBookCategories(vm.Product);
+                data.LoadNewBookCategories(vm.Product, vm.SelectedCategories);
+                data.Products.Update(vm.Product);
                 data.Save(); 
                 
-                TempData["message"] = $"{vm.Book.Title} updated.";
+                TempData["message"] = $"{vm.Product.Title} updated.";
                 return RedirectToAction("Search");  
             }
             else {
                 Load(vm, "Edit");
-                return View("Book", vm);
+                return View("Product", vm);
             }
         }
 
@@ -126,36 +126,36 @@ namespace Bookstore.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(BookViewModel vm)
         {
-            data.Books.Delete(vm.Book); 
+            data.Products.Delete(vm.Product); 
             data.Save();
-            TempData["message"] = $"{vm.Book.Title} removed from Books.";
+            TempData["message"] = $"{vm.Product.Title} removed from Products.";
             return RedirectToAction("Search");  
         }
 
         private ViewResult GetBook(int id, string operation)
         {
-            var book = new BookViewModel();
-            Load(book, operation, id);
-            return View("Book", book);
+            var product = new BookViewModel();
+            Load(product, operation, id);
+            return View("Product", product);
         }
         private void Load(BookViewModel vm, string op, int? id = null)
         {
             if (Operation.IsAdd(op)) { 
-                vm.Book = new Book();
+                vm.Product = new Product();
             }
             else {
-                vm.Book = data.Books.Get(new QueryOptions<Book>
+                vm.Product = data.Products.Get(new QueryOptions<Product>
                 {
-                    Include = "BookAuthors.Author, Genre",
-                    Where = b => b.BookId == (id ?? vm.Book.BookId)
+                    Include = "BookCategories.Category, Warehouse",
+                    Where = b => b.BookId == (id ?? vm.Product.BookId)
                 });
             }
 
-            vm.SelectedAuthors = vm.Book.BookAuthors?.Select(
-                ba => ba.Author.AuthorId).ToArray();
-            vm.Authors = data.Authors.List(new QueryOptions<Author> {
+            vm.SelectedCategories = vm.Product.BookCategories?.Select(
+                ba => ba.Category.AuthorId).ToArray();
+            vm.Categories = data.Categories.List(new QueryOptions<Category> {
                 OrderBy = a => a.FirstName });
-            vm.Genres = data.Genres.List(new QueryOptions<Genre> {
+            vm.Warehouses = data.Warehouses.List(new QueryOptions<Warehouse> {
                     OrderBy = g => g.Name });
         }
 

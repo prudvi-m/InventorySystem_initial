@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
-    public class Author
+    public class Category
     {
         public int AuthorId { get; set; }
 
@@ -20,6 +20,6 @@ namespace Bookstore.Models
 
         public string FullName => $"{FirstName} {LastName}";
 
-        public ICollection<BookAuthor> BookAuthors { get; set; }
+        public ICollection<BookAuthor> BookCategories { get; set; }
     }
 }

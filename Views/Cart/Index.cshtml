@@ -21,7 +21,7 @@
                     <div class="float-right">
                         <a asp-action="Checkout" class="btn btn-primary">Checkout</a>
                         <button type="submit" class="btn btn-primary">Clear Cart</button>
-                        <a asp-action="List" asp-controller="Book"
+                        <a asp-action="List" asp-controller="Product"
                            asp-all-route-data="@Model.BookGridRoute">Back to Shopping</a>
                     </div>
                     
@@ -35,7 +35,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>Title</th>
-                <th>Author(s)</th>
+                <th>Category(s)</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
@@ -46,16 +46,16 @@
             @foreach (CartItem item in Model.List)  {
                 <tr>
                     <td>
-                        <a asp-action="Details" asp-controller="Book"
-                           asp-route-id="@item.Book.BookId"
-                           asp-route-slug="@item.Book.Title.Slug()">
-                            @item.Book.Title
+                        <a asp-action="Details" asp-controller="Product"
+                           asp-route-id="@item.Product.BookId"
+                           asp-route-slug="@item.Product.Title.Slug()">
+                            @item.Product.Title
                         </a>
                     </td>
                     <td>
-                        @foreach (var keyValuePair in item.Book.Authors) {
+                        @foreach (var keyValuePair in item.Product.Categories) {
                             <p>
-                                <a asp-action="Details" asp-controller="Author"
+                                <a asp-action="Details" asp-controller="Category"
                                    asp-route-id="@keyValuePair.Key"
                                    asp-route-slug="@keyValuePair.Value.Slug()">
                                     @keyValuePair.Value
@@ -63,16 +63,16 @@
                             </p>
                         }
                     </td>
-                    <td>@item.Book.Price.ToString("c", culture)</td>
+                    <td>@item.Product.Price.ToString("c", culture)</td>
                     <td>@item.Quantity</td>
                     <td>@item.Subtotal.ToString("c", culture)</td>
                     <td>
                         <div class="float-right">
                             <a asp-action="Edit" asp-controller="Cart"
-                               asp-route-id="@item.Book.BookId"
-                               asp-route-slug="@item.Book.Title.Slug()"
+                               asp-route-id="@item.Product.BookId"
+                               asp-route-slug="@item.Product.Title.Slug()"
                                class="btn btn-primary">Edit</a>
-                            <button type="submit" name="id" value="@item.Book.BookId"
+                            <button type="submit" name="id" value="@item.Product.BookId"
                                     class="btn btn-primary">Remove</button>
                         </div>
                     </td>

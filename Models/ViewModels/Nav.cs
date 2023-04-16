@@ -1,4 +1,4 @@
-﻿namespace Bookstore.Models
+﻿namespace InventorySystem.Models
 {
     public static class Nav
     {

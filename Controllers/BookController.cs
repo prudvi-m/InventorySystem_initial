@@ -1,22 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Bookstore.Models;
+using InventorySystem.Models;
 
-namespace Bookstore.Controllers
+namespace InventorySystem.Controllers
 {
     public class BookController : Controller
     {
-        private BookstoreUnitOfWork data { get; set; }
-        public BookController(BookstoreContext ctx) => data = new BookstoreUnitOfWork(ctx);
+        private InventorySystemUnitOfWork data { get; set; }
+        public BookController(InventorySystemContext ctx) => data = new InventorySystemUnitOfWork(ctx);
 
         public RedirectToActionResult Index() => RedirectToAction("List");
 
         public ViewResult List(BooksGridDTO values)
         {
             var builder = new BooksGridBuilder(HttpContext.Session, values, 
-                defaultSortField: nameof(Book.Title));
+                defaultSortField: nameof(Product.Title));
 
             var options = new BookQueryOptions {
-                Include = "BookAuthors.Author, Genre",
+                Include = "BookCategories.Category, Warehouse",
                 OrderByDirection = builder.CurrentRoute.SortDirection,
                 PageNumber = builder.CurrentRoute.PageNumber,
                 PageSize = builder.CurrentRoute.PageSize
@@ -24,13 +24,13 @@ namespace Bookstore.Controllers
             options.SortFilter(builder);
 
             var vm = new BookListViewModel {
-                Books = data.Books.List(options),
-                Authors = data.Authors.List(new QueryOptions<Author> {
+                Products = data.Products.List(options),
+                Categories = data.Categories.List(new QueryOptions<Category> {
                     OrderBy = a => a.FirstName }),
-                Genres = data.Genres.List(new QueryOptions<Genre> {
+                Warehouses = data.Warehouses.List(new QueryOptions<Warehouse> {
                     OrderBy = g => g.Name }),
                 CurrentRoute = builder.CurrentRoute,
-                TotalPages = builder.GetTotalPages(data.Books.Count)
+                TotalPages = builder.GetTotalPages(data.Products.Count)
             };
 
             return View(vm);
@@ -38,11 +38,11 @@ namespace Bookstore.Controllers
 
         public ViewResult Details(int id)
         {
-            var book = data.Books.Get(new QueryOptions<Book> {
-                Include = "BookAuthors.Author, Genre",
+            var product = data.Products.Get(new QueryOptions<Product> {
+                Include = "BookCategories.Category, Warehouse",
                 Where = b => b.BookId == id
             });
-            return View(book);
+            return View(product);
         }
 
         [HttpPost]
@@ -54,7 +54,7 @@ namespace Bookstore.Controllers
                 builder.ClearFilterSegments();
             }
             else {
-                var author = data.Authors.Get(filter[0].ToInt());
+                var author = data.Categories.Get(filter[0].ToInt());
                 builder.LoadFilterSegments(filter, author);
             }
 

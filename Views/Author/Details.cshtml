@@ -1,10 +1,10 @@
-﻿@model Author
+﻿@model Category
 
 @{
-    ViewData["Title"] = " | Author";
+    ViewData["Title"] = " | Category";
 }
 
-<h1>Author</h1>
+<h1>Category</h1>
 
 <table class="table table-bordered table-sm">
     <thead>
@@ -15,13 +15,13 @@
     <tbody>
         <tr>
             <td>
-                @foreach (var ba in Model.BookAuthors)
+                @foreach (var ba in Model.BookCategories)
                 {
                     <p>
-                        <a asp-action="Details" asp-controller="Book"
+                        <a asp-action="Details" asp-controller="Product"
                            asp-route-id="@ba.BookId"
-                           asp-route-slug="@ba.Book.Title.Slug()">
-                            @ba.Book.Title
+                           asp-route-slug="@ba.Product.Title.Slug()">
+                            @ba.Product.Title
                         </a>
                     </p>
                 }

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public static class StringExtensions
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class User : IdentityUser
     {

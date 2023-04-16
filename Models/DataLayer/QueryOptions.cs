@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class QueryOptions<T>
     {

@@ -2,13 +2,13 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected BookstoreContext context { get; set; }
+        protected InventorySystemContext context { get; set; }
         private DbSet<T> dbset { get; set; }
-        public Repository(BookstoreContext ctx) {
+        public Repository(InventorySystemContext ctx) {
             context = ctx;
             dbset = context.Set<T>();
         }

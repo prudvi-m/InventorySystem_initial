@@ -1,32 +1,32 @@
 ﻿using System.Linq;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
-    public class BookstoreUnitOfWork : IBookstoreUnitOfWork
+    public class InventorySystemUnitOfWork : IInventorySystemUnitOfWork
     {
-        private BookstoreContext context { get; set; }
-        public BookstoreUnitOfWork(BookstoreContext ctx) => context = ctx;
+        private InventorySystemContext context { get; set; }
+        public InventorySystemUnitOfWork(InventorySystemContext ctx) => context = ctx;
 
-        private Repository<Book> bookData;
-        public Repository<Book> Books {
+        private Repository<Product> bookData;
+        public Repository<Product> Products {
             get {
                 if (bookData == null)
-                    bookData = new Repository<Book>(context);
+                    bookData = new Repository<Product>(context);
                 return bookData;
             }
         }
 
-        private Repository<Author> authorData;
-        public Repository<Author> Authors {
+        private Repository<Category> authorData;
+        public Repository<Category> Categories {
             get {
                 if (authorData == null)
-                    authorData = new Repository<Author>(context);
+                    authorData = new Repository<Category>(context);
                 return authorData;
             }
         }
 
         private Repository<BookAuthor> bookauthorData;
-        public Repository<BookAuthor> BookAuthors {
+        public Repository<BookAuthor> BookCategories {
             get {
                 if (bookauthorData == null)
                     bookauthorData = new Repository<BookAuthor>(context);
@@ -34,30 +34,30 @@ namespace Bookstore.Models
             }
         }
 
-        private Repository<Genre> genreData;
-        public Repository<Genre> Genres
+        private Repository<Warehouse> genreData;
+        public Repository<Warehouse> Warehouses
         {
             get {
                 if (genreData == null)
-                    genreData = new Repository<Genre>(context);
+                    genreData = new Repository<Warehouse>(context);
                 return genreData;
             }
         }
 
-        public void DeleteCurrentBookAuthors(Book book)
+        public void DeleteCurrentBookCategories(Product product)
         {
-            var currentAuthors = BookAuthors.List(new QueryOptions<BookAuthor> {
-                Where = ba => ba.BookId == book.BookId
+            var currentCategories = BookCategories.List(new QueryOptions<BookAuthor> {
+                Where = ba => ba.BookId == product.BookId
             });
-            foreach (BookAuthor ba in currentAuthors) {
-                BookAuthors.Delete(ba);
+            foreach (BookAuthor ba in currentCategories) {
+                BookCategories.Delete(ba);
             }
         }
 
-        public void LoadNewBookAuthors(Book book, int[] authorids)
+        public void LoadNewBookCategories(Product product, int[] authorids)
         {
-            book.BookAuthors = authorids.Select(i =>
-                new BookAuthor { Book = book, AuthorId = i })
+            product.BookCategories = authorids.Select(i =>
+                new BookAuthor { Product = product, AuthorId = i })
                 .ToList();
         }
 

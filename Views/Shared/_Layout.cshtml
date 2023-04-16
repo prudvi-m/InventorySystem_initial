@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Tuxedo Books @ViewBag.Title</title>
+    <title>Tuxedo Products @ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -38,14 +38,14 @@
                             <span class="fas fa-home"></span>&nbsp;Home
                         </a>
                     </li>
-                    <li class="nav-item @Nav.Active("Book", current)">
-                        <a class="nav-link" asp-action="List" asp-controller="Book" asp-area="">
-                            <span class="fas fa-book-open"></span>&nbsp;Books
+                    <li class="nav-item @Nav.Active("Product", current)">
+                        <a class="nav-link" asp-action="List" asp-controller="Product" asp-area="">
+                            <span class="fas fa-product-open"></span>&nbsp;Products
                         </a>
                     </li>
-                    <li class="nav-item @Nav.Active("Author", current)">
-                        <a class="nav-link" asp-action="List" asp-controller="Author" asp-area="">
-                            <span class="fas fa-feather-alt"></span>&nbsp;Authors
+                    <li class="nav-item @Nav.Active("Category", current)">
+                        <a class="nav-link" asp-action="List" asp-controller="Category" asp-area="">
+                            <span class="fas fa-feather-alt"></span>&nbsp;Categories
                         </a>
                     </li>
                 </ul>
@@ -91,7 +91,7 @@
                     }
 
                     <li class="nav-item @Nav.Active("Manager", current)">
-                        <a class="nav-link" asp-action="Index" asp-controller="Book" asp-area="Manager">
+                        <a class="nav-link" asp-action="Index" asp-controller="Product" asp-area="Manager">
                             <span class="fas fa-cog"></span>&nbsp;Admin
                         </a>
                     </li>

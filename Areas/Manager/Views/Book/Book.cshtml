@@ -5,14 +5,14 @@
     // Which one is determined by the action method name.
     var action = ViewContext.RouteData.Values["action"].ToString().Capitalize();
 
-    ViewData["Title"] = $" | {action} Book";
+    ViewData["Title"] = $" | {action} Product";
 }
 
-<h1>@action Book</h1>
+<h1>@action Product</h1>
 
 <form asp-action="@action" asp-area="Manager" method="post">
 
-    <input type="hidden" asp-for="Book.BookId" />
+    <input type="hidden" asp-for="Product.BookId" />
 
     <div class="form-group row">
         <div class="col-sm-2"><label>Title:</label></div>
@@ -20,15 +20,15 @@
         @* if deleting, display title in a label and put value in hidden field
            for delete message. Otherwise, provide a text box*@
         @if (Operation.IsDelete(action)) {
-            <div class="col-sm-4"><label>@Model.Book.Title</label></div>
-            <input type="hidden" asp-for="Book.Title" />
+            <div class="col-sm-4"><label>@Model.Product.Title</label></div>
+            <input type="hidden" asp-for="Product.Title" />
         }
         else {
             <div class="col-sm-4">
-                <input type="text" asp-for="Book.Title" class="form-control" />
+                <input type="text" asp-for="Product.Title" class="form-control" />
             </div>
             <div class="col-sm-6">
-                <span asp-validation-for="Book.Title" class="text-danger"></span>
+                <span asp-validation-for="Product.Title" class="text-danger"></span>
             </div>
         }
     </div>
@@ -39,35 +39,35 @@
         <div class="form-group row">
             <div class="col-sm-2"><label>Price:</label></div>
             <div class="col-sm-4">
-                <input type="text" asp-for="Book.Price" class="form-control" />
+                <input type="text" asp-for="Product.Price" class="form-control" />
             </div>
             <div class="col-sm-6">
-                <span asp-validation-for="Book.Price" class="text-danger"></span>
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-2"><label>Genre:</label></div>
+            <div class="col-sm-2"><label>Warehouse:</label></div>
             <div class="col-sm-4">
-                <select asp-for="Book.GenreId" class="form-control"
-                    asp-items='@new SelectList(Model.Genres, "GenreId", "Name", Model.Book.GenreId)'>
+                <select asp-for="Product.GenreId" class="form-control"
+                    asp-items='@new SelectList(Model.Warehouses, "GenreId", "Name", Model.Product.GenreId)'>
                 </select>
             </div>
             <div class="col-sm-6">
-                <span asp-validation-for="Book.GenreId" class="text-danger"></span>
+                <span asp-validation-for="Product.GenreId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-2">
-                <label>Author(s):</label><br />
+                <label>Category(s):</label><br />
             </div>
             <div class="col-sm-4">
-                <select asp-for="SelectedAuthors" class="form-control"
-                    asp-items='@new MultiSelectList(Model.Authors, "AuthorId", "FullName", Model.SelectedAuthors)'>
+                <select asp-for="SelectedCategories" class="form-control"
+                    asp-items='@new MultiSelectList(Model.Categories, "AuthorId", "FullName", Model.SelectedCategories)'>
                 </select>
                 (Hold down CTRL or CMD key to select multiple)
             </div>
             <div class="col-sm-6">
-                <span asp-validation-for="SelectedAuthors" class="text-danger"></span>
+                <span asp-validation-for="SelectedCategories" class="text-danger"></span>
             </div>
         </div>
     }

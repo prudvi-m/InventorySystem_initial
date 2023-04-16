@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public class SearchData
     {
@@ -23,9 +23,9 @@ namespace Bookstore.Models
         }
 
         public bool HasSearchTerm => !string.IsNullOrEmpty(SearchTerm);
-        public bool IsBook => Type.EqualsNoCase("book");
+        public bool IsBook => Type.EqualsNoCase("product");
         public bool IsAuthor => Type.EqualsNoCase("author");
-        public bool IsGenre => Type.EqualsNoCase("genre");
+        public bool IsGenre => Type.EqualsNoCase("warehouse");
 
         public void Clear()
         {

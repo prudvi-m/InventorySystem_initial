@@ -6,12 +6,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Bookstore.Models;
+using InventorySystem.Models;
 using System.Linq;
 using System.Collections.Generic;
 
 
-namespace Bookstore
+namespace InventorySystem
 {
     public class Startup
     {
@@ -32,15 +32,15 @@ namespace Bookstore
 
             services.AddControllersWithViews().AddNewtonsoftJson();
 
-            services.AddDbContext<BookstoreContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("BookstoreContext")));
+            services.AddDbContext<InventorySystemContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("InventorySystemContext")));
 
             // add this
             services.AddIdentity<User, IdentityRole>(options => {
                 options.Password.RequiredLength = 4;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<BookstoreContext>()
+            }).AddEntityFrameworkStores<InventorySystemContext>()
               .AddDefaultTokenProviders();
         }
 
@@ -64,12 +64,12 @@ namespace Bookstore
                 endpoints.MapAreaControllerRoute(
                     name: "manager",
                     areaName: "Manager",
-                    pattern: "Admin/{controller=Book}/{action=Index}/{id?}");
+                    pattern: "Admin/{controller=Product}/{action=Index}/{id?}");
 
                 // route for paging, sorting, and filtering
                 endpoints.MapControllerRoute(
                     name: "",
-                    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}/filter/{author}/{genre}/{price}");
+                    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}/filter/{author}/{warehouse}/{price}");
 
                 // route for paging and sorting only
                 endpoints.MapControllerRoute(
@@ -82,10 +82,10 @@ namespace Bookstore
                     pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
             });
 
-            BookstoreContext.CreateAdminUser(app.ApplicationServices).Wait();  
+            InventorySystemContext.CreateAdminUser(app.ApplicationServices).Wait();  
         }
     }
 }
-// /Users/prudvi/Desktop/Bookstore/Models/DataLayer/BookstoreContext.cs
-// dotnet aspnet-codegenerator identity -dc "/Users/prudvi/Desktop/Bookstore/Models/DataLayer/BookstoreContext" -u "June" --email "manager@gmail.com" -p "1234" --role "manager"
+// /Users/prudvi/Desktop/InventorySystem/Models/DataLayer/InventorySystemContext.cs
+// dotnet aspnet-codegenerator identity -dc "/Users/prudvi/Desktop/InventorySystem/Models/DataLayer/InventorySystemContext" -u "June" --email "manager@gmail.com" -p "1234" --role "manager"
 // dotnet tool install -g dotnet-aspnet-codegenerator 

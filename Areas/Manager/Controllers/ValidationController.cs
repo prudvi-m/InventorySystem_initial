@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Bookstore.Models;
+using InventorySystem.Models;
 
-namespace Bookstore.Areas.Admin.Controllers
+namespace InventorySystem.Areas.Admin.Controllers
 {
     // [Area("Manager")]
     [Area("manager")]
     public class ValidationController : Controller
     {
-        private Repository<Author> authorData { get; set; }
-        private Repository<Genre> genreData { get; set; }
+        private Repository<Category> authorData { get; set; }
+        private Repository<Warehouse> genreData { get; set; }
 
-        public ValidationController(BookstoreContext ctx)
+        public ValidationController(InventorySystemContext ctx)
         { 
-            authorData = new Repository<Author>(ctx);
-            genreData = new Repository<Genre>(ctx);
+            authorData = new Repository<Category>(ctx);
+            genreData = new Repository<Warehouse>(ctx);
         }
 
         public JsonResult CheckGenre(string genreId)

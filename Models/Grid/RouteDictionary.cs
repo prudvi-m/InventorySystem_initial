@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bookstore.Models
+namespace InventorySystem.Models
 {
     public static class FilterPrefix
     {
-        public const string Genre = "genre-";
+        public const string Warehouse = "warehouse-";
         public const string Price = "price-";
-        public const string Author = "author-";
+        public const string Category = "author-";
     }
 
     public class RouteDictionary : Dictionary<string, string>
@@ -44,8 +44,8 @@ namespace Bookstore.Models
         }
 
         public string GenreFilter {
-            get => Get(nameof(BooksGridDTO.Genre))?.Replace(FilterPrefix.Genre, "");
-            set => this[nameof(BooksGridDTO.Genre)] = value;
+            get => Get(nameof(BooksGridDTO.Warehouse))?.Replace(FilterPrefix.Warehouse, "");
+            set => this[nameof(BooksGridDTO.Warehouse)] = value;
         }
 
         public string PriceFilter {
@@ -56,11 +56,11 @@ namespace Bookstore.Models
         public string AuthorFilter {
             get
             {
-                string s = Get(nameof(BooksGridDTO.Author))?.Replace(FilterPrefix.Author, "");
+                string s = Get(nameof(BooksGridDTO.Category))?.Replace(FilterPrefix.Category, "");
                 int index = s?.IndexOf('-') ?? -1;
                 return (index == -1) ? s : s.Substring(0, index);
             }
-            set => this[nameof(BooksGridDTO.Author)] = value;
+            set => this[nameof(BooksGridDTO.Category)] = value;
         }
 
         public void ClearFilters() =>
