@@ -277,7 +277,7 @@ namespace InventorySystem.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "Price", "Title", "WarehouseId" },
+                columns: new[] { "ProductId", "Price", "Name", "WarehouseId" },
                 values: new object[,]
                 {
                     { 1, 18.0, "1776", "history" },

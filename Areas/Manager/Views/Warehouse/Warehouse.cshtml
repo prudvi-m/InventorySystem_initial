@@ -5,7 +5,7 @@
     // Which one is determined by the action method name.
     var action = ViewContext.RouteData.Values["action"].ToString().Capitalize();
 
-    ViewData["Title"] = $" | {action} Warehouse";
+    ViewData["Name"] = $" | {action} Warehouse";
 }
 
 <h1>@action Warehouse</h1>

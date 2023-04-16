@@ -48,7 +48,7 @@ namespace InventorySystem.Areas.Manager.Controllers
                     Include = "Warehouse, ProductCategories.Category"
                 };
                 if (search.IsProduct) { 
-                    options.Where = b => b.Title.Contains(vm.SearchTerm);
+                    options.Where = b => b.Name.Contains(vm.SearchTerm);
                     vm.Header = $"Search results for product title '{vm.SearchTerm}'";
                 }
                 if (search.IsAuthor) {

@@ -30,7 +30,7 @@ namespace InventorySystem.Models
                 OrderBy = b => b.Price;
             }
             else  {
-                OrderBy = b => b.Title;
+                OrderBy = b => b.Name;
             }
         }
     }
