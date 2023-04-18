@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventorySystem.Migrations
 {
     [DbContext(typeof(InventorySystemContext))]
-    [Migration("20230416191542_v2")]
+    [Migration("20230418032044_v2")]
     partial class v2
     {
         /// <inheritdoc />
@@ -199,12 +199,22 @@ namespace InventorySystem.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("Code")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
                     b.Property<double>("Price")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Vendor")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("WarehouseId")
@@ -221,204 +231,204 @@ namespace InventorySystem.Migrations
                         new
                         {
                             ProductId = 1,
+                            Name = "1776",
                             Price = 18.0,
-                            Title = "1776",
                             WarehouseId = "history"
                         },
                         new
                         {
                             ProductId = 2,
+                            Name = "1984",
                             Price = 5.5,
-                            Title = "1984",
                             WarehouseId = "scifi"
                         },
                         new
                         {
                             ProductId = 3,
+                            Name = "And Then There Were None",
                             Price = 4.5,
-                            Title = "And Then There Were None",
                             WarehouseId = "mystery"
                         },
                         new
                         {
                             ProductId = 4,
+                            Name = "Band of Brothers",
                             Price = 11.5,
-                            Title = "Band of Brothers",
                             WarehouseId = "history"
                         },
                         new
                         {
                             ProductId = 5,
+                            Name = "Beloved",
                             Price = 10.99,
-                            Title = "Beloved",
                             WarehouseId = "novel"
                         },
                         new
                         {
                             ProductId = 6,
+                            Name = "Between the World and Me",
                             Price = 13.5,
-                            Title = "Between the World and Me",
                             WarehouseId = "memoir"
                         },
                         new
                         {
                             ProductId = 7,
+                            Name = "Bossypants",
                             Price = 4.25,
-                            Title = "Bossypants",
                             WarehouseId = "memoir"
                         },
                         new
                         {
                             ProductId = 8,
+                            Name = "Brave New World",
                             Price = 16.25,
-                            Title = "Brave New World",
                             WarehouseId = "scifi"
                         },
                         new
                         {
                             ProductId = 9,
+                            Name = "D-Day",
                             Price = 15.0,
-                            Title = "D-Day",
                             WarehouseId = "history"
                         },
                         new
                         {
                             ProductId = 10,
+                            Name = "Down and Out in Paris and London",
                             Price = 12.5,
-                            Title = "Down and Out in Paris and London",
                             WarehouseId = "memoir"
                         },
                         new
                         {
                             ProductId = 11,
+                            Name = "Dune",
                             Price = 8.75,
-                            Title = "Dune",
                             WarehouseId = "scifi"
                         },
                         new
                         {
                             ProductId = 12,
+                            Name = "Emma",
                             Price = 9.0,
-                            Title = "Emma",
                             WarehouseId = "novel"
                         },
                         new
                         {
                             ProductId = 13,
+                            Name = "Frankenstein",
                             Price = 6.5,
-                            Title = "Frankenstein",
                             WarehouseId = "scifi"
                         },
                         new
                         {
                             ProductId = 14,
+                            Name = "Go Tell it on the Mountain",
                             Price = 10.25,
-                            Title = "Go Tell it on the Mountain",
                             WarehouseId = "novel"
                         },
                         new
                         {
                             ProductId = 15,
+                            Name = "Guns, Germs, and Steel",
                             Price = 15.5,
-                            Title = "Guns, Germs, and Steel",
                             WarehouseId = "history"
                         },
                         new
                         {
                             ProductId = 16,
+                            Name = "Hunger",
                             Price = 14.5,
-                            Title = "Hunger",
                             WarehouseId = "memoir"
                         },
                         new
                         {
                             ProductId = 17,
+                            Name = "Murder on the Orient Express",
                             Price = 6.75,
-                            Title = "Murder on the Orient Express",
                             WarehouseId = "mystery"
                         },
                         new
                         {
                             ProductId = 18,
+                            Name = "Pride and Prejudice",
                             Price = 8.5,
-                            Title = "Pride and Prejudice",
                             WarehouseId = "novel"
                         },
                         new
                         {
                             ProductId = 19,
+                            Name = "Rebecca",
                             Price = 10.99,
-                            Title = "Rebecca",
                             WarehouseId = "mystery"
                         },
                         new
                         {
                             ProductId = 20,
+                            Name = "The Art of War",
                             Price = 5.75,
-                            Title = "The Art of War",
                             WarehouseId = "history"
                         },
                         new
                         {
                             ProductId = 21,
+                            Name = "The Girl with the Dragon Tattoo",
                             Price = 8.5,
-                            Title = "The Girl with the Dragon Tattoo",
                             WarehouseId = "mystery"
                         },
                         new
                         {
                             ProductId = 22,
+                            Name = "The Handmaid's Tale",
                             Price = 12.5,
-                            Title = "The Handmaid's Tale",
                             WarehouseId = "scifi"
                         },
                         new
                         {
                             ProductId = 23,
+                            Name = "The Maltese Falcon",
                             Price = 10.99,
-                            Title = "The Maltese Falcon",
                             WarehouseId = "mystery"
                         },
                         new
                         {
                             ProductId = 24,
+                            Name = "The New Jim Crow",
                             Price = 13.75,
-                            Title = "The New Jim Crow",
                             WarehouseId = "history"
                         },
                         new
                         {
                             ProductId = 25,
+                            Name = "The Year of Magical Thinking",
                             Price = 13.5,
-                            Title = "The Year of Magical Thinking",
                             WarehouseId = "memoir"
                         },
                         new
                         {
                             ProductId = 26,
+                            Name = "Wuthering Heights",
                             Price = 9.0,
-                            Title = "Wuthering Heights",
                             WarehouseId = "novel"
                         },
                         new
                         {
                             ProductId = 27,
+                            Name = "Running With Scissors",
                             Price = 11.0,
-                            Title = "Running With Scissors",
                             WarehouseId = "memoir"
                         },
                         new
                         {
                             ProductId = 28,
+                            Name = "Pride and Prejudice and Zombies",
                             Price = 8.75,
-                            Title = "Pride and Prejudice and Zombies",
                             WarehouseId = "novel"
                         },
                         new
                         {
                             ProductId = 29,
+                            Name = "Harry Potter and the Sorcerer's Stone",
                             Price = 9.75,
-                            Title = "Harry Potter and the Sorcerer's Stone",
                             WarehouseId = "novel"
                         });
                 });

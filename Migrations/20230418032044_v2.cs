@@ -192,9 +192,13 @@ namespace InventorySystem.Migrations
                 {
                     ProductId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
                     Price = table.Column<double>(type: "REAL", nullable: false),
-                    WarehouseId = table.Column<string>(type: "TEXT", nullable: false)
+                    Code = table.Column<int>(type: "INTEGER", nullable: true),
+                    WarehouseId = table.Column<string>(type: "TEXT", nullable: false),
+                    Vendor = table.Column<string>(type: "TEXT", nullable: true),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -277,38 +281,38 @@ namespace InventorySystem.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "Price", "Name", "WarehouseId" },
+                columns: new[] { "ProductId", "Code", "Description", "Name", "Price", "Quantity", "Vendor", "WarehouseId" },
                 values: new object[,]
                 {
-                    { 1, 18.0, "1776", "history" },
-                    { 2, 5.5, "1984", "scifi" },
-                    { 3, 4.5, "And Then There Were None", "mystery" },
-                    { 4, 11.5, "Band of Brothers", "history" },
-                    { 5, 10.99, "Beloved", "novel" },
-                    { 6, 13.5, "Between the World and Me", "memoir" },
-                    { 7, 4.25, "Bossypants", "memoir" },
-                    { 8, 16.25, "Brave New World", "scifi" },
-                    { 9, 15.0, "D-Day", "history" },
-                    { 10, 12.5, "Down and Out in Paris and London", "memoir" },
-                    { 11, 8.75, "Dune", "scifi" },
-                    { 12, 9.0, "Emma", "novel" },
-                    { 13, 6.5, "Frankenstein", "scifi" },
-                    { 14, 10.25, "Go Tell it on the Mountain", "novel" },
-                    { 15, 15.5, "Guns, Germs, and Steel", "history" },
-                    { 16, 14.5, "Hunger", "memoir" },
-                    { 17, 6.75, "Murder on the Orient Express", "mystery" },
-                    { 18, 8.5, "Pride and Prejudice", "novel" },
-                    { 19, 10.99, "Rebecca", "mystery" },
-                    { 20, 5.75, "The Art of War", "history" },
-                    { 21, 8.5, "The Girl with the Dragon Tattoo", "mystery" },
-                    { 22, 12.5, "The Handmaid's Tale", "scifi" },
-                    { 23, 10.99, "The Maltese Falcon", "mystery" },
-                    { 24, 13.75, "The New Jim Crow", "history" },
-                    { 25, 13.5, "The Year of Magical Thinking", "memoir" },
-                    { 26, 9.0, "Wuthering Heights", "novel" },
-                    { 27, 11.0, "Running With Scissors", "memoir" },
-                    { 28, 8.75, "Pride and Prejudice and Zombies", "novel" },
-                    { 29, 9.75, "Harry Potter and the Sorcerer's Stone", "novel" }
+                    { 1, null, null, "1776", 18.0, null, null, "history" },
+                    { 2, null, null, "1984", 5.5, null, null, "scifi" },
+                    { 3, null, null, "And Then There Were None", 4.5, null, null, "mystery" },
+                    { 4, null, null, "Band of Brothers", 11.5, null, null, "history" },
+                    { 5, null, null, "Beloved", 10.99, null, null, "novel" },
+                    { 6, null, null, "Between the World and Me", 13.5, null, null, "memoir" },
+                    { 7, null, null, "Bossypants", 4.25, null, null, "memoir" },
+                    { 8, null, null, "Brave New World", 16.25, null, null, "scifi" },
+                    { 9, null, null, "D-Day", 15.0, null, null, "history" },
+                    { 10, null, null, "Down and Out in Paris and London", 12.5, null, null, "memoir" },
+                    { 11, null, null, "Dune", 8.75, null, null, "scifi" },
+                    { 12, null, null, "Emma", 9.0, null, null, "novel" },
+                    { 13, null, null, "Frankenstein", 6.5, null, null, "scifi" },
+                    { 14, null, null, "Go Tell it on the Mountain", 10.25, null, null, "novel" },
+                    { 15, null, null, "Guns, Germs, and Steel", 15.5, null, null, "history" },
+                    { 16, null, null, "Hunger", 14.5, null, null, "memoir" },
+                    { 17, null, null, "Murder on the Orient Express", 6.75, null, null, "mystery" },
+                    { 18, null, null, "Pride and Prejudice", 8.5, null, null, "novel" },
+                    { 19, null, null, "Rebecca", 10.99, null, null, "mystery" },
+                    { 20, null, null, "The Art of War", 5.75, null, null, "history" },
+                    { 21, null, null, "The Girl with the Dragon Tattoo", 8.5, null, null, "mystery" },
+                    { 22, null, null, "The Handmaid's Tale", 12.5, null, null, "scifi" },
+                    { 23, null, null, "The Maltese Falcon", 10.99, null, null, "mystery" },
+                    { 24, null, null, "The New Jim Crow", 13.75, null, null, "history" },
+                    { 25, null, null, "The Year of Magical Thinking", 13.5, null, null, "memoir" },
+                    { 26, null, null, "Wuthering Heights", 9.0, null, null, "novel" },
+                    { 27, null, null, "Running With Scissors", 11.0, null, null, "memoir" },
+                    { 28, null, null, "Pride and Prejudice and Zombies", 8.75, null, null, "novel" },
+                    { 29, null, null, "Harry Potter and the Sorcerer's Stone", 9.75, null, null, "novel" }
                 });
 
             migrationBuilder.InsertData(

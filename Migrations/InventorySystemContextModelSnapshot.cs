@@ -36,6 +36,158 @@ namespace InventorySystem.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            FirstName = "Michelle",
+                            LastName = "Alexander"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            FirstName = "Stephen E.",
+                            LastName = "Ambrose"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            FirstName = "Margaret",
+                            LastName = "Atwood"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            FirstName = "Jane",
+                            LastName = "Austen"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            FirstName = "James",
+                            LastName = "Baldwin"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            FirstName = "Emily",
+                            LastName = "Bronte"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            FirstName = "Agatha",
+                            LastName = "Christie"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            FirstName = "Ta-Nehisi",
+                            LastName = "Coates"
+                        },
+                        new
+                        {
+                            CategoryId = 9,
+                            FirstName = "Jared",
+                            LastName = "Diamond"
+                        },
+                        new
+                        {
+                            CategoryId = 10,
+                            FirstName = "Joan",
+                            LastName = "Didion"
+                        },
+                        new
+                        {
+                            CategoryId = 11,
+                            FirstName = "Daphne",
+                            LastName = "Du Maurier"
+                        },
+                        new
+                        {
+                            CategoryId = 12,
+                            FirstName = "Tina",
+                            LastName = "Fey"
+                        },
+                        new
+                        {
+                            CategoryId = 13,
+                            FirstName = "Roxane",
+                            LastName = "Gay"
+                        },
+                        new
+                        {
+                            CategoryId = 14,
+                            FirstName = "Dashiel",
+                            LastName = "Hammett"
+                        },
+                        new
+                        {
+                            CategoryId = 15,
+                            FirstName = "Frank",
+                            LastName = "Herbert"
+                        },
+                        new
+                        {
+                            CategoryId = 16,
+                            FirstName = "Aldous",
+                            LastName = "Huxley"
+                        },
+                        new
+                        {
+                            CategoryId = 17,
+                            FirstName = "Stieg",
+                            LastName = "Larsson"
+                        },
+                        new
+                        {
+                            CategoryId = 18,
+                            FirstName = "David",
+                            LastName = "McCullough"
+                        },
+                        new
+                        {
+                            CategoryId = 19,
+                            FirstName = "Toni",
+                            LastName = "Morrison"
+                        },
+                        new
+                        {
+                            CategoryId = 20,
+                            FirstName = "George",
+                            LastName = "Orwell"
+                        },
+                        new
+                        {
+                            CategoryId = 21,
+                            FirstName = "Mary",
+                            LastName = "Shelley"
+                        },
+                        new
+                        {
+                            CategoryId = 22,
+                            FirstName = "Sun",
+                            LastName = "Tzu"
+                        },
+                        new
+                        {
+                            CategoryId = 23,
+                            FirstName = "Augusten",
+                            LastName = "Burroughs"
+                        },
+                        new
+                        {
+                            CategoryId = 25,
+                            FirstName = "JK",
+                            LastName = "Rowling"
+                        },
+                        new
+                        {
+                            CategoryId = 26,
+                            FirstName = "Seth",
+                            LastName = "Grahame-Smith"
+                        });
                 });
 
             modelBuilder.Entity("InventorySystem.Models.Product", b =>
@@ -45,26 +197,21 @@ namespace InventorySystem.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("Code")
-                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Price")
                         .HasColumnType("REAL");
 
                     b.Property<int?>("Quantity")
-                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Vendor")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("WarehouseId")
@@ -76,6 +223,211 @@ namespace InventorySystem.Migrations
                     b.HasIndex("WarehouseId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            Name = "1776",
+                            Price = 18.0,
+                            WarehouseId = "history"
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            Name = "1984",
+                            Price = 5.5,
+                            WarehouseId = "scifi"
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            Name = "And Then There Were None",
+                            Price = 4.5,
+                            WarehouseId = "mystery"
+                        },
+                        new
+                        {
+                            ProductId = 4,
+                            Name = "Band of Brothers",
+                            Price = 11.5,
+                            WarehouseId = "history"
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            Name = "Beloved",
+                            Price = 10.99,
+                            WarehouseId = "novel"
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            Name = "Between the World and Me",
+                            Price = 13.5,
+                            WarehouseId = "memoir"
+                        },
+                        new
+                        {
+                            ProductId = 7,
+                            Name = "Bossypants",
+                            Price = 4.25,
+                            WarehouseId = "memoir"
+                        },
+                        new
+                        {
+                            ProductId = 8,
+                            Name = "Brave New World",
+                            Price = 16.25,
+                            WarehouseId = "scifi"
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            Name = "D-Day",
+                            Price = 15.0,
+                            WarehouseId = "history"
+                        },
+                        new
+                        {
+                            ProductId = 10,
+                            Name = "Down and Out in Paris and London",
+                            Price = 12.5,
+                            WarehouseId = "memoir"
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            Name = "Dune",
+                            Price = 8.75,
+                            WarehouseId = "scifi"
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            Name = "Emma",
+                            Price = 9.0,
+                            WarehouseId = "novel"
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            Name = "Frankenstein",
+                            Price = 6.5,
+                            WarehouseId = "scifi"
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            Name = "Go Tell it on the Mountain",
+                            Price = 10.25,
+                            WarehouseId = "novel"
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            Name = "Guns, Germs, and Steel",
+                            Price = 15.5,
+                            WarehouseId = "history"
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            Name = "Hunger",
+                            Price = 14.5,
+                            WarehouseId = "memoir"
+                        },
+                        new
+                        {
+                            ProductId = 17,
+                            Name = "Murder on the Orient Express",
+                            Price = 6.75,
+                            WarehouseId = "mystery"
+                        },
+                        new
+                        {
+                            ProductId = 18,
+                            Name = "Pride and Prejudice",
+                            Price = 8.5,
+                            WarehouseId = "novel"
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            Name = "Rebecca",
+                            Price = 10.99,
+                            WarehouseId = "mystery"
+                        },
+                        new
+                        {
+                            ProductId = 20,
+                            Name = "The Art of War",
+                            Price = 5.75,
+                            WarehouseId = "history"
+                        },
+                        new
+                        {
+                            ProductId = 21,
+                            Name = "The Girl with the Dragon Tattoo",
+                            Price = 8.5,
+                            WarehouseId = "mystery"
+                        },
+                        new
+                        {
+                            ProductId = 22,
+                            Name = "The Handmaid's Tale",
+                            Price = 12.5,
+                            WarehouseId = "scifi"
+                        },
+                        new
+                        {
+                            ProductId = 23,
+                            Name = "The Maltese Falcon",
+                            Price = 10.99,
+                            WarehouseId = "mystery"
+                        },
+                        new
+                        {
+                            ProductId = 24,
+                            Name = "The New Jim Crow",
+                            Price = 13.75,
+                            WarehouseId = "history"
+                        },
+                        new
+                        {
+                            ProductId = 25,
+                            Name = "The Year of Magical Thinking",
+                            Price = 13.5,
+                            WarehouseId = "memoir"
+                        },
+                        new
+                        {
+                            ProductId = 26,
+                            Name = "Wuthering Heights",
+                            Price = 9.0,
+                            WarehouseId = "novel"
+                        },
+                        new
+                        {
+                            ProductId = 27,
+                            Name = "Running With Scissors",
+                            Price = 11.0,
+                            WarehouseId = "memoir"
+                        },
+                        new
+                        {
+                            ProductId = 28,
+                            Name = "Pride and Prejudice and Zombies",
+                            Price = 8.75,
+                            WarehouseId = "novel"
+                        },
+                        new
+                        {
+                            ProductId = 29,
+                            Name = "Harry Potter and the Sorcerer's Stone",
+                            Price = 9.75,
+                            WarehouseId = "novel"
+                        });
                 });
 
             modelBuilder.Entity("InventorySystem.Models.ProductCategory", b =>
@@ -91,6 +443,158 @@ namespace InventorySystem.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("ProductCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            CategoryId = 18
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            CategoryId = 20
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            CategoryId = 7
+                        },
+                        new
+                        {
+                            ProductId = 4,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            CategoryId = 19
+                        },
+                        new
+                        {
+                            ProductId = 6,
+                            CategoryId = 8
+                        },
+                        new
+                        {
+                            ProductId = 7,
+                            CategoryId = 12
+                        },
+                        new
+                        {
+                            ProductId = 8,
+                            CategoryId = 16
+                        },
+                        new
+                        {
+                            ProductId = 9,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProductId = 10,
+                            CategoryId = 20
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            CategoryId = 15
+                        },
+                        new
+                        {
+                            ProductId = 12,
+                            CategoryId = 4
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            CategoryId = 21
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            CategoryId = 5
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            CategoryId = 9
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            CategoryId = 13
+                        },
+                        new
+                        {
+                            ProductId = 17,
+                            CategoryId = 7
+                        },
+                        new
+                        {
+                            ProductId = 18,
+                            CategoryId = 4
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            CategoryId = 11
+                        },
+                        new
+                        {
+                            ProductId = 20,
+                            CategoryId = 22
+                        },
+                        new
+                        {
+                            ProductId = 21,
+                            CategoryId = 17
+                        },
+                        new
+                        {
+                            ProductId = 22,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 23,
+                            CategoryId = 14
+                        },
+                        new
+                        {
+                            ProductId = 24,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProductId = 25,
+                            CategoryId = 10
+                        },
+                        new
+                        {
+                            ProductId = 26,
+                            CategoryId = 6
+                        },
+                        new
+                        {
+                            ProductId = 27,
+                            CategoryId = 23
+                        },
+                        new
+                        {
+                            ProductId = 28,
+                            CategoryId = 4
+                        },
+                        new
+                        {
+                            ProductId = 28,
+                            CategoryId = 26
+                        },
+                        new
+                        {
+                            ProductId = 29,
+                            CategoryId = 25
+                        });
                 });
 
             modelBuilder.Entity("InventorySystem.Models.User", b =>
@@ -177,6 +681,33 @@ namespace InventorySystem.Migrations
                     b.HasKey("WarehouseId");
 
                     b.ToTable("Warehouses");
+
+                    b.HasData(
+                        new
+                        {
+                            WarehouseId = "novel",
+                            Name = "Novel"
+                        },
+                        new
+                        {
+                            WarehouseId = "memoir",
+                            Name = "Memoir"
+                        },
+                        new
+                        {
+                            WarehouseId = "mystery",
+                            Name = "Mystery"
+                        },
+                        new
+                        {
+                            WarehouseId = "scifi",
+                            Name = "Science Fiction"
+                        },
+                        new
+                        {
+                            WarehouseId = "history",
+                            Name = "History"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
