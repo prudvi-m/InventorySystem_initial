@@ -43,7 +43,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         {
             var validate = new Validate(TempData);
             if (!validate.IsCategoryChecked) {
-                validate.CheckCategory(category.Name, category.Name, operation, data);
+                validate.CheckCategory(category.Name, operation, data);
                 if (!validate.IsValid) {
                     ModelState.AddModelError(nameof(category.Name), validate.ErrorMessage);
                 }    

@@ -19,24 +19,13 @@
                 <a asp-action="List" asp-all-route-data="@routes"
                    class="text-white">First Name</a>
             </th>
-            <th>
-                @{ routes.SetSortAndDirection(nameof(Category.Name), current); }
-                <a asp-action="List" asp-all-route-data="@routes"
-                   class="text-white">Last Name</a>
-            </th>
-            <th>Product(s)</th>
+            <th>Products</th>
         </tr>
     </thead>
     <tbody>
         @foreach (Category category in Model.Categories)
         {
         <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@category.CategoryId"
-                   asp-route-slug="@category.Name.Slug()">
-                    @category.Name
-                </a>
-            </td>
             <td>
                 <a asp-action="Details" asp-route-id="@category.CategoryId"
                    asp-route-slug="@category.Name.Slug()">
