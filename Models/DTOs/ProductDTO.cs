@@ -16,7 +16,7 @@ namespace InventorySystem.Models
             Price = product.Price;
             Categories = new Dictionary<int, string>();
             foreach (ProductCategory ba in product.ProductCategories) {
-                Categories.Add(ba.Category.CategoryId, ba.Category.FullName);
+                Categories.Add(ba.Category.CategoryId, ba.Category.Name);
             }
         }
     }

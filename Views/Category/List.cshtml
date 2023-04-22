@@ -33,13 +33,13 @@
         <tr>
             <td>
                 <a asp-action="Details" asp-route-id="@category.CategoryId"
-                   asp-route-slug="@category.FullName.Slug()">
+                   asp-route-slug="@category.Name.Slug()">
                     @category.Name
                 </a>
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@category.CategoryId"
-                   asp-route-slug="@category.FullName.Slug()">
+                   asp-route-slug="@category.Name.Slug()">
                     @category.Name
                 </a>
             </td>

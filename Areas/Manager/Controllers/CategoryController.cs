@@ -53,7 +53,7 @@ namespace InventorySystem.Areas.Manager.Controllers
                 data.Insert(category);
                 data.Save();
                 validate.ClearCategory();
-                TempData["message"] = $"{category.FullName} added to Categories.";
+                TempData["message"] = $"{category.Name} added to Categories.";
                 return RedirectToAction("Index");  
             }
             else {
@@ -70,7 +70,7 @@ namespace InventorySystem.Areas.Manager.Controllers
             if (ModelState.IsValid) {
                 data.Update(category);
                 data.Save();
-                TempData["message"] = $"{category.FullName} updated.";
+                TempData["message"] = $"{category.Name} updated.";
                 return RedirectToAction("Index");  
             }
             else {
@@ -87,7 +87,7 @@ namespace InventorySystem.Areas.Manager.Controllers
             });
 
             if (category.ProductCategories.Count > 0) {
-                TempData["message"] = $"Can't delete category {category.FullName} because they are associated with these books.";
+                TempData["message"] = $"Can't delete category {category.Name} because they are associated with these books.";
                 return GoToCategorySearch(category);
             }
             else {
@@ -100,7 +100,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         {
             data.Delete(category);
             data.Save();
-            TempData["message"] = $"{category.FullName} removed from Categories.";
+            TempData["message"] = $"{category.Name} removed from Categories.";
             return RedirectToAction("Index");  
         }
 
@@ -113,7 +113,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         private RedirectToActionResult GoToCategorySearch(Category category)
         {
             var search = new SearchData(TempData) {
-                SearchTerm = category.FullName,
+                SearchTerm = category.Name,
                 Type = "category"
             };
             return RedirectToAction("Search", "Product");

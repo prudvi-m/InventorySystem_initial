@@ -13,7 +13,7 @@
         <form asp-action="Select" method="post" class="form-inline">
             <h5 class="mt-1 mr-5">Select an Category</h5>
             <select name="id" class="form-control ml-2 mr-2" 
-                asp-items='@new SelectList(Model, "CategoryId", "FullName")'></select>
+                asp-items='@new SelectList(Model, "CategoryId", "Name")'></select>
             <input type="submit" name="Operation" value="View Products"
                 class="btn btn-primary btn-sm ml-2 mr-2" />
             <input type="submit" name="Operation" value="Edit"
