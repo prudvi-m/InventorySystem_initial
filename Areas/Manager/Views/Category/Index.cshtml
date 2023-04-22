@@ -1,25 +1,35 @@
 ﻿@model IEnumerable<Category>
 
 @{
-    ViewData["Name"] = " | Manage Categories";
+    ViewData["Name"] = " | Manage Warehouses";
 }
 
-<h1 class="mb-2">Manage Categories</h1>
-<ul class="list-group">
-    <li class="list-group-item">
-        <h5 class="mt-1"><a asp-action="Add">Add an Category</a></h5>
-    </li>
-    <li class="list-group-item">
-        <form asp-action="Select" method="post" class="form-inline">
-            <h5 class="mt-1 mr-5">Select an Category</h5>
-            <select name="id" class="form-control ml-2 mr-2" 
-                asp-items='@new SelectList(Model, "CategoryId", "Name")'></select>
-            <input type="submit" name="Operation" value="View Products"
-                class="btn btn-primary btn-sm ml-2 mr-2" />
-            <input type="submit" name="Operation" value="Edit"
-                class="btn btn-primary btn-sm ml-2 mr-2" />
-            <input type="submit" name="Operation" value="Delete"
-                class="btn btn-primary btn-sm ml-2 mr-2" />
-        </form>
-    </li>
-</ul>
+<h1 class="mb-2">Manage Warehouses</h1>
+
+<h5 class="mt-2"><a asp-action="Add" asp-area="Manager">Add a Category</a></h5>
+
+<table class="table table-bordered table-striped table-sm">
+    <thead>
+        <tr><th>CategoryId</th><th>Name</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (Category category in Model)
+        {
+            <tr>
+                <td>@category.CategoryId</td>
+                <td>@category.Name</td>
+                <td>
+                    <a asp-action="ViewProducts" asp-area="Manager" asp-route-id="@category.CategoryId"
+                        class="btn btn-primary btn-sm">View Products</a>
+                    <a asp-action="Edit" asp-area="Manager" asp-route-id="@category.CategoryId"
+                        class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-area="Manager" asp-route-id="@category.CategoryId"
+                        class="btn btn-primary btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
