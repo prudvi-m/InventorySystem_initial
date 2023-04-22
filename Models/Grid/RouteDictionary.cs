@@ -53,7 +53,7 @@ namespace InventorySystem.Models
             set => this[nameof(ProductsGridDTO.Price)] = value;
         }
 
-        public string AuthorFilter {
+        public string CategoryFilter {
             get
             {
                 string s = Get(nameof(ProductsGridDTO.Category))?.Replace(FilterPrefix.Category, "");
@@ -64,7 +64,7 @@ namespace InventorySystem.Models
         }
 
         public void ClearFilters() =>
-            WarehouseFilter = PriceFilter = AuthorFilter = ProductsGridDTO.DefaultFilter;
+            WarehouseFilter = PriceFilter = CategoryFilter = ProductsGridDTO.DefaultFilter;
 
         private string Get(string key) => Keys.Contains(key) ? this[key] : null;
 

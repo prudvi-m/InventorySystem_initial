@@ -29,12 +29,12 @@ namespace InventorySystem.Areas.Manager.Controllers
             }
         }
 
-        public JsonResult CheckAuthor(string firstName, string lastName, string operation)
+        public JsonResult CheckCategory(string name, string operation)
         {
             var validate = new Validate(TempData);
-            validate.CheckAuthor(firstName, lastName, operation, categoryData);
+            validate.CheckCategory(name, operation, categoryData);
             if (validate.IsValid) {
-                validate.MarkAuthorChecked();
+                validate.MarkCategoryChecked();
                 return Json(true);
             }
             else {

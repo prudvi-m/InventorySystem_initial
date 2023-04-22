@@ -10,7 +10,7 @@ namespace InventorySystem.Models
             string defaultSortField) : base(sess, values, defaultSortField)
         {
             bool isInitial = values.Warehouse.IndexOf(FilterPrefix.Warehouse) == -1;
-            routes.AuthorFilter = (isInitial) ? FilterPrefix.Category + values.Category : values.Category;
+            routes.CategoryFilter = (isInitial) ? FilterPrefix.Category + values.Category : values.Category;
             routes.WarehouseFilter = (isInitial) ? FilterPrefix.Warehouse + values.Warehouse : values.Warehouse;
             routes.PriceFilter = (isInitial) ? FilterPrefix.Price + values.Price : values.Price;
         }
@@ -18,9 +18,9 @@ namespace InventorySystem.Models
         public void LoadFilterSegments(string[] filter, Category category)
         {
             if (category == null) { 
-                routes.AuthorFilter = FilterPrefix.Category + filter[0];
+                routes.CategoryFilter = FilterPrefix.Category + filter[0];
             } else {
-                routes.AuthorFilter = FilterPrefix.Category + filter[0]
+                routes.CategoryFilter = FilterPrefix.Category + filter[0]
                     + "-" + category.FullName.Slug();
             }
             routes.WarehouseFilter = FilterPrefix.Warehouse + filter[1];
@@ -30,7 +30,7 @@ namespace InventorySystem.Models
         public void ClearFilterSegments() => routes.ClearFilters();
 
         string def = ProductsGridDTO.DefaultFilter;   
-        public bool IsFilterByAuthor => routes.AuthorFilter != def;
+        public bool IsFilterByCategory => routes.CategoryFilter != def;
         public bool IsFilterByWarehouse => routes.WarehouseFilter != def;
         public bool IsFilterByPrice => routes.PriceFilter != def;
 

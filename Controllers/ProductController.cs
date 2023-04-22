@@ -26,7 +26,7 @@ namespace InventorySystem.Controllers
             var vm = new ProductListViewModel {
                 Products = data.Products.List(options),
                 Categories = data.Categories.List(new QueryOptions<Category> {
-                    OrderBy = a => a.FirstName }),
+                    OrderBy = a => a.Name }),
                 Warehouses = data.Warehouses.List(new QueryOptions<Warehouse> {
                     OrderBy = g => g.Name }),
                 CurrentRoute = builder.CurrentRoute,

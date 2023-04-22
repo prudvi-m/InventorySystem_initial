@@ -51,19 +51,19 @@ namespace InventorySystem.Areas.Manager.Controllers
                     options.Where = b => b.Name.Contains(vm.SearchTerm);
                     vm.Header = $"Search results for product title '{vm.SearchTerm}'";
                 }
-                if (search.IsAuthor) {
+                if (search.IsCategory) {
                     int index = vm.SearchTerm.LastIndexOf(' ');
                     if (index == -1) {
                         options.Where = b => b.ProductCategories.Any(
-                            ba => ba.Category.FirstName.Contains(vm.SearchTerm) || 
-                            ba.Category.LastName.Contains(vm.SearchTerm));
+                            ba => ba.Category.Name.Contains(vm.SearchTerm) || 
+                            ba.Category.Name.Contains(vm.SearchTerm));
                     }
                     else {
                         string first = vm.SearchTerm.Substring(0, index);
                         string last = vm.SearchTerm.Substring(index + 1); 
                         options.Where = b => b.ProductCategories.Any(
-                            ba => ba.Category.FirstName.Contains(first) && 
-                            ba.Category.LastName.Contains(last));
+                            ba => ba.Category.Name.Contains(first) && 
+                            ba.Category.Name.Contains(last));
                     }
                     vm.Header = $"Search results for category '{vm.SearchTerm}'";
                 }
@@ -154,7 +154,7 @@ namespace InventorySystem.Areas.Manager.Controllers
             vm.SelectedCategories = vm.Product.ProductCategories?.Select(
                 ba => ba.Category.CategoryId).ToArray();
             vm.Categories = data.Categories.List(new QueryOptions<Category> {
-                OrderBy = a => a.FirstName });
+                OrderBy = a => a.Name });
             vm.Warehouses = data.Warehouses.List(new QueryOptions<Warehouse> {
                     OrderBy = g => g.Name });
         }

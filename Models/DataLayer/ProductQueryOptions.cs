@@ -17,8 +17,8 @@ namespace InventorySystem.Models
                 else
                     Where = b => b.Price > 14;
             }
-            if (builder.IsFilterByAuthor) {
-                int id = builder.CurrentRoute.AuthorFilter.ToInt();
+            if (builder.IsFilterByCategory) {
+                int id = builder.CurrentRoute.CategoryFilter.ToInt();
                 if (id > 0)
                     Where = b => b.ProductCategories.Any(ba => ba.Category.CategoryId == id);
             }

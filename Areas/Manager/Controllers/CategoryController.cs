@@ -15,7 +15,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         public ViewResult Index()
         {
             var categories = data.List(new QueryOptions<Category> {
-                OrderBy = a => a.FirstName
+                OrderBy = a => a.Name
             });
             return View(categories);
         }
@@ -42,17 +42,17 @@ namespace InventorySystem.Areas.Manager.Controllers
         public IActionResult Add(Category category, string operation)
         {
             var validate = new Validate(TempData);
-            if (!validate.IsAuthorChecked) {
-                validate.CheckAuthor(category.FirstName, category.LastName, operation, data);
+            if (!validate.IsCategoryChecked) {
+                validate.CheckCategory(category.Name, category.Name, operation, data);
                 if (!validate.IsValid) {
-                    ModelState.AddModelError(nameof(category.LastName), validate.ErrorMessage);
+                    ModelState.AddModelError(nameof(category.Name), validate.ErrorMessage);
                 }    
             }
             
             if (ModelState.IsValid) {
                 data.Insert(category);
                 data.Save();
-                validate.ClearAuthor();
+                validate.ClearCategory();
                 TempData["message"] = $"{category.FullName} added to Categories.";
                 return RedirectToAction("Index");  
             }
@@ -88,7 +88,7 @@ namespace InventorySystem.Areas.Manager.Controllers
 
             if (category.ProductCategories.Count > 0) {
                 TempData["message"] = $"Can't delete category {category.FullName} because they are associated with these books.";
-                return GoToAuthorSearch(category);
+                return GoToCategorySearch(category);
             }
             else {
                 return View("Category", category);
@@ -107,10 +107,10 @@ namespace InventorySystem.Areas.Manager.Controllers
         public RedirectToActionResult ViewProducts(int id)
         {
             var category = data.Get(id);
-            return GoToAuthorSearch(category);
+            return GoToCategorySearch(category);
         }
 
-        private RedirectToActionResult GoToAuthorSearch(Category category)
+        private RedirectToActionResult GoToCategorySearch(Category category)
         {
             var search = new SearchData(TempData) {
                 SearchTerm = category.FullName,

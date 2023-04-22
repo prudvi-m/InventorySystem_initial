@@ -5,7 +5,7 @@ namespace InventorySystem.Models
     public class Validate
     {
         private const string WarehouseKey = "validWarehouse";
-        private const string AuthorKey = "validAuthor";
+        private const string CategoryKey = "validCategory";
         private const string EmailKey = "validEmail";
 
         private ITempDataDictionary tempData { get; set; }
@@ -25,19 +25,19 @@ namespace InventorySystem.Models
         public void ClearWarehouse() => tempData.Remove(WarehouseKey);
         public bool IsWarehouseChecked => tempData.Keys.Contains(WarehouseKey);
 
-        public void CheckAuthor(string firstName, string lastName, string operation, Repository<Category> data)
+        public void CheckCategory(string name, string operation, Repository<Category> data)
         {
             Category entity = null; 
             if (Operation.IsAdd(operation)) {
                 entity = data.Get(new QueryOptions<Category> {
-                    Where = a => a.FirstName == firstName && a.LastName == lastName });
+                    Where = a => a.Name == name });
             }
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" : 
-                $"Category {entity.FullName} is already in the database.";
+                $"Category {entity.Name} is already in the database.";
         }
-        public void MarkAuthorChecked() => tempData[AuthorKey] = true;
-        public void ClearAuthor() => tempData.Remove(AuthorKey);
-        public bool IsAuthorChecked => tempData.Keys.Contains(AuthorKey);
+        public void MarkCategoryChecked() => tempData[CategoryKey] = true;
+        public void ClearCategory() => tempData.Remove(CategoryKey);
+        public bool IsCategoryChecked => tempData.Keys.Contains(CategoryKey);
     }
 }
