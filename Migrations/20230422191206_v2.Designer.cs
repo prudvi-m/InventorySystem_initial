@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventorySystem.Migrations
 {
     [DbContext(typeof(InventorySystemContext))]
-    [Migration("20230422173817_v2")]
+    [Migration("20230422191206_v2")]
     partial class v2
     {
         /// <inheritdoc />
@@ -39,127 +39,22 @@ namespace InventorySystem.Migrations
                         new
                         {
                             CategoryId = 1,
-                            Name = "Michelle"
+                            Name = "Food"
                         },
                         new
                         {
                             CategoryId = 2,
-                            Name = "Stephen E."
+                            Name = "Stationary"
                         },
                         new
                         {
                             CategoryId = 3,
-                            Name = "Margaret"
+                            Name = "Grocery"
                         },
                         new
                         {
                             CategoryId = 4,
-                            Name = "Jane"
-                        },
-                        new
-                        {
-                            CategoryId = 5,
-                            Name = "James"
-                        },
-                        new
-                        {
-                            CategoryId = 6,
-                            Name = "Emily"
-                        },
-                        new
-                        {
-                            CategoryId = 7,
-                            Name = "Agatha"
-                        },
-                        new
-                        {
-                            CategoryId = 8,
-                            Name = "Ta-Nehisi"
-                        },
-                        new
-                        {
-                            CategoryId = 9,
-                            Name = "Jared"
-                        },
-                        new
-                        {
-                            CategoryId = 10,
-                            Name = "Joan"
-                        },
-                        new
-                        {
-                            CategoryId = 11,
-                            Name = "Daphne"
-                        },
-                        new
-                        {
-                            CategoryId = 12,
-                            Name = "Tina"
-                        },
-                        new
-                        {
-                            CategoryId = 13,
-                            Name = "Roxane"
-                        },
-                        new
-                        {
-                            CategoryId = 14,
-                            Name = "Dashiel"
-                        },
-                        new
-                        {
-                            CategoryId = 15,
-                            Name = "Frank"
-                        },
-                        new
-                        {
-                            CategoryId = 16,
-                            Name = "Aldous"
-                        },
-                        new
-                        {
-                            CategoryId = 17,
-                            Name = "Stieg"
-                        },
-                        new
-                        {
-                            CategoryId = 18,
-                            Name = "David"
-                        },
-                        new
-                        {
-                            CategoryId = 19,
-                            Name = "Toni"
-                        },
-                        new
-                        {
-                            CategoryId = 20,
-                            Name = "George"
-                        },
-                        new
-                        {
-                            CategoryId = 21,
-                            Name = "Mary"
-                        },
-                        new
-                        {
-                            CategoryId = 22,
-                            Name = "Sun"
-                        },
-                        new
-                        {
-                            CategoryId = 23,
-                            Name = "Augusten"
-                        },
-                        new
-                        {
-                            CategoryId = 25,
-                            Name = "JK"
-                        },
-                        new
-                        {
-                            CategoryId = 26,
-                            Name = "Seth"
+                            Name = "Electronic"
                         });
                 });
 
@@ -267,139 +162,6 @@ namespace InventorySystem.Migrations
                             Name = "Down and Out in Paris and London",
                             Price = 12.5,
                             WarehouseId = "chicago"
-                        },
-                        new
-                        {
-                            ProductId = 11,
-                            Name = "Dune",
-                            Price = 8.75,
-                            WarehouseId = "newyork"
-                        },
-                        new
-                        {
-                            ProductId = 12,
-                            Name = "Emma",
-                            Price = 9.0,
-                            WarehouseId = "washingtondc"
-                        },
-                        new
-                        {
-                            ProductId = 13,
-                            Name = "Frankenstein",
-                            Price = 6.5,
-                            WarehouseId = "newyork"
-                        },
-                        new
-                        {
-                            ProductId = 14,
-                            Name = "Go Tell it on the Mountain",
-                            Price = 10.25,
-                            WarehouseId = "washingtondc"
-                        },
-                        new
-                        {
-                            ProductId = 15,
-                            Name = "Guns, Germs, and Steel",
-                            Price = 15.5,
-                            WarehouseId = "chicago"
-                        },
-                        new
-                        {
-                            ProductId = 16,
-                            Name = "Hunger",
-                            Price = 14.5,
-                            WarehouseId = "chicago"
-                        },
-                        new
-                        {
-                            ProductId = 17,
-                            Name = "Murder on the Orient Express",
-                            Price = 6.75,
-                            WarehouseId = "losangles"
-                        },
-                        new
-                        {
-                            ProductId = 18,
-                            Name = "Pride and Prejudice",
-                            Price = 8.5,
-                            WarehouseId = "washingtondc"
-                        },
-                        new
-                        {
-                            ProductId = 19,
-                            Name = "Rebecca",
-                            Price = 10.99,
-                            WarehouseId = "losangles"
-                        },
-                        new
-                        {
-                            ProductId = 20,
-                            Name = "The Art of War",
-                            Price = 5.75,
-                            WarehouseId = "chicago"
-                        },
-                        new
-                        {
-                            ProductId = 21,
-                            Name = "The Girl with the Dragon Tattoo",
-                            Price = 8.5,
-                            WarehouseId = "losangles"
-                        },
-                        new
-                        {
-                            ProductId = 22,
-                            Name = "The Handmaid's Tale",
-                            Price = 12.5,
-                            WarehouseId = "newyork"
-                        },
-                        new
-                        {
-                            ProductId = 23,
-                            Name = "The Maltese Falcon",
-                            Price = 10.99,
-                            WarehouseId = "losangles"
-                        },
-                        new
-                        {
-                            ProductId = 24,
-                            Name = "The New Jim Crow",
-                            Price = 13.75,
-                            WarehouseId = "chicago"
-                        },
-                        new
-                        {
-                            ProductId = 25,
-                            Name = "The Year of Magical Thinking",
-                            Price = 13.5,
-                            WarehouseId = "chicago"
-                        },
-                        new
-                        {
-                            ProductId = 26,
-                            Name = "Wuthering Heights",
-                            Price = 9.0,
-                            WarehouseId = "washingtondc"
-                        },
-                        new
-                        {
-                            ProductId = 27,
-                            Name = "Running With Scissors",
-                            Price = 11.0,
-                            WarehouseId = "chicago"
-                        },
-                        new
-                        {
-                            ProductId = 28,
-                            Name = "Pride and Prejudice and Zombies",
-                            Price = 8.75,
-                            WarehouseId = "washingtondc"
-                        },
-                        new
-                        {
-                            ProductId = 29,
-                            Name = "Harry Potter and the Sorcerer's Stone",
-                            Price = 9.75,
-                            WarehouseId = "washingtondc"
                         });
                 });
 
@@ -421,17 +183,17 @@ namespace InventorySystem.Migrations
                         new
                         {
                             ProductId = 1,
-                            CategoryId = 18
+                            CategoryId = 1
                         },
                         new
                         {
                             ProductId = 2,
-                            CategoryId = 20
+                            CategoryId = 1
                         },
                         new
                         {
                             ProductId = 3,
-                            CategoryId = 7
+                            CategoryId = 1
                         },
                         new
                         {
@@ -441,132 +203,32 @@ namespace InventorySystem.Migrations
                         new
                         {
                             ProductId = 5,
-                            CategoryId = 19
-                        },
-                        new
-                        {
-                            ProductId = 6,
-                            CategoryId = 8
-                        },
-                        new
-                        {
-                            ProductId = 7,
-                            CategoryId = 12
-                        },
-                        new
-                        {
-                            ProductId = 8,
-                            CategoryId = 16
-                        },
-                        new
-                        {
-                            ProductId = 9,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 10,
-                            CategoryId = 20
-                        },
-                        new
-                        {
-                            ProductId = 11,
-                            CategoryId = 15
-                        },
-                        new
-                        {
-                            ProductId = 12,
-                            CategoryId = 4
-                        },
-                        new
-                        {
-                            ProductId = 13,
-                            CategoryId = 21
-                        },
-                        new
-                        {
-                            ProductId = 14,
-                            CategoryId = 5
-                        },
-                        new
-                        {
-                            ProductId = 15,
-                            CategoryId = 9
-                        },
-                        new
-                        {
-                            ProductId = 16,
-                            CategoryId = 13
-                        },
-                        new
-                        {
-                            ProductId = 17,
-                            CategoryId = 7
-                        },
-                        new
-                        {
-                            ProductId = 18,
-                            CategoryId = 4
-                        },
-                        new
-                        {
-                            ProductId = 19,
-                            CategoryId = 11
-                        },
-                        new
-                        {
-                            ProductId = 20,
-                            CategoryId = 22
-                        },
-                        new
-                        {
-                            ProductId = 21,
-                            CategoryId = 17
-                        },
-                        new
-                        {
-                            ProductId = 22,
                             CategoryId = 3
                         },
                         new
                         {
-                            ProductId = 23,
-                            CategoryId = 14
+                            ProductId = 6,
+                            CategoryId = 2
                         },
                         new
                         {
-                            ProductId = 24,
-                            CategoryId = 1
+                            ProductId = 7,
+                            CategoryId = 3
                         },
                         new
                         {
-                            ProductId = 25,
-                            CategoryId = 10
-                        },
-                        new
-                        {
-                            ProductId = 26,
-                            CategoryId = 6
-                        },
-                        new
-                        {
-                            ProductId = 27,
-                            CategoryId = 23
-                        },
-                        new
-                        {
-                            ProductId = 28,
+                            ProductId = 8,
                             CategoryId = 4
                         },
                         new
                         {
-                            ProductId = 28,
-                            CategoryId = 26
+                            ProductId = 9,
+                            CategoryId = 4
                         },
                         new
                         {
-                            ProductId = 29,
-                            CategoryId = 25
+                            ProductId = 10,
+                            CategoryId = 2
                         });
                 });
 

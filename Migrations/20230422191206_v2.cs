@@ -244,31 +244,10 @@ namespace InventorySystem.Migrations
                 columns: new[] { "CategoryId", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Michelle" },
-                    { 2, "Stephen E." },
-                    { 3, "Margaret" },
-                    { 4, "Jane" },
-                    { 5, "James" },
-                    { 6, "Emily" },
-                    { 7, "Agatha" },
-                    { 8, "Ta-Nehisi" },
-                    { 9, "Jared" },
-                    { 10, "Joan" },
-                    { 11, "Daphne" },
-                    { 12, "Tina" },
-                    { 13, "Roxane" },
-                    { 14, "Dashiel" },
-                    { 15, "Frank" },
-                    { 16, "Aldous" },
-                    { 17, "Stieg" },
-                    { 18, "David" },
-                    { 19, "Toni" },
-                    { 20, "George" },
-                    { 21, "Mary" },
-                    { 22, "Sun" },
-                    { 23, "Augusten" },
-                    { 25, "JK" },
-                    { 26, "Seth" }
+                    { 1, "Food" },
+                    { 2, "Stationary" },
+                    { 3, "Grocery" },
+                    { 4, "Electronic" }
                 });
 
             migrationBuilder.InsertData(
@@ -296,26 +275,7 @@ namespace InventorySystem.Migrations
                     { 7, null, null, "Bossypants", 4.25, null, null, "chicago" },
                     { 8, null, null, "Brave New World", 16.25, null, null, "newyork" },
                     { 9, null, null, "D-Day", 15.0, null, null, "chicago" },
-                    { 10, null, null, "Down and Out in Paris and London", 12.5, null, null, "chicago" },
-                    { 11, null, null, "Dune", 8.75, null, null, "newyork" },
-                    { 12, null, null, "Emma", 9.0, null, null, "washingtondc" },
-                    { 13, null, null, "Frankenstein", 6.5, null, null, "newyork" },
-                    { 14, null, null, "Go Tell it on the Mountain", 10.25, null, null, "washingtondc" },
-                    { 15, null, null, "Guns, Germs, and Steel", 15.5, null, null, "chicago" },
-                    { 16, null, null, "Hunger", 14.5, null, null, "chicago" },
-                    { 17, null, null, "Murder on the Orient Express", 6.75, null, null, "losangles" },
-                    { 18, null, null, "Pride and Prejudice", 8.5, null, null, "washingtondc" },
-                    { 19, null, null, "Rebecca", 10.99, null, null, "losangles" },
-                    { 20, null, null, "The Art of War", 5.75, null, null, "chicago" },
-                    { 21, null, null, "The Girl with the Dragon Tattoo", 8.5, null, null, "losangles" },
-                    { 22, null, null, "The Handmaid's Tale", 12.5, null, null, "newyork" },
-                    { 23, null, null, "The Maltese Falcon", 10.99, null, null, "losangles" },
-                    { 24, null, null, "The New Jim Crow", 13.75, null, null, "chicago" },
-                    { 25, null, null, "The Year of Magical Thinking", 13.5, null, null, "chicago" },
-                    { 26, null, null, "Wuthering Heights", 9.0, null, null, "washingtondc" },
-                    { 27, null, null, "Running With Scissors", 11.0, null, null, "chicago" },
-                    { 28, null, null, "Pride and Prejudice and Zombies", 8.75, null, null, "washingtondc" },
-                    { 29, null, null, "Harry Potter and the Sorcerer's Stone", 9.75, null, null, "washingtondc" }
+                    { 10, null, null, "Down and Out in Paris and London", 12.5, null, null, "chicago" }
                 });
 
             migrationBuilder.InsertData(
@@ -323,36 +283,16 @@ namespace InventorySystem.Migrations
                 columns: new[] { "CategoryId", "ProductId" },
                 values: new object[,]
                 {
-                    { 18, 1 },
-                    { 20, 2 },
-                    { 7, 3 },
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
                     { 2, 4 },
-                    { 19, 5 },
-                    { 8, 6 },
-                    { 12, 7 },
-                    { 16, 8 },
-                    { 2, 9 },
-                    { 20, 10 },
-                    { 15, 11 },
-                    { 4, 12 },
-                    { 21, 13 },
-                    { 5, 14 },
-                    { 9, 15 },
-                    { 13, 16 },
-                    { 7, 17 },
-                    { 4, 18 },
-                    { 11, 19 },
-                    { 22, 20 },
-                    { 17, 21 },
-                    { 3, 22 },
-                    { 14, 23 },
-                    { 1, 24 },
-                    { 10, 25 },
-                    { 6, 26 },
-                    { 23, 27 },
-                    { 4, 28 },
-                    { 26, 28 },
-                    { 25, 29 }
+                    { 3, 5 },
+                    { 2, 6 },
+                    { 3, 7 },
+                    { 4, 8 },
+                    { 4, 9 },
+                    { 2, 10 }
                 });
 
             migrationBuilder.CreateIndex(
