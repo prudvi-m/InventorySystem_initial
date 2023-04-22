@@ -3,8 +3,8 @@ using InventorySystem.Models;
 
 namespace InventorySystem.Areas.Manager.Controllers
 {
-    // [Area("Manager")]
-    [Area("manager")]
+    
+    [Area("Manager")]
     public class ValidationController : Controller
     {
         private Repository<Category> categoryData { get; set; }

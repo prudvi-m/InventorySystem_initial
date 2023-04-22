@@ -12,51 +12,110 @@
 
 <form asp-action="@action" asp-area="Manager" method="post">
 
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Warehouse Id:</label></div>
+    
+    @if (!Operation.IsDelete(action))
+    {
 
-        @* if adding, provide a text box. Otherwise, display warehouseId in a label. *@
-        @if (Operation.IsAdd(action))
-        {
+        @* WarehouseId *@
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Warehouse Id:</label></div>
             <div class="col-sm-4">
                 <input type="text" asp-for="WarehouseId" class="form-control" />
             </div>
             <div class="col-sm-6">
                 <span asp-validation-for="WarehouseId" class="text-danger"></span>
             </div>
-        }
-        else
-        {
-            <div class="col-sm-4"><label>@Model.WarehouseId</label></div>
-            <input type="hidden" asp-for="WarehouseId" />
-        }
-    </div>
+        </div>
 
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Name:</label></div>
 
-        @* if deleting, put Name value in label and hidden field for delete message. 
-           Otherwise, provide text box. *@
-        @if (Operation.IsDelete(action))
-        {
-            <div class="col-sm-4"><label>@Model.Name</label></div>
-            <input type="hidden" asp-for="Name" />
-        }
-        else
-        {
+        @* Name *@
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Name:</label></div>
             <div class="col-sm-4">
                 <input type="text" asp-for="Name" class="form-control" />
             </div>
             <div class="col-sm-6">
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-        }
-    </div>
+        </div>
+
+        @* Code *@
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Code:</label></div>
+            <div class="col-sm-4">
+                <input type="text" asp-for="Code" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+        </div>
+
+        @* Location *@
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Location:</label></div>
+            <div class="col-sm-4">
+                <input type="text" asp-for="Location" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+        </div>
+
+        @* Phone *@
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Phone:</label></div>
+            <div class="col-sm-4">
+                <input type="text" asp-for="Phone" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+
+        @* Email *@
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Email:</label></div>
+            <div class="col-sm-4">
+                <input type="text" asp-for="Email" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        @* ContactPerson *@
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Contact Person:</label></div>
+            <div class="col-sm-4">
+                <input type="text" asp-for="ContactPerson" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <span asp-validation-for="ContactPerson" class="text-danger"></span>
+            </div>
+        </div>
+    }
+    else
+    {
+
+         <div class="form-group row">
+            <div class="col-sm-2"><label>Warehouse Id:</label></div>
+            <div class="col-sm-4"><label>@Model.WarehouseId</label></div>
+            <input type="hidden" asp-for="WarehouseId" />
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Name:</label></div>
+            <div class="col-sm-4"><label>@Model.Name</label></div>
+            <input type="hidden" asp-for="Name" />
+        </div>
+
+
+    }
 
     <div class="row">
         <div class="col-sm-4 offset-sm-2">
             <button type="submit" class="btn btn-primary btn-sm">@action</button>
             <a asp-action="Index" class="btn btn-primary btn-sm">Cancel</a>
         </div>
-    </div>
+    </div>  
 </form>
