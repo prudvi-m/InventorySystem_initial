@@ -276,11 +276,10 @@ namespace InventorySystem.Migrations
                 columns: new[] { "WarehouseId", "Code", "ContactPerson", "Email", "Location", "Name", "Phone" },
                 values: new object[,]
                 {
-                    { "history", 0, null, null, null, "History", null },
-                    { "memoir", 0, null, null, null, "Memoir", null },
-                    { "mystery", 0, null, null, null, "Mystery", null },
-                    { "novel", 0, null, null, null, "Novel", null },
-                    { "scifi", 0, null, null, null, "Science Fiction", null }
+                    { "chicago", 1234, null, null, null, "Chicago", null },
+                    { "losangles", 5678, null, null, null, "Los Angles", null },
+                    { "newyork", 4321, null, null, null, "New York", null },
+                    { "washingtondc", 8765, null, null, null, "Washington DC", null }
                 });
 
             migrationBuilder.InsertData(
@@ -288,35 +287,35 @@ namespace InventorySystem.Migrations
                 columns: new[] { "ProductId", "Code", "Description", "Name", "Price", "Quantity", "Vendor", "WarehouseId" },
                 values: new object[,]
                 {
-                    { 1, null, null, "1776", 18.0, null, null, "history" },
-                    { 2, null, null, "1984", 5.5, null, null, "scifi" },
-                    { 3, null, null, "And Then There Were None", 4.5, null, null, "mystery" },
-                    { 4, null, null, "Band of Brothers", 11.5, null, null, "history" },
-                    { 5, null, null, "Beloved", 10.99, null, null, "novel" },
-                    { 6, null, null, "Between the World and Me", 13.5, null, null, "memoir" },
-                    { 7, null, null, "Bossypants", 4.25, null, null, "memoir" },
-                    { 8, null, null, "Brave New World", 16.25, null, null, "scifi" },
-                    { 9, null, null, "D-Day", 15.0, null, null, "history" },
-                    { 10, null, null, "Down and Out in Paris and London", 12.5, null, null, "memoir" },
-                    { 11, null, null, "Dune", 8.75, null, null, "scifi" },
-                    { 12, null, null, "Emma", 9.0, null, null, "novel" },
-                    { 13, null, null, "Frankenstein", 6.5, null, null, "scifi" },
-                    { 14, null, null, "Go Tell it on the Mountain", 10.25, null, null, "novel" },
-                    { 15, null, null, "Guns, Germs, and Steel", 15.5, null, null, "history" },
-                    { 16, null, null, "Hunger", 14.5, null, null, "memoir" },
-                    { 17, null, null, "Murder on the Orient Express", 6.75, null, null, "mystery" },
-                    { 18, null, null, "Pride and Prejudice", 8.5, null, null, "novel" },
-                    { 19, null, null, "Rebecca", 10.99, null, null, "mystery" },
-                    { 20, null, null, "The Art of War", 5.75, null, null, "history" },
-                    { 21, null, null, "The Girl with the Dragon Tattoo", 8.5, null, null, "mystery" },
-                    { 22, null, null, "The Handmaid's Tale", 12.5, null, null, "scifi" },
-                    { 23, null, null, "The Maltese Falcon", 10.99, null, null, "mystery" },
-                    { 24, null, null, "The New Jim Crow", 13.75, null, null, "history" },
-                    { 25, null, null, "The Year of Magical Thinking", 13.5, null, null, "memoir" },
-                    { 26, null, null, "Wuthering Heights", 9.0, null, null, "novel" },
-                    { 27, null, null, "Running With Scissors", 11.0, null, null, "memoir" },
-                    { 28, null, null, "Pride and Prejudice and Zombies", 8.75, null, null, "novel" },
-                    { 29, null, null, "Harry Potter and the Sorcerer's Stone", 9.75, null, null, "novel" }
+                    { 1, null, null, "1776", 18.0, null, null, "chicago" },
+                    { 2, null, null, "1984", 5.5, null, null, "newyork" },
+                    { 3, null, null, "And Then There Were None", 4.5, null, null, "losangles" },
+                    { 4, null, null, "Band of Brothers", 11.5, null, null, "chicago" },
+                    { 5, null, null, "Beloved", 10.99, null, null, "washingtondc" },
+                    { 6, null, null, "Between the World and Me", 13.5, null, null, "chicago" },
+                    { 7, null, null, "Bossypants", 4.25, null, null, "chicago" },
+                    { 8, null, null, "Brave New World", 16.25, null, null, "newyork" },
+                    { 9, null, null, "D-Day", 15.0, null, null, "chicago" },
+                    { 10, null, null, "Down and Out in Paris and London", 12.5, null, null, "chicago" },
+                    { 11, null, null, "Dune", 8.75, null, null, "newyork" },
+                    { 12, null, null, "Emma", 9.0, null, null, "washingtondc" },
+                    { 13, null, null, "Frankenstein", 6.5, null, null, "newyork" },
+                    { 14, null, null, "Go Tell it on the Mountain", 10.25, null, null, "washingtondc" },
+                    { 15, null, null, "Guns, Germs, and Steel", 15.5, null, null, "chicago" },
+                    { 16, null, null, "Hunger", 14.5, null, null, "chicago" },
+                    { 17, null, null, "Murder on the Orient Express", 6.75, null, null, "losangles" },
+                    { 18, null, null, "Pride and Prejudice", 8.5, null, null, "washingtondc" },
+                    { 19, null, null, "Rebecca", 10.99, null, null, "losangles" },
+                    { 20, null, null, "The Art of War", 5.75, null, null, "chicago" },
+                    { 21, null, null, "The Girl with the Dragon Tattoo", 8.5, null, null, "losangles" },
+                    { 22, null, null, "The Handmaid's Tale", 12.5, null, null, "newyork" },
+                    { 23, null, null, "The Maltese Falcon", 10.99, null, null, "losangles" },
+                    { 24, null, null, "The New Jim Crow", 13.75, null, null, "chicago" },
+                    { 25, null, null, "The Year of Magical Thinking", 13.5, null, null, "chicago" },
+                    { 26, null, null, "Wuthering Heights", 9.0, null, null, "washingtondc" },
+                    { 27, null, null, "Running With Scissors", 11.0, null, null, "chicago" },
+                    { 28, null, null, "Pride and Prejudice and Zombies", 8.75, null, null, "washingtondc" },
+                    { 29, null, null, "Harry Potter and the Sorcerer's Stone", 9.75, null, null, "washingtondc" }
                 });
 
             migrationBuilder.InsertData(

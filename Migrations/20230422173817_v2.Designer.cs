@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventorySystem.Migrations
 {
     [DbContext(typeof(InventorySystemContext))]
-    [Migration("20230422171822_v2")]
+    [Migration("20230422173817_v2")]
     partial class v2
     {
         /// <inheritdoc />
@@ -203,203 +203,203 @@ namespace InventorySystem.Migrations
                             ProductId = 1,
                             Name = "1776",
                             Price = 18.0,
-                            WarehouseId = "history"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 2,
                             Name = "1984",
                             Price = 5.5,
-                            WarehouseId = "scifi"
+                            WarehouseId = "newyork"
                         },
                         new
                         {
                             ProductId = 3,
                             Name = "And Then There Were None",
                             Price = 4.5,
-                            WarehouseId = "mystery"
+                            WarehouseId = "losangles"
                         },
                         new
                         {
                             ProductId = 4,
                             Name = "Band of Brothers",
                             Price = 11.5,
-                            WarehouseId = "history"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 5,
                             Name = "Beloved",
                             Price = 10.99,
-                            WarehouseId = "novel"
+                            WarehouseId = "washingtondc"
                         },
                         new
                         {
                             ProductId = 6,
                             Name = "Between the World and Me",
                             Price = 13.5,
-                            WarehouseId = "memoir"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 7,
                             Name = "Bossypants",
                             Price = 4.25,
-                            WarehouseId = "memoir"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 8,
                             Name = "Brave New World",
                             Price = 16.25,
-                            WarehouseId = "scifi"
+                            WarehouseId = "newyork"
                         },
                         new
                         {
                             ProductId = 9,
                             Name = "D-Day",
                             Price = 15.0,
-                            WarehouseId = "history"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 10,
                             Name = "Down and Out in Paris and London",
                             Price = 12.5,
-                            WarehouseId = "memoir"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 11,
                             Name = "Dune",
                             Price = 8.75,
-                            WarehouseId = "scifi"
+                            WarehouseId = "newyork"
                         },
                         new
                         {
                             ProductId = 12,
                             Name = "Emma",
                             Price = 9.0,
-                            WarehouseId = "novel"
+                            WarehouseId = "washingtondc"
                         },
                         new
                         {
                             ProductId = 13,
                             Name = "Frankenstein",
                             Price = 6.5,
-                            WarehouseId = "scifi"
+                            WarehouseId = "newyork"
                         },
                         new
                         {
                             ProductId = 14,
                             Name = "Go Tell it on the Mountain",
                             Price = 10.25,
-                            WarehouseId = "novel"
+                            WarehouseId = "washingtondc"
                         },
                         new
                         {
                             ProductId = 15,
                             Name = "Guns, Germs, and Steel",
                             Price = 15.5,
-                            WarehouseId = "history"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 16,
                             Name = "Hunger",
                             Price = 14.5,
-                            WarehouseId = "memoir"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 17,
                             Name = "Murder on the Orient Express",
                             Price = 6.75,
-                            WarehouseId = "mystery"
+                            WarehouseId = "losangles"
                         },
                         new
                         {
                             ProductId = 18,
                             Name = "Pride and Prejudice",
                             Price = 8.5,
-                            WarehouseId = "novel"
+                            WarehouseId = "washingtondc"
                         },
                         new
                         {
                             ProductId = 19,
                             Name = "Rebecca",
                             Price = 10.99,
-                            WarehouseId = "mystery"
+                            WarehouseId = "losangles"
                         },
                         new
                         {
                             ProductId = 20,
                             Name = "The Art of War",
                             Price = 5.75,
-                            WarehouseId = "history"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 21,
                             Name = "The Girl with the Dragon Tattoo",
                             Price = 8.5,
-                            WarehouseId = "mystery"
+                            WarehouseId = "losangles"
                         },
                         new
                         {
                             ProductId = 22,
                             Name = "The Handmaid's Tale",
                             Price = 12.5,
-                            WarehouseId = "scifi"
+                            WarehouseId = "newyork"
                         },
                         new
                         {
                             ProductId = 23,
                             Name = "The Maltese Falcon",
                             Price = 10.99,
-                            WarehouseId = "mystery"
+                            WarehouseId = "losangles"
                         },
                         new
                         {
                             ProductId = 24,
                             Name = "The New Jim Crow",
                             Price = 13.75,
-                            WarehouseId = "history"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 25,
                             Name = "The Year of Magical Thinking",
                             Price = 13.5,
-                            WarehouseId = "memoir"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 26,
                             Name = "Wuthering Heights",
                             Price = 9.0,
-                            WarehouseId = "novel"
+                            WarehouseId = "washingtondc"
                         },
                         new
                         {
                             ProductId = 27,
                             Name = "Running With Scissors",
                             Price = 11.0,
-                            WarehouseId = "memoir"
+                            WarehouseId = "chicago"
                         },
                         new
                         {
                             ProductId = 28,
                             Name = "Pride and Prejudice and Zombies",
                             Price = 8.75,
-                            WarehouseId = "novel"
+                            WarehouseId = "washingtondc"
                         },
                         new
                         {
                             ProductId = 29,
                             Name = "Harry Potter and the Sorcerer's Stone",
                             Price = 9.75,
-                            WarehouseId = "novel"
+                            WarehouseId = "washingtondc"
                         });
                 });
 
@@ -677,33 +677,27 @@ namespace InventorySystem.Migrations
                     b.HasData(
                         new
                         {
-                            WarehouseId = "novel",
-                            Code = 0,
-                            Name = "Novel"
+                            WarehouseId = "chicago",
+                            Code = 1234,
+                            Name = "Chicago"
                         },
                         new
                         {
-                            WarehouseId = "memoir",
-                            Code = 0,
-                            Name = "Memoir"
+                            WarehouseId = "newyork",
+                            Code = 4321,
+                            Name = "New York"
                         },
                         new
                         {
-                            WarehouseId = "mystery",
-                            Code = 0,
-                            Name = "Mystery"
+                            WarehouseId = "losangles",
+                            Code = 5678,
+                            Name = "Los Angles"
                         },
                         new
                         {
-                            WarehouseId = "scifi",
-                            Code = 0,
-                            Name = "Science Fiction"
-                        },
-                        new
-                        {
-                            WarehouseId = "history",
-                            Code = 0,
-                            Name = "History"
+                            WarehouseId = "washingtondc",
+                            Code = 8765,
+                            Name = "Washington DC"
                         });
                 });
 
