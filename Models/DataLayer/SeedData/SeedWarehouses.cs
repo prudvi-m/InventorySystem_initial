@@ -8,10 +8,10 @@ namespace InventorySystem.Models
         public void Configure(EntityTypeBuilder<Warehouse> entity)
         {
             entity.HasData(
-                new Warehouse { WarehouseId = "Chicago", Name = "chicago" },
-                new Warehouse { WarehouseId = "New York", Name = "newyork" },
-                new Warehouse { WarehouseId = "Los Angles", Name = "losangles" },
-                new Warehouse { WarehouseId = "Washington DC", Name = "washingtondc" },
+                new Warehouse { WarehouseId = "Chicago", Name = "chicago" , Code = 1234 },
+                new Warehouse { WarehouseId = "New York", Name = "newyork" , Code = 4321 },
+                new Warehouse { WarehouseId = "Los Angles", Name = "losangles", Code = 5678 },
+                new Warehouse { WarehouseId = "Washington DC", Name = "washingtondc", Code = 8765 }
             );
         }
     }
