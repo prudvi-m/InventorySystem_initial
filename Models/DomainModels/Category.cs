@@ -8,18 +8,25 @@ namespace InventorySystem.Models
     {
         public int CategoryId { get; set; }
 
-        [Required(ErrorMessage = "Please enter a first name.")]
+        public int Code { get; set; }
+
+        [Required("Please enter Name of the category.")]
         [StringLength(200)]
-        public string FirstName { get; set; }
+        public string Name { get; set; }
+        
+        [StringLength(200)]
+        public string Location { get; set; }
+        
+        [StringLength(200)]
+        public string Email { get; set; }
+        
+        [StringLength(200)]
+        public string Phone { get; set; }
 
-        [Required(ErrorMessage = "Please enter a last name.")]
-        [MaxLength(200)]
-        [Remote("CheckAuthor", "Validation", "Area", 
-            AdditionalFields = "FirstName, Operation")]
-        public string LastName { get; set; }
-
-        public string FullName => $"{FirstName} {LastName}";
+        [StringLength(200)]
+        public string ContactPerson { get; set; }
 
         public ICollection<ProductCategory> ProductCategories { get; set; }
+
     }
 }
