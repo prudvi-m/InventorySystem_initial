@@ -15,6 +15,21 @@ namespace InventorySystem.Models
         [Required(ErrorMessage = "Please enter a warehouse name.")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Please enter a warehouse code.")]
+        public int Code { get; set; }
+
+        [StringLength(25)]
+        public string Location { get; set; }
+
+        [StringLength(25)]
+        public string Email { get; set; }
+
+        [StringLength(25)]
+        public string Phone { get; set; }
+
+        [StringLength(25)]
+        public string ContactPerson { get; set; }
+
         public ICollection<Product> Products { get; set; }
     }
 }
