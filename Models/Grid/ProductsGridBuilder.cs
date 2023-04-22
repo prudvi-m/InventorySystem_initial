@@ -21,7 +21,7 @@ namespace InventorySystem.Models
                 routes.AuthorFilter = FilterPrefix.Category + filter[0];
             } else {
                 routes.AuthorFilter = FilterPrefix.Category + filter[0]
-                    + "-" + category.FullName.Slug();
+                    + "-" + category.Name.Slug();
             }
             routes.WarehouseFilter = FilterPrefix.Warehouse + filter[1];
             routes.PriceFilter = FilterPrefix.Price + filter[2];

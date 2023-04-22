@@ -23,8 +23,8 @@
                 @foreach (ProductCategory ba in Model.ProductCategories) {
                     <p><a asp-action="Details" asp-controller="Category"
                         asp-route-id="@ba.CategoryId"
-                        asp-route-slug="@ba.Category.FullName.Slug()">
-                        @ba.Category.FullName
+                        asp-route-slug="@ba.Category.Name.Slug()">
+                        @ba.Category.Name
                     </a></p>
                 }
             </td>

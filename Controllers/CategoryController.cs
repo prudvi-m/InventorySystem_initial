@@ -13,7 +13,7 @@ namespace InventorySystem.Controllers
         // [HttpGet]
         public ViewResult List(GridDTO vals)
         {
-            string defaultSort = nameof(Category.FirstName);
+            string defaultSort = nameof(Category.Name);
             var builder = new GridBuilder(HttpContext.Session, vals, defaultSort);
             builder.SaveRouteSegments();
 
@@ -24,11 +24,11 @@ namespace InventorySystem.Controllers
                 OrderByDirection = builder.CurrentRoute.SortDirection
             };
             if (builder.CurrentRoute.SortField.EqualsNoCase(defaultSort))
-                options.OrderBy = a => a.FirstName;
+                options.OrderBy = a => a.Name;
             else
-                options.OrderBy = a => a.LastName;
+                options.OrderBy = a => a.Name;
 
-            var vm = new AuthorListViewModel {
+            var vm = new CategoryListViewModel {
                 Categories = data.List(options),
                 CurrentRoute = builder.CurrentRoute,
                 TotalPages = builder.GetTotalPages(data.Count)

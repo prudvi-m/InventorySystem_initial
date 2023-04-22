@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventorySystem.Migrations
 {
     [DbContext(typeof(InventorySystemContext))]
-    [Migration("20230418032044_v2")]
+    [Migration("20230422135910_v2")]
     partial class v2
     {
         /// <inheritdoc />
@@ -26,13 +26,27 @@ namespace InventorySystem.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("FirstName")
+                    b.Property<int>("Code")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ContactPerson")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
+                    b.Property<string>("Phone")
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
@@ -44,152 +58,152 @@ namespace InventorySystem.Migrations
                         new
                         {
                             CategoryId = 1,
-                            FirstName = "Michelle",
-                            LastName = "Alexander"
+                            Code = 0,
+                            Name = "Michelle"
                         },
                         new
                         {
                             CategoryId = 2,
-                            FirstName = "Stephen E.",
-                            LastName = "Ambrose"
+                            Code = 0,
+                            Name = "Stephen E."
                         },
                         new
                         {
                             CategoryId = 3,
-                            FirstName = "Margaret",
-                            LastName = "Atwood"
+                            Code = 0,
+                            Name = "Margaret"
                         },
                         new
                         {
                             CategoryId = 4,
-                            FirstName = "Jane",
-                            LastName = "Austen"
+                            Code = 0,
+                            Name = "Jane"
                         },
                         new
                         {
                             CategoryId = 5,
-                            FirstName = "James",
-                            LastName = "Baldwin"
+                            Code = 0,
+                            Name = "James"
                         },
                         new
                         {
                             CategoryId = 6,
-                            FirstName = "Emily",
-                            LastName = "Bronte"
+                            Code = 0,
+                            Name = "Emily"
                         },
                         new
                         {
                             CategoryId = 7,
-                            FirstName = "Agatha",
-                            LastName = "Christie"
+                            Code = 0,
+                            Name = "Agatha"
                         },
                         new
                         {
                             CategoryId = 8,
-                            FirstName = "Ta-Nehisi",
-                            LastName = "Coates"
+                            Code = 0,
+                            Name = "Ta-Nehisi"
                         },
                         new
                         {
                             CategoryId = 9,
-                            FirstName = "Jared",
-                            LastName = "Diamond"
+                            Code = 0,
+                            Name = "Jared"
                         },
                         new
                         {
                             CategoryId = 10,
-                            FirstName = "Joan",
-                            LastName = "Didion"
+                            Code = 0,
+                            Name = "Joan"
                         },
                         new
                         {
                             CategoryId = 11,
-                            FirstName = "Daphne",
-                            LastName = "Du Maurier"
+                            Code = 0,
+                            Name = "Daphne"
                         },
                         new
                         {
                             CategoryId = 12,
-                            FirstName = "Tina",
-                            LastName = "Fey"
+                            Code = 0,
+                            Name = "Tina"
                         },
                         new
                         {
                             CategoryId = 13,
-                            FirstName = "Roxane",
-                            LastName = "Gay"
+                            Code = 0,
+                            Name = "Roxane"
                         },
                         new
                         {
                             CategoryId = 14,
-                            FirstName = "Dashiel",
-                            LastName = "Hammett"
+                            Code = 0,
+                            Name = "Dashiel"
                         },
                         new
                         {
                             CategoryId = 15,
-                            FirstName = "Frank",
-                            LastName = "Herbert"
+                            Code = 0,
+                            Name = "Frank"
                         },
                         new
                         {
                             CategoryId = 16,
-                            FirstName = "Aldous",
-                            LastName = "Huxley"
+                            Code = 0,
+                            Name = "Aldous"
                         },
                         new
                         {
                             CategoryId = 17,
-                            FirstName = "Stieg",
-                            LastName = "Larsson"
+                            Code = 0,
+                            Name = "Stieg"
                         },
                         new
                         {
                             CategoryId = 18,
-                            FirstName = "David",
-                            LastName = "McCullough"
+                            Code = 0,
+                            Name = "David"
                         },
                         new
                         {
                             CategoryId = 19,
-                            FirstName = "Toni",
-                            LastName = "Morrison"
+                            Code = 0,
+                            Name = "Toni"
                         },
                         new
                         {
                             CategoryId = 20,
-                            FirstName = "George",
-                            LastName = "Orwell"
+                            Code = 0,
+                            Name = "George"
                         },
                         new
                         {
                             CategoryId = 21,
-                            FirstName = "Mary",
-                            LastName = "Shelley"
+                            Code = 0,
+                            Name = "Mary"
                         },
                         new
                         {
                             CategoryId = 22,
-                            FirstName = "Sun",
-                            LastName = "Tzu"
+                            Code = 0,
+                            Name = "Sun"
                         },
                         new
                         {
                             CategoryId = 23,
-                            FirstName = "Augusten",
-                            LastName = "Burroughs"
+                            Code = 0,
+                            Name = "Augusten"
                         },
                         new
                         {
                             CategoryId = 25,
-                            FirstName = "JK",
-                            LastName = "Rowling"
+                            Code = 0,
+                            Name = "JK"
                         },
                         new
                         {
                             CategoryId = 26,
-                            FirstName = "Seth",
-                            LastName = "Grahame-Smith"
+                            Code = 0,
+                            Name = "Seth"
                         });
                 });
 

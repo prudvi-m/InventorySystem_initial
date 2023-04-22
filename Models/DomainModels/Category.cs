@@ -10,7 +10,7 @@ namespace InventorySystem.Models
 
         public int Code { get; set; }
 
-        [Required("Please enter Name of the category.")]
+        [Required(ErrorMessage = "Please enter Name of the category.")]
         [StringLength(200)]
         public string Name { get; set; }
         

@@ -2,7 +2,7 @@
 
 namespace InventorySystem.Models
 {
-    public class AuthorListViewModel
+    public class CategoryListViewModel
     {
         public IEnumerable<Category> Categories { get; set; }
         public RouteDictionary CurrentRoute { get; set; }

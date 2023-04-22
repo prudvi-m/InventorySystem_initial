@@ -1,4 +1,4 @@
-﻿@model AuthorListViewModel
+﻿@model CategoryListViewModel
 @{
     ViewData["Name"] = " | Category Catalog";
 
@@ -15,14 +15,14 @@
     <thead class="thead-dark">
         <tr>
             <th>
-                @{ routes.SetSortAndDirection(nameof(Category.FirstName), current); }
+                @{ routes.SetSortAndDirection(nameof(Category.Name), current); }
                 <a asp-action="List" asp-all-route-data="@routes"
                    class="text-white">First Name</a>
             </th>
             <th>
-                @{ routes.SetSortAndDirection(nameof(Category.LastName), current); }
+                @{ routes.SetSortAndDirection(nameof(Category.Code), current); }
                 <a asp-action="List" asp-all-route-data="@routes"
-                   class="text-white">Last Name</a>
+                   class="text-white">Code</a>
             </th>
             <th>Product(s)</th>
         </tr>
@@ -33,14 +33,14 @@
         <tr>
             <td>
                 <a asp-action="Details" asp-route-id="@category.CategoryId"
-                   asp-route-slug="@category.FullName.Slug()">
-                    @category.FirstName
+                   asp-route-slug="@category.Name.Slug()">
+                    @category.Name
                 </a>
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@category.CategoryId"
-                   asp-route-slug="@category.FullName.Slug()">
-                    @category.LastName
+                   asp-route-slug="@category.Name.Slug()">
+                    @category.Code
                 </a>
             </td>
             <td>

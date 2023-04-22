@@ -60,8 +60,12 @@ namespace InventorySystem.Migrations
                 {
                     CategoryId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false)
+                    Code = table.Column<int>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    Location = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true),
+                    Phone = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true),
+                    ContactPerson = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -237,34 +241,34 @@ namespace InventorySystem.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "CategoryId", "FirstName", "LastName" },
+                columns: new[] { "CategoryId", "Code", "ContactPerson", "Email", "Location", "Name", "Phone" },
                 values: new object[,]
                 {
-                    { 1, "Michelle", "Alexander" },
-                    { 2, "Stephen E.", "Ambrose" },
-                    { 3, "Margaret", "Atwood" },
-                    { 4, "Jane", "Austen" },
-                    { 5, "James", "Baldwin" },
-                    { 6, "Emily", "Bronte" },
-                    { 7, "Agatha", "Christie" },
-                    { 8, "Ta-Nehisi", "Coates" },
-                    { 9, "Jared", "Diamond" },
-                    { 10, "Joan", "Didion" },
-                    { 11, "Daphne", "Du Maurier" },
-                    { 12, "Tina", "Fey" },
-                    { 13, "Roxane", "Gay" },
-                    { 14, "Dashiel", "Hammett" },
-                    { 15, "Frank", "Herbert" },
-                    { 16, "Aldous", "Huxley" },
-                    { 17, "Stieg", "Larsson" },
-                    { 18, "David", "McCullough" },
-                    { 19, "Toni", "Morrison" },
-                    { 20, "George", "Orwell" },
-                    { 21, "Mary", "Shelley" },
-                    { 22, "Sun", "Tzu" },
-                    { 23, "Augusten", "Burroughs" },
-                    { 25, "JK", "Rowling" },
-                    { 26, "Seth", "Grahame-Smith" }
+                    { 1, 0, null, null, null, "Michelle", null },
+                    { 2, 0, null, null, null, "Stephen E.", null },
+                    { 3, 0, null, null, null, "Margaret", null },
+                    { 4, 0, null, null, null, "Jane", null },
+                    { 5, 0, null, null, null, "James", null },
+                    { 6, 0, null, null, null, "Emily", null },
+                    { 7, 0, null, null, null, "Agatha", null },
+                    { 8, 0, null, null, null, "Ta-Nehisi", null },
+                    { 9, 0, null, null, null, "Jared", null },
+                    { 10, 0, null, null, null, "Joan", null },
+                    { 11, 0, null, null, null, "Daphne", null },
+                    { 12, 0, null, null, null, "Tina", null },
+                    { 13, 0, null, null, null, "Roxane", null },
+                    { 14, 0, null, null, null, "Dashiel", null },
+                    { 15, 0, null, null, null, "Frank", null },
+                    { 16, 0, null, null, null, "Aldous", null },
+                    { 17, 0, null, null, null, "Stieg", null },
+                    { 18, 0, null, null, null, "David", null },
+                    { 19, 0, null, null, null, "Toni", null },
+                    { 20, 0, null, null, null, "George", null },
+                    { 21, 0, null, null, null, "Mary", null },
+                    { 22, 0, null, null, null, "Sun", null },
+                    { 23, 0, null, null, null, "Augusten", null },
+                    { 25, 0, null, null, null, "JK", null },
+                    { 26, 0, null, null, null, "Seth", null }
                 });
 
             migrationBuilder.InsertData(

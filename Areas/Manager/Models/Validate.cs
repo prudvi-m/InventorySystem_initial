@@ -30,11 +30,11 @@ namespace InventorySystem.Models
             Category entity = null; 
             if (Operation.IsAdd(operation)) {
                 entity = data.Get(new QueryOptions<Category> {
-                    Where = a => a.FirstName == firstName && a.LastName == lastName });
+                    Where = a => a.Name == firstName && a.Name == lastName });
             }
             IsValid = (entity == null) ? true : false;
             ErrorMessage = (IsValid) ? "" : 
-                $"Category {entity.FullName} is already in the database.";
+                $"Category {entity.Name} is already in the database.";
         }
         public void MarkAuthorChecked() => tempData[AuthorKey] = true;
         public void ClearAuthor() => tempData.Remove(AuthorKey);

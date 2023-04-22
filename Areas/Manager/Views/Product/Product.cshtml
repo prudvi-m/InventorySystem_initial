@@ -62,7 +62,7 @@
             </div>
             <div class="col-sm-4">
                 <select asp-for="SelectedCategories" class="form-control"
-                    asp-items='@new MultiSelectList(Model.Categories, "CategoryId", "FullName", Model.SelectedCategories)'>
+                    asp-items='@new MultiSelectList(Model.Categories, "CategoryId", "Name", Model.SelectedCategories)'>
                 </select>
                 (Hold down CTRL or CMD key to select multiple)
             </div>

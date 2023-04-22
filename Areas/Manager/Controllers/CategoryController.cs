@@ -15,7 +15,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         public ViewResult Index()
         {
             var categories = data.List(new QueryOptions<Category> {
-                OrderBy = a => a.FirstName
+                OrderBy = a => a.Name
             });
             return View(categories);
         }
@@ -43,9 +43,9 @@ namespace InventorySystem.Areas.Manager.Controllers
         {
             var validate = new Validate(TempData);
             if (!validate.IsAuthorChecked) {
-                validate.CheckAuthor(category.FirstName, category.LastName, operation, data);
+                validate.CheckAuthor(category.Name, category.Name, operation, data);
                 if (!validate.IsValid) {
-                    ModelState.AddModelError(nameof(category.LastName), validate.ErrorMessage);
+                    ModelState.AddModelError(nameof(category.Name), validate.ErrorMessage);
                 }    
             }
             
@@ -53,7 +53,7 @@ namespace InventorySystem.Areas.Manager.Controllers
                 data.Insert(category);
                 data.Save();
                 validate.ClearAuthor();
-                TempData["message"] = $"{category.FullName} added to Categories.";
+                TempData["message"] = $"{category.Name} added to Categories.";
                 return RedirectToAction("Index");  
             }
             else {
@@ -70,7 +70,7 @@ namespace InventorySystem.Areas.Manager.Controllers
             if (ModelState.IsValid) {
                 data.Update(category);
                 data.Save();
-                TempData["message"] = $"{category.FullName} updated.";
+                TempData["message"] = $"{category.Name} updated.";
                 return RedirectToAction("Index");  
             }
             else {
@@ -87,7 +87,7 @@ namespace InventorySystem.Areas.Manager.Controllers
             });
 
             if (category.ProductCategories.Count > 0) {
-                TempData["message"] = $"Can't delete category {category.FullName} because they are associated with these books.";
+                TempData["message"] = $"Can't delete category {category.Name} because they are associated with these books.";
                 return GoToAuthorSearch(category);
             }
             else {
@@ -100,7 +100,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         {
             data.Delete(category);
             data.Save();
-            TempData["message"] = $"{category.FullName} removed from Categories.";
+            TempData["message"] = $"{category.Name} removed from Categories.";
             return RedirectToAction("Index");  
         }
 
@@ -113,7 +113,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         private RedirectToActionResult GoToAuthorSearch(Category category)
         {
             var search = new SearchData(TempData) {
-                SearchTerm = category.FullName,
+                SearchTerm = category.Name,
                 Type = "category"
             };
             return RedirectToAction("Search", "Product");
