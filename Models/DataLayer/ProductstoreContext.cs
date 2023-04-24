@@ -17,23 +17,11 @@ namespace InventorySystem.Models
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // ProductCategory: set primary key 
-            modelBuilder.Entity<ProductCategory>().HasKey(ba => new { ba.ProductId, ba.CategoryId });
-
-            // ProductCategory: set foreign keys 
-            modelBuilder.Entity<ProductCategory>().HasOne(ba => ba.Product)
-                .WithMany(b => b.ProductCategories)
-                .HasForeignKey(ba => ba.ProductId);
-            modelBuilder.Entity<ProductCategory>().HasOne(ba => ba.Category)
-                .WithMany(a => a.ProductCategories)
-                .HasForeignKey(ba => ba.CategoryId);
 
             // Product: remove cascading delete with Warehouse
             modelBuilder.Entity<Product>().HasOne(b => b.Warehouse)
@@ -44,7 +32,6 @@ namespace InventorySystem.Models
             modelBuilder.ApplyConfiguration(new SeedWarehouses());
             modelBuilder.ApplyConfiguration(new SeedProducts());
             modelBuilder.ApplyConfiguration(new SeedCategories());
-            modelBuilder.ApplyConfiguration(new SeedProductCategories());
         }
 
         public static async Task CreateAdminUser(IServiceProvider serviceProvider)

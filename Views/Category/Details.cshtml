@@ -1,31 +1,30 @@
-﻿@model Category
+﻿@model IEnumerable<Category>
 
 @{
-    ViewData["Name"] = " | Category";
+    ViewData["Name"] = " | Manage Categories";
 }
 
-<h1>Category</h1>
+<h1 class="mb-2">Categories</h1>
 
-<table class="table table-bordered table-sm">
+<table class="table table-bordered table-striped table-sm">
     <thead>
-        <tr class="thead-dark">
-            <th>@Model.Name</th>
-        </tr>
+        <tr><th>CategoryId</th><th>Name</th><th></th></tr>
     </thead>
     <tbody>
-        <tr>
-            <td>
-                @foreach (var ba in Model.ProductCategories)
-                {
-                    <p>
-                        <a asp-action="Details" asp-controller="Product"
-                           asp-route-id="@ba.ProductId"
-                           asp-route-slug="@ba.Product.Name.Slug()">
-                            @ba.Product.Name
-                        </a>
-                    </p>
-                }
-            </td>
-        </tr>
+        @foreach (Category warehouse in Model)
+        {
+            <tr>
+                <td>@warehouse.CategoryId</td>
+                <td>@warehouse.Name</td>
+                <td>
+                    <a asp-action="ViewProducts" asp-area="Manager" asp-route-id="@warehouse.CategoryId"
+                        class="btn btn-primary btn-sm">View Products</a>
+                    <a asp-action="Edit" asp-area="Manager" asp-route-id="@warehouse.CategoryId"
+                        class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-area="Manager" asp-route-id="@warehouse.CategoryId"
+                        class="btn btn-primary btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -25,12 +25,7 @@
                    asp-route-slug="@product.Name.Slug()">@product.Name</a>
             </td>
             <td>@product.Warehouse.Name</td>
-            <td>
-                @foreach(ProductCategory ba in product.ProductCategories)
-                {
-                    <div>@ba.Category.Name</div>
-                }
-            </td>
+            <td>@product.Category.Name</td>
             <td>
                 <div class="float-right">
                     <a asp-action="Edit" asp-route-id="@product.ProductId"

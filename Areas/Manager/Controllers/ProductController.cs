@@ -15,7 +15,6 @@ namespace InventorySystem.Areas.Manager.Controllers
         public ViewResult Index() {
             var search = new SearchData(TempData);
             search.Clear();
-
             return View();
         }
 
@@ -45,28 +44,17 @@ namespace InventorySystem.Areas.Manager.Controllers
                 };
 
                 var options = new QueryOptions<Product> {
-                    Include = "Warehouse, ProductCategories.Category"
+                    Include = "Category,Warehouse"
                 };
                 if (search.IsProduct) { 
                     options.Where = b => b.Name.Contains(vm.SearchTerm);
                     vm.Header = $"Search results for product title '{vm.SearchTerm}'";
                 }
-                if (search.IsCategory) {
-                    int index = vm.SearchTerm.LastIndexOf(' ');
-                    if (index == -1) {
-                        options.Where = b => b.ProductCategories.Any(
-                            ba => ba.Category.Name.Contains(vm.SearchTerm) || 
-                            ba.Category.Name.Contains(vm.SearchTerm));
-                    }
-                    else {
-                        string first = vm.SearchTerm.Substring(0, index);
-                        string last = vm.SearchTerm.Substring(index + 1); 
-                        options.Where = b => b.ProductCategories.Any(
-                            ba => ba.Category.Name.Contains(first) && 
-                            ba.Category.Name.Contains(last));
-                    }
-                    vm.Header = $"Search results for category '{vm.SearchTerm}'";
+               if(search.IsCategory) {                  
+                    options.Where = b => b.Name.Contains(vm.SearchTerm);
+                    vm.Header = $"Search results for category ID '{vm.SearchTerm}'";
                 }
+
                 if (search.IsWarehouse) {                  
                     options.Where = b => b.WarehouseId.Contains(vm.SearchTerm);
                     vm.Header = $"Search results for warehouse ID '{vm.SearchTerm}'";
@@ -76,7 +64,7 @@ namespace InventorySystem.Areas.Manager.Controllers
             }
             else {
                 return View("Index");
-            }     
+            }
         }
 
         [HttpGet]
@@ -86,7 +74,6 @@ namespace InventorySystem.Areas.Manager.Controllers
         public IActionResult Add(ProductViewModel vm)
         {
             if (ModelState.IsValid) {
-                data.LoadNewProductCategories(vm.Product, vm.SelectedCategories);
                 data.Products.Insert(vm.Product);
                 data.Save();
 
@@ -106,8 +93,6 @@ namespace InventorySystem.Areas.Manager.Controllers
         public IActionResult Edit(ProductViewModel vm)
         {
             if (ModelState.IsValid) {
-                data.DeleteCurrentProductCategories(vm.Product);
-                data.LoadNewProductCategories(vm.Product, vm.SelectedCategories);
                 data.Products.Update(vm.Product);
                 data.Save(); 
                 
@@ -138,26 +123,22 @@ namespace InventorySystem.Areas.Manager.Controllers
             Load(product, operation, id);
             return View("Product", product);
         }
+
         private void Load(ProductViewModel vm, string op, int? id = null)
         {
-            if (Operation.IsAdd(op)) { 
+            if (Operation.IsAdd(op))
                 vm.Product = new Product();
-            }
-            else {
+            else
                 vm.Product = data.Products.Get(new QueryOptions<Product>
                 {
-                    Include = "ProductCategories.Category, Warehouse",
+                    Include = "Category, Warehouse",
                     Where = b => b.ProductId == (id ?? vm.Product.ProductId)
                 });
-            }
-
-            vm.SelectedCategories = vm.Product.ProductCategories?.Select(
-                ba => ba.Category.CategoryId).ToArray();
+        
             vm.Categories = data.Categories.List(new QueryOptions<Category> {
                 OrderBy = a => a.Name });
             vm.Warehouses = data.Warehouses.List(new QueryOptions<Warehouse> {
                     OrderBy = g => g.Name });
         }
-
     }
 }

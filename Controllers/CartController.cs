@@ -35,7 +35,7 @@ namespace InventorySystem.Controllers
         public RedirectToActionResult Add(int id)
         {
             var product = data.Get(new QueryOptions<Product> {
-                Include = "ProductCategories.Category, Warehouse",
+                Include = "Category, Warehouse",
                 Where = b => b.ProductId == id
             });
             if (product == null){

@@ -53,7 +53,6 @@ namespace InventorySystem.Models
             }
             if (options.HasPaging)
                 query = query.PageBy(options.PageNumber, options.PageSize);
-
             return query;
         }
     }

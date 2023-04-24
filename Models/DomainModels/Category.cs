@@ -12,6 +12,6 @@ namespace InventorySystem.Models
         [StringLength(200)]
         public string Name { get; set; }
 
-        public ICollection<ProductCategory> ProductCategories { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

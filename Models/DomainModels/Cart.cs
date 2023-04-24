@@ -33,7 +33,7 @@ namespace InventorySystem.Models
             if (storedItems?.Count > items?.Count) {
                 foreach (CartItemDTO storedItem in storedItems) {
                     var product = data.Get(new QueryOptions<Product> {
-                        Include = "ProductCategories.Category, Warehouse",
+                        Include = "Category, Warehouse",
                         Where = b => b.ProductId == storedItem.ProductId
                     });
                     if (product != null) {

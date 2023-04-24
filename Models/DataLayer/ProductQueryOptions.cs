@@ -17,13 +17,15 @@ namespace InventorySystem.Models
                 else
                     Where = b => b.Price > 14;
             }
+
             if (builder.IsFilterByCategory) {
-                int id = builder.CurrentRoute.CategoryFilter.ToInt();
-                if (id > 0)
-                    Where = b => b.ProductCategories.Any(ba => ba.Category.CategoryId == id);
+                Where = b => b.CategoryId == builder.CurrentRoute.CategoryFilter;
             }
 
             if (builder.IsSortByWarehouse) {
+                OrderBy = b => b.Warehouse.Name;
+            }
+            else if (builder.IsSortByCategory) {
                 OrderBy = b => b.Warehouse.Name;
             }
             else if (builder.IsSortByPrice) {

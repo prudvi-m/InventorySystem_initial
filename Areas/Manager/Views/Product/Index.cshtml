@@ -11,6 +11,7 @@
     </li>
     <li class="list-group-item">
         <form asp-action="Search" method="post" class="form-inline">
+            @* asp-controller="Product"  *@
             <h5 class="mt-1 mr-5">Find a product</h5>
             <label>Search Term:</label>
             <input type="text" asp-for="SearchTerm" class="form-control ml-2 mr-2">

@@ -17,12 +17,13 @@ namespace InventorySystem.Models
 
         public void LoadFilterSegments(string[] filter, Category category)
         {
-            if (category == null) { 
-                routes.CategoryFilter = FilterPrefix.Category + filter[0];
-            } else {
-                routes.CategoryFilter = FilterPrefix.Category + filter[0]
-                    + "-" + category.Name.Slug();
-            }
+            // if (category == null) { 
+            //     routes.CategoryFilter = FilterPrefix.Category + filter[0];
+            // } else {
+            //     routes.CategoryFilter = FilterPrefix.Category + filter[0]
+            //         + "-" + category.Name.Slug();
+            // }
+            routes.CategoryFilter = FilterPrefix.Category + filter[0];
             routes.WarehouseFilter = FilterPrefix.Warehouse + filter[1];
             routes.PriceFilter = FilterPrefix.Price + filter[2];
         }
@@ -33,6 +34,9 @@ namespace InventorySystem.Models
         public bool IsFilterByCategory => routes.CategoryFilter != def;
         public bool IsFilterByWarehouse => routes.WarehouseFilter != def;
         public bool IsFilterByPrice => routes.PriceFilter != def;
+
+        public bool IsSortByCategory =>
+            routes.SortField.EqualsNoCase(nameof(Category));
 
         public bool IsSortByWarehouse =>
             routes.SortField.EqualsNoCase(nameof(Warehouse));

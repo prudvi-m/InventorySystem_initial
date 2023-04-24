@@ -37,9 +37,8 @@ namespace InventorySystem.Areas.Manager.Controllers
                 validate.MarkCategoryChecked();
                 return Json(true);
             }
-            else {
+            else
                 return Json(validate.ErrorMessage);
-            }
         }
     }
 }

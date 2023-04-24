@@ -56,18 +56,17 @@
                 <span asp-validation-for="Product.WarehouseId" class="text-danger"></span>
             </div>
         </div>
+
+
         <div class="form-group row">
-            <div class="col-sm-2">
-                <label>Category(s):</label><br />
-            </div>
+            <div class="col-sm-2"><label>Categories:</label></div>
             <div class="col-sm-4">
-                <select asp-for="SelectedCategories" class="form-control"
-                    asp-items='@new MultiSelectList(Model.Categories, "CategoryId", "Name", Model.SelectedCategories)'>
+                <select asp-for="Product.CategoryId" class="form-control"
+                    asp-items='@new SelectList(Model.Categories, "CategoryId", "Name", Model.Product.CategoryId)'>
                 </select>
-                (Hold down CTRL or CMD key to select multiple)
             </div>
             <div class="col-sm-6">
-                <span asp-validation-for="SelectedCategories" class="text-danger"></span>
+                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
             </div>
         </div>
     }

@@ -16,7 +16,7 @@ namespace InventorySystem.Controllers
                 defaultSortField: nameof(Product.Name));
 
             var options = new ProductQueryOptions {
-                Include = "ProductCategories.Category, Warehouse",
+                Include = "Category, Warehouse",
                 OrderByDirection = builder.CurrentRoute.SortDirection,
                 PageNumber = builder.CurrentRoute.PageNumber,
                 PageSize = builder.CurrentRoute.PageSize
@@ -39,7 +39,7 @@ namespace InventorySystem.Controllers
         public ViewResult Details(int id)
         {
             var product = data.Products.Get(new QueryOptions<Product> {
-                Include = "ProductCategories.Category, Warehouse",
+                Include = "Category, Warehouse",
                 Where = b => b.ProductId == id
             });
             return View(product);
@@ -53,10 +53,10 @@ namespace InventorySystem.Controllers
             if (clear) {
                 builder.ClearFilterSegments();
             }
-            else {
-                var category = data.Categories.Get(filter[0].ToInt());
-                builder.LoadFilterSegments(filter, category);
-            }
+            // else {
+            //     var category = data.Categories.Get(filter[0].ToInt());
+            //     builder.LoadFilterSegments(filter, category);
+            // }
 
             builder.SaveRouteSegments();
             return RedirectToAction("List", builder.CurrentRoute);

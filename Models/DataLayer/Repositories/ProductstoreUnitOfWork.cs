@@ -25,14 +25,7 @@ namespace InventorySystem.Models
             }
         }
 
-        private Repository<ProductCategory> bookcategoryData;
-        public Repository<ProductCategory> ProductCategories {
-            get {
-                if (bookcategoryData == null)
-                    bookcategoryData = new Repository<ProductCategory>(context);
-                return bookcategoryData;
-            }
-        }
+        
 
         private Repository<Warehouse> warehouseData;
         public Repository<Warehouse> Warehouses
@@ -43,24 +36,7 @@ namespace InventorySystem.Models
                 return warehouseData;
             }
         }
-
-        public void DeleteCurrentProductCategories(Product product)
-        {
-            var currentCategories = ProductCategories.List(new QueryOptions<ProductCategory> {
-                Where = ba => ba.ProductId == product.ProductId
-            });
-            foreach (ProductCategory ba in currentCategories) {
-                ProductCategories.Delete(ba);
-            }
-        }
-
-        public void LoadNewProductCategories(Product product, int[] categoryids)
-        {
-            product.ProductCategories = categoryids.Select(i =>
-                new ProductCategory { Product = product, CategoryId = i })
-                .ToList();
-        }
-
+        
         public void Save() => context.SaveChanges();
     }
 }

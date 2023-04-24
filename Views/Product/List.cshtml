@@ -82,18 +82,7 @@
                             @product.Name
                         </a>
                     </td>
-                    <td>
-                        @foreach (var ba in product.ProductCategories)
-                        {
-                            <p>
-                                <a asp-action="Details" asp-controller="Category"
-                                   asp-route-id="@ba.CategoryId"
-                                   asp-route-slug="@ba.Category.Name.Slug()">
-                                    @ba.Category.Name
-                                </a>
-                            </p>
-                        }
-                    </td>
+                    <td>@product.Category?.Name</td>
                     <td>@product.Warehouse?.Name</td>
                     <td>@product.Price.ToString("c", culture)</td>
                     <td>
