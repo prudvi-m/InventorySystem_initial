@@ -10,12 +10,15 @@ namespace InventorySystem.Models
         public IEnumerable<Category> Categories { get; set; }
         public int[] SelectedCategories { get; set; }
 
+        [Required(ErrorMessage = "Please select category.")]
+        public int CategoryId { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext ctx) {
-            if (SelectedCategories == null)
+            if (CategoryId == 0)
             {
                 yield return new ValidationResult(
-                  "Please select at least one category.",
-                  new[] { nameof(SelectedCategories) });
+                  "Please select category.",
+                  new[] { nameof(CategoryId) });
             }
         }
 

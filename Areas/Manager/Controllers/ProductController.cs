@@ -86,6 +86,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         public IActionResult Add(ProductViewModel vm)
         {
             if (ModelState.IsValid) {
+                vm.SelectedCategories = new int[]{vm.CategoryId != 0 ? vm.CategoryId : 1};
                 data.LoadNewProductCategories(vm.Product, vm.SelectedCategories);
                 data.Products.Insert(vm.Product);
                 data.Save();
@@ -107,6 +108,7 @@ namespace InventorySystem.Areas.Manager.Controllers
         {
             if (ModelState.IsValid) {
                 data.DeleteCurrentProductCategories(vm.Product);
+                vm.SelectedCategories = new int[]{vm.CategoryId != 0 ? vm.CategoryId : 1};
                 data.LoadNewProductCategories(vm.Product, vm.SelectedCategories);
                 data.Products.Update(vm.Product);
                 data.Save(); 
