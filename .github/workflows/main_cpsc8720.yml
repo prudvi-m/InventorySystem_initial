@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'CPSC8720'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FF170D3B4A814942928E3BB3561CF89A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EBA6E7B6E6AF4D2295F802D70F4CDDBE }}
           package: .
