@@ -3,3 +3,6 @@
 // dotnet aspnet-codegenerator identity -dc <YourDbContext> create "NormalUserName" -email "NormalEmail" -pw "NormalPassword"
 
 https://learn.microsoft.com/en-us/aspnet/core/fundamentals/tools/dotnet-aspnet-codegenerator?view=aspnetcore-7.0
+        
+// az webapp ssh --resource-group CPSC8720_group --name cpsc8740-juo-j
+

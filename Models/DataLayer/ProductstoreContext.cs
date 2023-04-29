@@ -47,6 +47,8 @@ namespace InventorySystem.Models
             modelBuilder.ApplyConfiguration(new SeedProductCategories());
         }
 
+        // az webapp ssh --resource-group CPSC8720_group --name cpsc8740-juo-j
+
         public static async Task CreateAdminUser(IServiceProvider serviceProvider)
         {
             UserManager<User> userManager =

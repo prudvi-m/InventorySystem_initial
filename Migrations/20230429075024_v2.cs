@@ -200,7 +200,7 @@ namespace InventorySystem.Migrations
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     Price = table.Column<double>(type: "REAL", nullable: false),
                     Code = table.Column<int>(type: "INTEGER", nullable: true),
-                    WarehouseId = table.Column<string>(type: "TEXT", nullable: false),
+                    WarehouseId = table.Column<string>(type: "TEXT", nullable: true),
                     Vendor = table.Column<string>(type: "TEXT", nullable: true),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: true)
                 },
