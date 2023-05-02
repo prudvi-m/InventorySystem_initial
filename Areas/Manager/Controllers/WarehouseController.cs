@@ -12,6 +12,8 @@ namespace InventorySystem.Areas.Manager.Controllers
         private Repository<Warehouse> data { get; set; }
         public WarehouseController(InventorySystemContext ctx) => data = new Repository<Warehouse>(ctx);
 
+        private InventorySystemContext con;
+
         public ViewResult Index()
         {
             var search = new SearchData(TempData);

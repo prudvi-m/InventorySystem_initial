@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventorySystem.Migrations
 {
     [DbContext(typeof(InventorySystemContext))]
-    [Migration("20230429075024_v2")]
+    [Migration("20230424000926_v2")]
     partial class v2
     {
         /// <inheritdoc />
@@ -83,6 +83,7 @@ namespace InventorySystem.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("WarehouseId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ProductId");
@@ -495,7 +496,8 @@ namespace InventorySystem.Migrations
                     b.HasOne("InventorySystem.Models.Warehouse", "Warehouse")
                         .WithMany("Products")
                         .HasForeignKey("WarehouseId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Warehouse");
                 });

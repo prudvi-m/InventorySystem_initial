@@ -6,9 +6,11 @@ namespace InventorySystem.Models
     {
         [Required(ErrorMessage = "Please enter a username.")]
         [StringLength(255)]
+        [RegularExpression("^[A-Za-z0-9]+$", ErrorMessage ="Field takes only alphabets and numbers")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name.")]
+        [RegularExpression("^[A-Za-z]+$", ErrorMessage ="Field takes only alphabets")]
         [StringLength(255)]
         public string Firstname { get; set; }
 

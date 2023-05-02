@@ -8,6 +8,7 @@ namespace InventorySystem.Models
     {
         public int ProductId { get; set; }
 
+        [Required(ErrorMessage = "Please enter the product name.")]
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -15,7 +16,8 @@ namespace InventorySystem.Models
         [Required(ErrorMessage = "Please enter a Price.")]
         [Range(0.0, 1000000.0, ErrorMessage = "Price must be more than 0.")]
         public double Price { get; set; }
-
+        
+        
         [Range(1000, 9999, ErrorMessage = "Code must be between 1000 and  9999.")]
         public int? Code { get; set; }
         
@@ -24,7 +26,9 @@ namespace InventorySystem.Models
 
         public ICollection<ProductCategory> ProductCategories { get; set; }
         
+        
         public string Vendor { get; set; }
+        
         
         [Range(0, 100, ErrorMessage = "Quantity must be between 0 and 100.")]
         public int? Quantity { get; set; }

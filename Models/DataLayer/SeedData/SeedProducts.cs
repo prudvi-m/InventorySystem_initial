@@ -8,16 +8,16 @@ namespace InventorySystem.Models
         public void Configure(EntityTypeBuilder<Product> entity)
         {
             entity.HasData(
-                new Product { ProductId = 1, Name = "1776", WarehouseId = "chicago", Price = 18.00 },
-                new Product { ProductId = 2, Name = "1984", WarehouseId = "newyork", Price = 5.50 },
-                new Product { ProductId = 3, Name = "And Then There Were None", WarehouseId = "losangles", Price = 4.50 },
-                new Product { ProductId = 4, Name = "Band of Brothers", WarehouseId = "chicago", Price = 11.50 },
-                new Product { ProductId = 5, Name = "Beloved", WarehouseId = "washingtondc", Price = 10.99 },
-                new Product { ProductId = 6, Name = "Between the World and Me", WarehouseId = "chicago", Price = 13.50 },
-                new Product { ProductId = 7, Name = "Bossypants", WarehouseId = "chicago", Price = 4.25 },
-                new Product { ProductId = 8, Name = "Brave New World", WarehouseId = "newyork", Price = 16.25 },
-                new Product { ProductId = 9, Name = "D-Day", WarehouseId = "chicago", Price = 15.00 },
-                new Product { ProductId = 10, Name = "Down and Out in Paris and London", WarehouseId = "chicago", Price = 12.50 }
+                new Product { ProductId = 1, Name = "Eggs", WarehouseId = "chicago", Price = 4.29 },
+                new Product { ProductId = 2, Name = "Bread", WarehouseId = "newyork", Price = 2.50 },
+                new Product { ProductId = 3, Name = "Dish Liquid", WarehouseId = "losangles", Price = 5.50 },
+                new Product { ProductId = 4, Name = "Tylenol", WarehouseId = "chicago", Price = 9.50 },
+                new Product { ProductId = 5, Name = "Shirt", WarehouseId = "washingtondc", Price = 23.99 },
+                new Product { ProductId = 6, Name = "Claritin", WarehouseId = "chicago", Price = 15.19 },
+                new Product { ProductId = 7, Name = "Pant", WarehouseId = "chicago", Price = 29.25 },
+                new Product { ProductId = 8, Name = "Mobile Phones", WarehouseId = "newyork", Price = 499.99 },
+                new Product { ProductId = 9, Name = "Smart Watch", WarehouseId = "chicago", Price = 149.99 },
+                new Product { ProductId = 10, Name = "NyQuill", WarehouseId = "chicago", Price = 5.59 }
             );
         }
     }

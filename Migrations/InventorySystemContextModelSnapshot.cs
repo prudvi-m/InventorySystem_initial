@@ -80,6 +80,7 @@ namespace InventorySystem.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("WarehouseId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ProductId");
@@ -492,7 +493,8 @@ namespace InventorySystem.Migrations
                     b.HasOne("InventorySystem.Models.Warehouse", "Warehouse")
                         .WithMany("Products")
                         .HasForeignKey("WarehouseId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Warehouse");
                 });
