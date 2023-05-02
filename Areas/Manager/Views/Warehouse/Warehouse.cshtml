@@ -7,8 +7,11 @@
 
     ViewData["Name"] = $" | {action} Warehouse";
 }
-
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 <h1>@action Warehouse</h1>
+
 
 <form asp-action="@action" asp-area="Manager" method="post">
 

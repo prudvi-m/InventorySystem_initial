@@ -8,16 +8,20 @@ namespace InventorySystem.Models
     {
         public int ProductId { get; set; }
 
+        [RegularExpression("^[a-zA-Z]+$",ErrorMessage ="Must be alphabets")]
         [Required(ErrorMessage = "Please enter the product name.")]
         public string Name { get; set; }
 
         public string Description { get; set; }
 
+
         [Required(ErrorMessage = "Please enter a Price.")]
-        [Range(0.0, 1000000.0, ErrorMessage = "Price must be more than 0.")]
+        [Range(0.10, 1000000.0, ErrorMessage = "Price must be more than 0.")]
+        [RegularExpression("^[0-9]+$",ErrorMessage ="Must be numeric")]
         public double Price { get; set; }
         
-        
+        [Required(ErrorMessage = "Please enter the code")]
+        [RegularExpression("^[0-9]+$",ErrorMessage ="Must be numeric")]
         [Range(1000, 9999, ErrorMessage = "Code must be between 1000 and  9999.")]
         public int? Code { get; set; }
         
@@ -26,10 +30,11 @@ namespace InventorySystem.Models
 
         public ICollection<ProductCategory> ProductCategories { get; set; }
         
-        
+        [Required(ErrorMessage = "Please enter Vendor details.")]
         public string Vendor { get; set; }
         
-        
+        [Required(ErrorMessage = "Please enter the Quantity")]
+        [RegularExpression("^[0-9]+$",ErrorMessage ="Must be numeric")]
         [Range(0, 100, ErrorMessage = "Quantity must be between 0 and 100.")]
         public int? Quantity { get; set; }
 
