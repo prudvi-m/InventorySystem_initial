@@ -17,7 +17,7 @@ namespace InventorySystem.Models
         public void CheckWarehouse(string warehouseId, Repository<Warehouse> data)
         {
             Warehouse entity = data.Get(warehouseId);
-            IsValid = (entity == null) ? true : false;
+            IsValid = (entity == null);
             ErrorMessage = (IsValid) ? "" : 
                 $"Warehouse id {warehouseId} is already in the database.";
         }

@@ -9,6 +9,7 @@ namespace InventorySystem.Models
         public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "Please enter a name.")]
+        // [Remote("CheckCategory","Validation",ErrorMessage ="Already exits")]
         [StringLength(200)]
         public string Name { get; set; }
 

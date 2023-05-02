@@ -8,7 +8,7 @@ namespace InventorySystem.Models
     {
         [MaxLength(10)]
         [Required(ErrorMessage = "Please enter a warehouse id.")]
-        [Remote("CheckWarehouse", "Validation", "Area")]
+        [Remote("Chec÷kWarehouse","Validation",ErrorMessage ="Already exits")]
         public string WarehouseId { get; set; }
         
         [StringLength(25)]

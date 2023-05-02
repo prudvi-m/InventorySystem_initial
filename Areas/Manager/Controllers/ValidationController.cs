@@ -20,13 +20,8 @@ namespace InventorySystem.Areas.Manager.Controllers
         {
             var validate = new Validate(TempData);
             validate.CheckWarehouse(warehouseId, warehouseData);
-            if (validate.IsValid) {
-                validate.MarkWarehouseChecked();
-                return Json(true);
-            }
-            else {
-                return Json(validate.ErrorMessage);
-            }
+            validate.MarkWarehouseChecked();
+            return Json(data: !validate.IsValid);            
         }
 
         public JsonResult CheckCategory(string name, string operation)
