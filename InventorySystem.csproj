@@ -7,7 +7,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
+
+
+    <!-- Step 4 replace package name of Oracle instead of Sqlite -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Oracle" Version="7.0.0" />
 
 
 

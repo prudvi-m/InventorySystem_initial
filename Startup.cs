@@ -10,6 +10,9 @@ using InventorySystem.Models;
 using System.Linq;
 using System.Collections.Generic;
 
+// Step 2
+/// Add Oracle Package 
+
 
 namespace InventorySystem
 {
@@ -33,7 +36,10 @@ namespace InventorySystem
             services.AddControllersWithViews().AddNewtonsoftJson();
 
             services.AddDbContext<InventorySystemContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("InventorySystemContext")));
+
+                // Step 3 
+                // options.UseSqlite(Configuration.GetConnectionString("InventorySystemContext")));
+                options.UseOracle(Configuration.GetConnectionString("InventorySystemContext")));
 
             // add this
             services.AddIdentity<User, IdentityRole>(options => {
