@@ -78,16 +78,16 @@
 						var action = ViewContext.RouteData.Values["action"]?.ToString();
 
 						// anonymous user - Register link and Log In button
-															<li class="nav-item @Nav.Active("Register", action)">
-																<a asp-action="Register" asp-controller="Account"
-																   asp-area="" class="nav-link">
-																	<span class="fas fa-edit"></span>&nbsp;Register							   
-																</a>
-															</li>
-															<li class="nav-item">
-																<a asp-action="Login" asp-controller="Account"
-																   asp-area="" class="btn btn-outline-light">Log In</a>
-															</li>
+							<li class="nav-item @Nav.Active("Register", action)">
+								<a asp-action="Register" asp-controller="Account"
+									asp-area="" class="nav-link">
+									<span class="fas fa-edit"></span>&nbsp;Register							   
+								</a>
+							</li>
+							<li class="nav-item">
+								<a asp-action="Login" asp-controller="Account"
+									asp-area="" class="btn btn-outline-light">Log In</a>
+							</li>
 					}
 
 					<li class="nav-item @Nav.Active("Manager", current)">
@@ -101,7 +101,7 @@
 		<main>
 			@if (TempData.Keys.Contains("message"))
 			{
-													<h4 class="bg-info text-center text-dark p-2">@TempData["message"]</h4>
+						<h4 class="bg-info text-center text-dark p-2">@TempData["message"]</h4>
 			}
 			@RenderBody()
 		</main>
