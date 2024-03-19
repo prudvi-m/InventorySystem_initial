@@ -1,15 +1,15 @@
 ﻿using System.Linq;
 
-namespace InventorySystem.Models
+namespace IP_AmazonFreshIndia_Project.Models
 {
-    public static class QueryExtensions
-    {
-        public static IQueryable<T> PageBy<T>(this IQueryable<T> items,
-            int pagenumber, int pagesize)
-        {
-            return items
-                .Skip((pagenumber - 1) * pagesize)
-                .Take(pagesize);
-        }
-    }
+	public static class QueryExtensions
+	{
+		public static IQueryable<T> PageBy<T>(this IQueryable<T> items,
+			int pagenumber, int pagesize)
+		{
+			return items
+				.Skip((pagenumber - 1) * pagesize)
+				.Take(pagesize);
+		}
+	}
 }

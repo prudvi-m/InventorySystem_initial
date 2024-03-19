@@ -1,20 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InventorySystem.Models
+namespace IP_AmazonFreshIndia_Project.Models
 {
-    public class LoginViewModel
-    {
-        [Required(ErrorMessage = "Please enter a username.")]
-        [StringLength(255)]
-        public string Username { get; set; }
+	public class LoginViewModel
+	{
+		[Required(ErrorMessage = "Please enter a username.")]
+		[StringLength(255)]
+		public string Username { get; set; }
 
-        [Required(ErrorMessage = "Please enter a password.")]
-        [StringLength(255)]
-        public string Password { get; set; }
+		[Required(ErrorMessage = "Please enter a password.")]
+		[StringLength(255)]
+		public string Password { get; set; }
 
-        public string ReturnUrl { get; set; }
+		public string ReturnUrl { get; set; }
 
-        public bool RememberMe { get; set; }
+		public bool RememberMe { get; set; }
 
-    }
+	}
 }

@@ -1,17 +1,5 @@
 ﻿@model Product
 
-<div class="text-center">
-    <h1>Our Staff Pick!</h1>
-    <ul class="list-group">
-        <li class="list-group-item list-group-item-heading list-group-item-success">
-            <h5>
-                <a asp-controller="Product" 
-                   asp-action="Details"                   
-                   asp-route-id="@Model.ProductId" 
-                   asp-route-slug="@Model.Name.Slug()">
-                    @Model.Name
-                </a>
-            </h5>
-        </li>
-    </ul>
+<div class="text-center m-4">
+	<h1> Amazon Fresh! </h1>
 </div>
