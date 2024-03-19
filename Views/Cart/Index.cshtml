@@ -1,11 +1,11 @@
 ﻿@model CartViewModel
 
 @{
-    ViewData["Name"] = " | Cart";
+	ViewData["Name"] = " | Cart";
 
-    // create culture variable
-    var culture = System.Globalization.CultureInfo
-        .CreateSpecificCulture("en-US");
+	// create culture variable
+	var culture = System.Globalization.CultureInfo
+		.CreateSpecificCulture("en-US");
 }
 
 <h1>Your Cart</h1>
@@ -24,7 +24,7 @@
                         <a asp-action="List" asp-controller="Product"
                            asp-all-route-data="@Model.ProductGridRoute">Back to Shopping</a>
                     </div>
-                    
+
                 </div>
             </div>
         </li>
@@ -32,7 +32,7 @@
 </form>
 <form asp-action="Remove" method="post">
     <table class="table">
-        <thead class="thead-dark">
+        <thead class="thead-primary">
             <tr>
                 <th>Product Name</th>
                 <th>Category(s)</th>
@@ -43,41 +43,43 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (CartItem item in Model.List)  {
-                <tr>
-                    <td>
-                        <a asp-action="Details" asp-controller="Product"
-                           asp-route-id="@item.Product.ProductId"
-                           asp-route-slug="@item.Product.Name.Slug()">
-                            @item.Product.Name
-                        </a>
-                    </td>
-                    <td>
-                        @foreach (var keyValuePair in item.Product.Categories) {
-                            <p>
-                                <a asp-action="Details" asp-controller="Category"
-                                   asp-route-id="@keyValuePair.Key"
-                                   asp-route-slug="@keyValuePair.Value.Slug()">
-                                    @keyValuePair.Value
-                                </a>
-                            </p>
-                        }
-                    </td>
-                    <td>@item.Product.Price.ToString("c", culture)</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Subtotal.ToString("c", culture)</td>
-                    <td>
-                        <div class="float-right">
-                            <a asp-action="Edit" asp-controller="Cart"
-                               asp-route-id="@item.Product.ProductId"
-                               asp-route-slug="@item.Product.Name.Slug()"
-                               class="btn btn-primary btn-sm">Edit</a>
-                            <button type="submit" name="id" value="@item.Product.ProductId"
-                                    class="btn btn-primary btn-sm">Remove</button>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+            @foreach (CartItem item in Model.List)
+			{
+						<tr>
+							<td>
+								<a asp-action="Details" asp-controller="Product"
+								   asp-route-id="@item.Product.ProductId"
+								   asp-route-slug="@item.Product.Name.Slug()">
+							@item.Product.Name
+								</a>
+							</td>
+							<td>
+						@foreach (var keyValuePair in item.Product.Categories)
+						{
+											<p>
+												<a asp-action="Details" asp-controller="Category"
+												   asp-route-id="@keyValuePair.Key"
+												   asp-route-slug="@keyValuePair.Value.Slug()">
+									@keyValuePair.Value
+												</a>
+											</p>
+						}
+							</td>
+							<td>@item.Product.Price.ToString("c", culture)</td>
+							<td>@item.Quantity</td>
+							<td>@item.Subtotal.ToString("c", culture)</td>
+							<td>
+								<div class="float-right">
+									<a asp-action="Edit" asp-controller="Cart"
+									   asp-route-id="@item.Product.ProductId"
+									   asp-route-slug="@item.Product.Name.Slug()"
+									   class="btn btn-primary btn-sm">Edit</a>
+									<button type="submit" name="id" value="@item.Product.ProductId"
+											class="btn btn-primary btn-sm">Remove</button>
+								</div>
+							</td>
+						</tr>
+			}
+		</tbody>
+	</table>
 </form>

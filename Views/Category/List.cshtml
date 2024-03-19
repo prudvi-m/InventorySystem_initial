@@ -1,67 +1,69 @@
 ﻿@model CategoryListViewModel
 @{
-    ViewData["Name"] = " | Category Catalog";
+	ViewData["Name"] = " | Category Catalog";
 
-    // aliases to make paging and sorting code shorter
-    RouteDictionary current = Model.CurrentRoute;
-    RouteDictionary routes = Model.CurrentRoute.Clone();
+	// aliases to make paging and sorting code shorter
+	RouteDictionary current = Model.CurrentRoute;
+	RouteDictionary routes = Model.CurrentRoute.Clone();
 }
 
 <h1>Category Catalog</h1>
 
-<table class="table table-bordered table-striped table-sm">
+<table class="table">
     @* for the name columns, update the route dictionary with the field to sort by, and then use
         that route dictionary and the current route to create route segments for sorting link *@
-    <thead class="thead-dark">
+    <thead class="thead-primary">
         <tr>
             <th>
-                @{ routes.SetSortAndDirection(nameof(Category.Name), current); }
-                <a asp-action="List" asp-all-route-data="@routes"
-                   class="text-white">First Name</a>
-            </th>
-            <th>Products</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Category category in Model.Categories)
-        {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@category.CategoryId"
-                   asp-route-slug="@category.Name.Slug()">
-                    @category.Name
-                </a>
-            </td>
-            <td>
-                @foreach (var ba in category.ProductCategories)
-                {
-                    <p>
-                        <a asp-action="Details" asp-controller="Product"
-                           asp-route-id="@ba.ProductId"
-                           asp-route-slug="@ba.Product.Name.Slug()">
-                            @ba.Product.Name
-                        </a>
-                    </p>
-                }
-            </td>
-        </tr>
-        }
-    </tbody>
+                @{
+					routes.SetSortAndDirection(nameof(Category.Name), current);
+				}
+				<a asp-action="List" asp-all-route-data="@routes"
+				   class="text-dark">First Name</a>
+			</th>
+			<th>Products</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (Category category in Model.Categories)
+		{
+						<tr>
+							<td>
+								<a asp-action="Details" asp-route-id="@category.CategoryId"
+								   asp-route-slug="@category.Name.Slug()">
+						@category.Name
+								</a>
+							</td>
+							<td>
+					@foreach (var ba in category.ProductCategories)
+					{
+													<p>
+														<a asp-action="Details" asp-controller="Product"
+														   asp-route-id="@ba.ProductId"
+														   asp-route-slug="@ba.Product.Name.Slug()">
+								@ba.Product.Name
+														</a>
+													</p>
+					}
+							</td>
+						</tr>
+		}
+	</tbody>
 </table>
 
 @* paging links *@
 @{
-    @* Reset the route dictionary to the current route values. This is necessary
+	@* Reset the route dictionary to the current route values. This is necessary
         to clear the changes made while creating the sorting links above. Clone so
         don't overwrite current route segment values. *@
-    routes = Model.CurrentRoute.Clone();
+	routes = Model.CurrentRoute.Clone();
 
-    @* update route dictionary with page number in 'i' and then use
+	@* update route dictionary with page number in 'i' and then use
         updated route dictionary to create route segments for paging link. *@
-    for (int i = 1; i <= Model.TotalPages; i++)
-    {
-        routes.PageNumber = i;
-        <a asp-action="List" asp-all-route-data="@routes"
-           class="btn btn-outline-primary @Nav.Active(i, current.PageNumber)">@i</a>
-    }
+	for (int i = 1; i <= Model.TotalPages; i++)
+	{
+		routes.PageNumber = i;
+										<a asp-action="List" asp-all-route-data="@routes"
+										   class="btn btn-outline-primary @Nav.Active(i, current.PageNumber)">@i</a>
+	}
 }

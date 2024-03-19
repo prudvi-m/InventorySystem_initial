@@ -1,14 +1,14 @@
 ﻿@model Category
 
 @{
-    ViewData["Name"] = " | Category";
+	ViewData["Name"] = " | Category";
 }
 
 <h1>Category</h1>
 
 <table class="table table-bordered table-sm">
     <thead>
-        <tr class="thead-dark">
+        <tr class="thead-primary">
             <th>@Model.Name</th>
         </tr>
     </thead>
@@ -16,16 +16,16 @@
         <tr>
             <td>
                 @foreach (var ba in Model.ProductCategories)
-                {
-                    <p>
-                        <a asp-action="Details" asp-controller="Product"
-                           asp-route-id="@ba.ProductId"
-                           asp-route-slug="@ba.Product.Name.Slug()">
-                            @ba.Product.Name
-                        </a>
-                    </p>
-                }
-            </td>
-        </tr>
-    </tbody>
+				{
+							<p>
+								<a asp-action="Details" asp-controller="Product"
+								   asp-route-id="@ba.ProductId"
+								   asp-route-slug="@ba.Product.Name.Slug()">
+							@ba.Product.Name
+								</a>
+							</p>
+				}
+			</td>
+		</tr>
+	</tbody>
 </table>
