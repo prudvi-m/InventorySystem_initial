@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+
 
 namespace IP_AmazonFreshIndia_Project.Models
 {
@@ -22,6 +24,9 @@ namespace IP_AmazonFreshIndia_Project.Models
 				  new[] { nameof(CategoryId) });
 			}
 		}
+
+		// Property to handle image upload
+		public IFormFile ProductImage { get; set; }
 
 	}
 }

@@ -33,5 +33,8 @@ namespace IP_AmazonFreshIndia_Project.Models
 		[Range(0, 100, ErrorMessage = "Quantity must be between 0 and 100.")]
 		public int? Quantity { get; set; }
 
+		public string ProductImage { get; set; }
+
+
 	}
 }

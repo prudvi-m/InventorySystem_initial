@@ -1,11 +1,11 @@
 ﻿@model Product
 
 @{
-	ViewData["Name"] = " | Product Details";
+    ViewData["Name"] = " | Product Details";
 
-	// create culture variable
-	var culture = System.Globalization.CultureInfo
-		.CreateSpecificCulture("en-US");
+    // create culture variable
+    var culture = System.Globalization.CultureInfo
+        .CreateSpecificCulture("en-US");
 }
 
 <h1>Product Details</h1>
@@ -21,21 +21,34 @@
             <td>@(Model.ProductCategories.Count > 1 ? "Categories" : "Category")</td>
             <td>
                 @foreach (ProductCategory ba in Model.ProductCategories)
-				{
-							<p><a asp-action="Details" asp-controller="Category"
-								asp-route-id="@ba.CategoryId"
-								asp-route-slug="@ba.Category.Name.Slug()">
-							@ba.Category.Name
-							</a></p>
-				}
-			</td>
-		</tr>
-		<tr><td>Price:</td><td>@Model.Price.ToString("c", culture)</td></tr>
-		<tr><td>Warehouse:</td><td>@Model.Warehouse.Name</td></tr>
-	</tbody>
+                {
+                        <p><a asp-action="Details" asp-controller="Category"
+                             asp-route-id="@ba.CategoryId"
+                             asp-route-slug="@ba.Category.Name.Slug()">
+                            @ba.Category.Name
+                        </a></p>
+                }
+            </td>
+        </tr>
+        <tr><td>Price:</td><td>@Model.Price.ToString("c", culture)</td></tr>
+        <tr><td>Warehouse:</td><td>@Model.Warehouse.Name</td></tr>
+        <tr>
+            <td>Image:</td>
+            <td>
+                @if (!string.IsNullOrEmpty(Model.ProductImage))
+                {
+                        <img src="@Model.ProductImage" alt="Product Image" />
+                }
+                else
+                {
+                        <p>No image available</p>
+                }
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 <form asp-action="Add" asp-controller="Cart" method="post">
-	<button type="submit" name="id" value="@Model.ProductId"
-		class="btn btn-primary">Add To Cart</button>
+    <button type="submit" name="id" value="@Model.ProductId"
+            class="btn btn-primary">Add To Cart</button>
 </form>
