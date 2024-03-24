@@ -1,8 +1,8 @@
 ﻿@model Category
 
 @{
-    // this view is used for add, edit, and delete. 
-    // Which one is determined by the action method name.
+
+
     var action = ViewContext.RouteData.Values["action"].ToString().Capitalize();
 
     ViewData["Name"] = $" | {action} Warehouse";
@@ -23,22 +23,22 @@
         Otherwise, provide text boxes for first and last name. *@
     @if (Operation.IsDelete(action))
     {
-        <div class="col-sm-4"><label>@Model.Name</label></div>
-        <input type="hidden" asp-for="Name" />
-        
+            <div class="col-sm-4"><label>@Model.Name</label></div>
+            <input type="hidden" asp-for="Name" />
+
     }
     else
     {
-        <div class="form-group row">
-            <div class="col-sm-2"><label>Name:</label></div>
-            <div class="col-sm-4">
-                <input type="text" asp-for="@Model.Name" class="form-control" />
+            <div class="form-group row">
+                <div class="col-sm-2"><label>Name:</label></div>
+                <div class="col-sm-4">
+                    <input type="text" asp-for="@Model.Name" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <span asp-validation-for="@Model.Name" class="text-danger"></span>
-            </div>
-        </div>
-        
+
     }
 
     <div class="row">

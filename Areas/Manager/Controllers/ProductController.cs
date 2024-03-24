@@ -20,7 +20,7 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
         public ProductController(IP_AmazonFreshIndia_ProjectContext ctx, IWebHostEnvironment env)
         {
             data = new IP_AmazonFreshIndia_ProjectUnitOfWork(ctx);
-            webHostEnvironment = env; // Injecting IWebHostEnvironment
+            webHostEnvironment = env;
         }
 
         public ViewResult Index()
@@ -111,21 +111,21 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Handle image upload
+
                 if (vm.ProductImage != null && vm.ProductImage.Length > 0)
                 {
-                    // Generate unique filename
+
                     var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(vm.ProductImage.FileName);
 
                     var filePath = Path.Combine(webHostEnvironment.WebRootPath, "images/products", uniqueFileName);
 
-                    // Save the uploaded file to the server
+
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         vm.ProductImage.CopyTo(stream);
                     }
 
-                    // Set the image path to the Product object
+
                     vm.Product.ProductImage = Path.Combine("/images/products", uniqueFileName);
                 }
                 vm.SelectedCategories = new int[] { vm.CategoryId != 0 ? vm.CategoryId : 1 };

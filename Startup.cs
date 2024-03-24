@@ -12,77 +12,77 @@ using System.Collections.Generic;
 
 namespace IP_AmazonFreshIndia_Project
 {
-	public class Startup
-	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-		public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-		// Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddRouting(options => options.LowercaseUrls = true);
 
-			services.AddMemoryCache();
-			services.AddSession();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddRouting(options => options.LowercaseUrls = true);
 
-			services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddMemoryCache();
+            services.AddSession();
 
-			services.AddDbContext<IP_AmazonFreshIndia_ProjectContext>(options =>
-				options.UseSqlite(Configuration.GetConnectionString("IP_AmazonFreshIndia_ProjectContext")));
+            services.AddControllersWithViews().AddNewtonsoftJson();
 
-			// add this
-			services.AddIdentity<User, IdentityRole>(options =>
-			{
-				options.Password.RequiredLength = 4;
-				options.Password.RequireNonAlphanumeric = false;
-				options.Password.RequireDigit = false;
-			}).AddEntityFrameworkStores<IP_AmazonFreshIndia_ProjectContext>()
-			  .AddDefaultTokenProviders();
-		}
+            services.AddDbContext<IP_AmazonFreshIndia_ProjectContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("IP_AmazonFreshIndia_ProjectContext")));
 
-		// Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app)
-		{
-			app.UseDeveloperExceptionPage();
-			app.UseHttpsRedirection();
-			app.UseStaticFiles();
 
-			app.UseRouting();
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<IP_AmazonFreshIndia_ProjectContext>()
+              .AddDefaultTokenProviders();
+        }
 
-			app.UseAuthentication();   // add this
-			app.UseAuthorization();    // add this
 
-			app.UseSession();
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
-			app.UseEndpoints(endpoints =>
-			{
-				// route for Manager area
-				endpoints.MapAreaControllerRoute(
-					name: "manager",
-					areaName: "Manager",
-					pattern: "Manager/{controller=Product}/{action=Index}/{id?}");
+            app.UseRouting();
 
-				// route for paging, sorting, and filtering
-				endpoints.MapControllerRoute(
-					name: "",
-					pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}/filter/{category}/{warehouse}/{price}");
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-				// route for paging and sorting only
-				endpoints.MapControllerRoute(
-					name: "",
-					pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}");
+            app.UseSession();
 
-				// default route
-				endpoints.MapControllerRoute(
-					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
-			});
+            app.UseEndpoints(endpoints =>
+            {
 
-			IP_AmazonFreshIndia_ProjectContext.CreateAdminUser(app.ApplicationServices).Wait();
-		}
-	}
+                endpoints.MapAreaControllerRoute(
+                    name: "manager",
+                    areaName: "Manager",
+                    pattern: "Manager/{controller=Product}/{action=Index}/{id?}");
+
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}/filter/{category}/{warehouse}/{price}");
+
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "{controller}/{action}/page/{pagenumber}/size/{pagesize}/sort/{sortfield}/{sortdirection}");
+
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
+            });
+
+            IP_AmazonFreshIndia_ProjectContext.CreateAdminUser(app.ApplicationServices).Wait();
+        }
+    }
 }
