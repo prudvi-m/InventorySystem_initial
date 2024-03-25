@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using System;
 
 
 namespace IP_AmazonFreshIndia_Project.Controllers
@@ -89,6 +90,44 @@ namespace IP_AmazonFreshIndia_Project.Controllers
         [HttpGet]
         public ViewResult Add(int id) => GetProduct(id, "Add");
 
+        [HttpPost]
+        public IActionResult Add(ProductViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (vm.ProductImage != null && vm.ProductImage.Length > 0)
+                {
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(vm.ProductImage.FileName);
+
+                    var filePath = Path.Combine(_hostingEnvironment.WebRootPath, "images/products", uniqueFileName);
+
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        vm.ProductImage.CopyTo(stream);
+                    }
+
+
+                    vm.Product.ProductImage = Path.Combine("/images/products", uniqueFileName);
+                }
+                vm.SelectedCategories = new int[] { vm.CategoryId != 0 ? vm.CategoryId : 1 };
+                data.LoadNewProductCategories(vm.Product, vm.SelectedCategories);
+                data.Products.Insert(vm.Product);
+                data.Save();
+
+                TempData["message"] = $"{vm.Product.Name} added to Products.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Load(vm, "Add");
+                return View("Product", vm);
+            }
+        }
+
+
         private ViewResult GetProduct(int id, string operation)
         {
             var product = new ProductViewModel();
@@ -112,17 +151,6 @@ namespace IP_AmazonFreshIndia_Project.Controllers
                 // Check if ProductImage filename exists in the database model
                 if (!string.IsNullOrEmpty(vm.Product.ProductImage))
                 {
-                    // // Construct the full path to the image file
-                    // string imageProduct = Path.Combine(_hostingEnvironment.WebRootPath, "images", "product", vm.Product.ProductImage);
-                    // if (File.Exists(imageProduct))
-                    // {
-                    //     using (FileStream fileStream = new FileStream(imageProduct, FileMode.Open, FileAccess.Read))
-                    //     {
-                    //         // Create a new instance of IFormFile and assign it to the view model's ProductImage property
-                    //         vm.ProductImage = new FormFile(fileStream, 0, fileStream.Length, null, Path.GetFileName(imageProduct));
-                    //     }
-                    // }
-
 
                     string imageProduct = _hostingEnvironment.WebRootPath + vm.Product.ProductImage;
                     if (System.IO.File.Exists(imageProduct))
@@ -143,6 +171,7 @@ namespace IP_AmazonFreshIndia_Project.Controllers
                                 vm.ProductImage = new FormFile(memoryStream, 0, memoryStream.Length, null, Path.GetFileName(imageProduct));
                             }
                         }
+                        vm.Filename = vm.ProductImage.FileName;
                     }
                 }
             }
@@ -162,11 +191,31 @@ namespace IP_AmazonFreshIndia_Project.Controllers
         [HttpGet]
         public ViewResult Edit(int id) => GetProduct(id, "Edit");
 
+        // public string getExistingFileName(int productId) => data.Products.Get(productId)?.ProductImage ?? "";
+
         [HttpPost]
-        public IActionResult Edit(ProductViewModel vm)
+        public IActionResult Edit(ProductViewModel vm,IFormFile updatedImage, string existingFile)
         {
             if (ModelState.IsValid)
             {
+                if(updatedImage != null && updatedImage.Length > 0) {
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(updatedImage.FileName);
+
+                    var filePath = Path.Combine(_hostingEnvironment.WebRootPath, "images/products", uniqueFileName);
+
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        updatedImage.CopyTo(stream);
+                    }
+                    vm.Product.ProductImage = Path.Combine("/images/products", uniqueFileName);
+
+                }
+                else {
+                    vm.Product.ProductImage = Path.Combine("/images/products", existingFile);
+                }
+                
                 data.DeleteCurrentProductCategories(vm.Product);
                 vm.SelectedCategories = new int[] { vm.CategoryId != 0 ? vm.CategoryId : 1 };
                 data.LoadNewProductCategories(vm.Product, vm.SelectedCategories);

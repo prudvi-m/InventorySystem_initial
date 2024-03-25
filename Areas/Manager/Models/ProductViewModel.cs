@@ -25,8 +25,9 @@ namespace IP_AmazonFreshIndia_Project.Models
             }
         }
 
-
         public IFormFile ProductImage { get; set; }
+
+        public string Filename {get; set;}
 
     }
 }

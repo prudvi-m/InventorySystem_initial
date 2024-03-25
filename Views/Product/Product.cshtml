@@ -8,7 +8,7 @@
 
 <h1>@action Product</h1>
 
-<form asp-action="@action" id="myForm" asp-area="Manager" method="post" enctype="multipart/form-data">
+<form asp-action="@action" id="myForm" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="Product.ProductId" />
 
     <div class="form-group row">
@@ -18,115 +18,119 @@
            for delete message. Otherwise, provide a text box*@
         @if (Operation.IsDelete(action))
         {
-                <div class="col-sm-4"><label>@Model.Product.Name</label></div>
-                <input type="hidden" asp-for="Product.Name" />
+                    <div class="col-sm-4"><label>@Model.Product.Name</label></div>
+                    <input type="hidden" asp-for="Product.Name" />
         }
         else
         {
-                <div class="col-sm-4">
-                    <input type="text" asp-for="Product.Name" class="form-control" />
-                </div>
-                <div class="col-sm-6">
-                    <span asp-validation-for="Product.Name" class="text-danger"></span>
-                </div>
+            <div class="col-sm-4">
+                <input type="text" asp-for="Product.Name" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
+            </div>      
         }
     </div>
 
     @* if not deleting, display text boxes and drop-downs for rest of fields*@
     @if (!Operation.IsDelete(action))
     {
-        <div class="form-group row">
-            <div class="col-sm-2"><label>Description:</label></div>
-            <div class="col-sm-4">
-                <input type="text" asp-for="Product.Description" class="form-control" />
+            <div class="form-group row">
+                <div class="col-sm-2"><label>Description:</label></div>
+                <div class="col-sm-4">
+                    <input type="text" asp-for="Product.Description" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <span asp-validation-for="Product.Description" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <span asp-validation-for="Product.Description" class="text-danger"></span>
-            </div>
-        </div>
 
-        <div class="form-group row">
-            <div class="col-sm-2"><label>Price:</label></div>
-            <div class="col-sm-4">
-                <input type="text" asp-for="Product.Price" class="form-control" />
+            <div class="form-group row">
+                <div class="col-sm-2"><label>Price:</label></div>
+                <div class="col-sm-4">
+                    <input type="text" asp-for="Product.Price" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <span asp-validation-for="Product.Price" class="text-danger"></span>
-            </div>
-        </div>
 
-        <div class="form-group row">
-            <div class="col-sm-2"><label>Warehouse:</label></div>
-            <div class="col-sm-4">
-                <select asp-for="Product.WarehouseId" class="form-control"
-                    asp-items='@new SelectList(Model.Warehouses, "WarehouseId", "Name", Model.Product.WarehouseId)'>
-                </select>
+            <div class="form-group row">
+                <div class="col-sm-2"><label>Warehouse:</label></div>
+                <div class="col-sm-4">
+                    <select asp-for="Product.WarehouseId" class="form-control"
+                        asp-items='@new SelectList(Model.Warehouses, "WarehouseId", "Name", Model.Product.WarehouseId)'>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <span asp-validation-for="Product.WarehouseId" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <span asp-validation-for="Product.WarehouseId" class="text-danger"></span>
-            </div>
-        </div>
 
-        <div class="form-group row">
-            <div class="col-sm-2">
-                <label>Category(s):</label><br />
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label>Category(s):</label><br />
+                </div>
+                <div class="col-sm-4">
+                    <select asp-for="CategoryId" class="form-control"
+                        asp-items='@new SelectList(Model.Categories, "CategoryId", "Name", Model.SelectedCategories)'>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <select asp-for="CategoryId" class="form-control"
-                    asp-items='@new SelectList(Model.Categories, "CategoryId", "Name", Model.SelectedCategories)'>
-                </select>
-            </div>
-            <div class="col-sm-6">
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-        </div>
 
-        <div class="form-group row">
-            <div class="col-sm-2"><label>Code:</label></div>
-            <div class="col-sm-4">
-                <input type="text" asp-for="Product.Code" class="form-control" />
+            <div class="form-group row">
+                <div class="col-sm-2"><label>Code:</label></div>
+                <div class="col-sm-4">
+                    <input type="text" asp-for="Product.Code" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <span asp-validation-for="Product.Code" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <span asp-validation-for="Product.Code" class="text-danger"></span>
-            </div>
-        </div>
 
-        <div class="form-group row">
-            <div class="col-sm-2"><label>Vendor:</label></div>
-            <div class="col-sm-4">
-                <input type="text" asp-for="Product.Vendor" class="form-control" />
+            <div class="form-group row">
+                <div class="col-sm-2"><label>Vendor:</label></div>
+                <div class="col-sm-4">
+                    <input type="text" asp-for="Product.Vendor" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <span asp-validation-for="Product.Vendor" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <span asp-validation-for="Product.Vendor" class="text-danger"></span>
-            </div>
-        </div>
 
 
-        <div class="form-group row">
-            <div class="col-sm-2"><label>Quantity:</label></div>
-            <div class="col-sm-4">
-                <input type="text" asp-for="Product.Quantity" class="form-control" />
+            <div class="form-group row">
+                <div class="col-sm-2"><label>Quantity:</label></div>
+                <div class="col-sm-4">
+                    <input type="text" asp-for="Product.Quantity" class="form-control" />
+                </div>
+                <div class="col-sm-6">
+                    <span asp-validation-for="Product.Quantity" class="text-danger"></span>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <span asp-validation-for="Product.Quantity" class="text-danger"></span>
-            </div>
-        </div>
 
-        <div class="form-group row">
-            <div class="col-sm-2"><label>Product Image:</label></div>
-            <div class="col-sm-4">
-                <input type="file" id="productImageInput" name="ProductImage" class="form-control" accept=".jpg, .jpeg, .png, .gif" onchange="displayFileName()" />
-            </div>
-            <div class="col-sm-6">
-                <span id="productImageFileName" class="text-muted">
-        <script>
-            var productImageFileName = "@(string.IsNullOrEmpty(Model.ProductImage.FileName) ? "No file chosen" : Model.ProductImage.FileName)";
-            document.write(productImageFileName);
-        </script>
-    </span>
+            <!-- Add input field for uploading image -->
+            <div class="form-group row">
+                <div class="col-sm-2"><label>Product Image:</label></div>
+                <div class="col-sm-4">
+                    <input type="file" id="productImageInput" name="updatedImage" class="form-control" accept=".jpg, .jpeg, .png, .gif" />
+                    <input type="hidden" name="existingFile" value="@Model.Filename" />
 
+                </div>
+                <div class="col-sm-6">
+                    <span id="productImageFileName" name="existingFile" class="text-muted">
+                        <script>
+                            var productImageFileName = "@(!string.IsNullOrEmpty(Model.Filename) ? Model.Filename : "No file chosen")";
+                            document.write(productImageFileName);
+                        </script>
+                    </span>
+                    <span asp-validation-for="Filename" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+
     }
     <div class="row">
         <div class="col-sm-4 offset-sm-2">
@@ -139,7 +143,7 @@
     </div>
 
     <script>
-   
+
     function displayFileName() {
     const input = document.getElementById('productImageInput');
     const fileNameSpan = document.getElementById('productImageFileName');
