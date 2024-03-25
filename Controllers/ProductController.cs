@@ -91,22 +91,22 @@ namespace IP_AmazonFreshIndia_Project.Controllers
         public ViewResult Add(int id) => GetProduct(id, "Add");
 
         [HttpPost]
-        public IActionResult Add(ProductViewModel vm)
+        public IActionResult Add(ProductViewModel vm, IFormFile updatedImage)
         {
             if (ModelState.IsValid)
             {
 
-                if (vm.ProductImage != null && vm.ProductImage.Length > 0)
+                if (updatedImage != null && updatedImage.Length > 0)
                 {
 
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(vm.ProductImage.FileName);
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(updatedImage.FileName);
 
                     var filePath = Path.Combine(_hostingEnvironment.WebRootPath, "images/products", uniqueFileName);
 
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        vm.ProductImage.CopyTo(stream);
+                        updatedImage.CopyTo(stream);
                     }
 
 
