@@ -58,13 +58,13 @@ namespace IP_AmazonFreshIndia_Project.Models
             var userCreationList = new List<UserCreation>{
                 new UserCreation() {
                     username = "admin",
-                    password = "Sesame",
+                    password = "1234",
                     roleName = "Admin"
                 },
                 new UserCreation() {
-                    username = "seller",
-                    password = "Sesame",
-                    roleName = "seller"
+                    username = "user",
+                    password = "1234",
+                    roleName = "user"
                 },
             };
 
