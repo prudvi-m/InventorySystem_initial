@@ -12,12 +12,9 @@
         .CreateSpecificCulture("en-US");
 }
 
+<br />
+
 <h1>Products</h1>
-<br>
-<br>
-<div>
-    <h5 class="mt-1"><a asp-action="Add">Add a product</a></h5>
-</div>
 
 @* filter form *@
 <form asp-action="Filter" method="post" class="form-inline">
@@ -111,11 +108,11 @@
                                 <td>
                         @if (!string.IsNullOrEmpty(product.ProductImage))
                         {
-                                        <img src="@product.ProductImage" alt="Product Image" style="max-width: 100px; max-height: 100px;" />
+                            <img src="@product.ProductImage" alt="Product Image" style="max-width: 100px; max-height: 100px;" />
                         }
                         else
                         {
-                                        <p>No image available</p>
+                            <p>No image available</p>
                         }
                         </td>
                             <td>
@@ -123,12 +120,6 @@
                                         class="btn btn-primary btn-sm">
                                     Add To Cart
                                 </button>
-
-                                <button type="button" onclick="location.href='@Url.Action("Edit", new { id = product.ProductId })'"
-                                    class="btn btn-primary btn-sm">Edit</button>
-                                <button type="button" onclick="location.href='@Url.Action("Delete", new { id = product.ProductId })'"
-                                        class="btn btn-primary btn-sm">Delete</button>
-
                             </td>
                         </tr>
             }
