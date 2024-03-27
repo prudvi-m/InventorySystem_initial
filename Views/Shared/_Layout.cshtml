@@ -61,9 +61,9 @@
 
                     <!-- Login buttons and links -->
                     @using Microsoft.AspNetCore.Identity
-                    @inject SignInManager<User> signInManager
+                    @inject SignInManager<User> signInAdmin
 
-                    @if (signInManager.IsSignedIn(User))
+                    @if (signInAdmin.IsSignedIn(User))
                     {
                         // signed-in user - Log Out button and username
                                 <li class="nav-item">
@@ -92,9 +92,9 @@
                                 </li>
                     }
 
-                    <li class="nav-item @Nav.Active("Manager", current)">
-                        <a class="nav-link" asp-action="Index" asp-controller="Product" asp-area="Manager">
-                            <span class="fas fa-cog"></span>&nbsp;Manager
+                    <li class="nav-item @Nav.Active("Admin", current)">
+                        <a class="nav-link" asp-action="Index" asp-controller="Product" asp-area="Admin">
+                            <span class="fas fa-cog"></span>&nbsp;Admin
                         </a>
                     </li>
                 </ul>
@@ -104,7 +104,7 @@
         <main>
             @if (TempData.Keys.Contains("message"))
             {
-                            <h4 class="bg-info text-center text-dark p-2">@TempData["message"]</h4>
+                <h4 class="bg-info text-center text-dark p-2">@TempData["message"]</h4>
             }
             @RenderBody()
         </main>

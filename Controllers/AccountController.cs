@@ -7,14 +7,14 @@ namespace IP_AmazonFreshIndia_Project.Controllers
 {
 	public class AccountController : Controller
 	{
-		private UserManager<User> userManager;
-		private SignInManager<User> signInManager;
+		private UserManager<User> userAdmin;
+		private SignInManager<User> signInAdmin;
 
 		public AccountController(UserManager<User> userMngr,
 			SignInManager<User> signInMngr)
 		{
-			userManager = userMngr;
-			signInManager = signInMngr;
+			userAdmin = userMngr;
+			signInAdmin = signInMngr;
 		}
 
 		[HttpGet]
@@ -35,11 +35,11 @@ namespace IP_AmazonFreshIndia_Project.Controllers
 					Lastname = model.Lastname,
 					Email = model.Email
 				};
-				var result = await userManager.CreateAsync(user, model.Password);
+				var result = await userAdmin.CreateAsync(user, model.Password);
 
 				if (result.Succeeded)
 				{
-					await signInManager.SignInAsync(user, isPersistent: false);
+					await signInAdmin.SignInAsync(user, isPersistent: false);
 					return RedirectToAction("Index", "Home");
 				}
 				else
@@ -56,7 +56,7 @@ namespace IP_AmazonFreshIndia_Project.Controllers
 		[HttpPost]
 		public async Task<IActionResult> LogOut()
 		{
-			await signInManager.SignOutAsync();
+			await signInAdmin.SignOutAsync();
 			return RedirectToAction("Index", "Home");
 		}
 
@@ -72,7 +72,7 @@ namespace IP_AmazonFreshIndia_Project.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var result = await signInManager.PasswordSignInAsync(
+				var result = await signInAdmin.PasswordSignInAsync(
 					model.Username, model.Password, isPersistent: model.RememberMe,
 					lockoutOnFailure: false);
 

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using IP_AmazonFreshIndia_Project.Models;
 
-namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
+namespace IP_AmazonFreshIndia_Project.Areas.Admin.Controllers
 {
 
-	[Area("Manager")]
+	[Area("Admin")]
 	public class ValidationController : Controller
 	{
 		private Repository<Category> categoryData { get; set; }

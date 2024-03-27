@@ -5,34 +5,34 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using IP_AmazonFreshIndia_Project.Models;
 
-namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
+namespace IP_AmazonFreshIndia_Project.Areas.Admin.Controllers
 {
 
-    [Authorize(Roles = "Manager")]
-    [Area("manager")]
+    [Authorize(Roles = "Admin")]
+    [Area("admin")]
     public class UserController : Controller
     {
-        private UserManager<User> userManager;
-        private RoleManager<IdentityRole> roleManager;
+        private UserManager<User> userAdmin;
+        private RoleManager<IdentityRole> roleAdmin;
         public UserController(UserManager<User> userMngr,
             RoleManager<IdentityRole> roleMngr)
         {
-            userManager = userMngr;
-            roleManager = roleMngr;
+            userAdmin = userMngr;
+            roleAdmin = roleMngr;
         }
 
         public async Task<IActionResult> Index()
         {
             List<User> users = new List<User>();
-            foreach (User user in userManager.Users)
+            foreach (User user in userAdmin.Users)
             {
-                user.RoleNames = await userManager.GetRolesAsync(user);
+                user.RoleNames = await userAdmin.GetRolesAsync(user);
                 users.Add(user);
             }
             UserViewModel model = new UserViewModel
             {
                 Users = users,
-                Roles = roleManager.Roles
+                Roles = roleAdmin.Roles
             };
             return View(model);
         }
@@ -40,10 +40,10 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            User user = await userManager.FindByIdAsync(id);
+            User user = await userAdmin.FindByIdAsync(id);
             if (user != null)
             {
-                IdentityResult result = await userManager.DeleteAsync(user);
+                IdentityResult result = await userAdmin.DeleteAsync(user);
                 if (!result.Succeeded)
                 {
                     string errorMessage = "";
@@ -70,7 +70,7 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
             if (ModelState.IsValid)
             {
                 var user = new User { UserName = model.Username };
-                var result = await userManager.CreateAsync(user, model.Password);
+                var result = await userAdmin.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index");
@@ -89,16 +89,16 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToAdmin(string id)
         {
-            IdentityRole managerRole = await roleManager.FindByNameAsync("Manager");
-            if (managerRole == null)
+            IdentityRole adminRole = await roleAdmin.FindByNameAsync("Admin");
+            if (adminRole == null)
             {
-                TempData["message"] = "Manager role does not exist. "
-                    + "Click 'Create Manager Role' button to create it.";
+                TempData["message"] = "Admin role does not exist. "
+                    + "Click 'Create Admin Role' button to create it.";
             }
             else
             {
-                User user = await userManager.FindByIdAsync(id);
-                await userManager.AddToRoleAsync(user, managerRole.Name);
+                User user = await userAdmin.FindByIdAsync(id);
+                await userAdmin.AddToRoleAsync(user, adminRole.Name);
             }
             return RedirectToAction("Index");
         }
@@ -106,8 +106,8 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> RemoveFromAdmin(string id)
         {
-            User user = await userManager.FindByIdAsync(id);
-            var result = await userManager.RemoveFromRoleAsync(user, "Manager");
+            User user = await userAdmin.FindByIdAsync(id);
+            var result = await userAdmin.RemoveFromRoleAsync(user, "Admin");
             if (result.Succeeded) { }
             return RedirectToAction("Index");
         }
@@ -115,8 +115,8 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteRole(string id)
         {
-            IdentityRole role = await roleManager.FindByIdAsync(id);
-            var result = await roleManager.DeleteAsync(role);
+            IdentityRole role = await roleAdmin.FindByIdAsync(id);
+            var result = await roleAdmin.DeleteAsync(role);
             if (result.Succeeded) { }
             return RedirectToAction("Index");
         }
@@ -124,7 +124,7 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAdminRole()
         {
-            var result = await roleManager.CreateAsync(new IdentityRole("Manager"));
+            var result = await roleAdmin.CreateAsync(new IdentityRole("Admin"));
             if (result.Succeeded) { }
             return RedirectToAction("Index");
         }

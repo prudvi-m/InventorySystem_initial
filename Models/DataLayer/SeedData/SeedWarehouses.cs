@@ -18,4 +18,4 @@ namespace IP_AmazonFreshIndia_Project.Models
 
 }
 
-// dotnet aspnet-codegenerator identity -dc IP_AmazonFreshIndia_ProjectContext create "manager" -email "manager@gmail.com" -pw "1234" -role "manager"
+// dotnet aspnet-codegenerator identity -dc IP_AmazonFreshIndia_ProjectContext create "admin" -email "admin@gmail.com" -pw "1234" -role "admin"

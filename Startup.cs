@@ -62,9 +62,9 @@ namespace IP_AmazonFreshIndia_Project
             {
 
                 endpoints.MapAreaControllerRoute(
-                    name: "manager",
-                    areaName: "Manager",
-                    pattern: "Manager/{controller=Product}/{action=Index}/{id?}");
+                    name: "admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Product}/{action=Index}/{id?}");
 
 
                 endpoints.MapControllerRoute(

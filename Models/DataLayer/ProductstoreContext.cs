@@ -49,17 +49,17 @@ namespace IP_AmazonFreshIndia_Project.Models
 
         public static async Task CreateAdminUser(IServiceProvider serviceProvider)
         {
-            UserManager<User> userManager =
+            UserManager<User> userAdmin =
                 serviceProvider.GetRequiredService<UserManager<User>>();
-            RoleManager<IdentityRole> roleManager =
+            RoleManager<IdentityRole> roleAdmin =
                 serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
 
             var userCreationList = new List<UserCreation>{
                 new UserCreation() {
-                    username = "manager",
+                    username = "admin",
                     password = "Sesame",
-                    roleName = "Manager"
+                    roleName = "Admin"
                 },
                 new UserCreation() {
                     username = "seller",
@@ -71,16 +71,16 @@ namespace IP_AmazonFreshIndia_Project.Models
             foreach (var userCreation in userCreationList)
             {
 
-                if (await roleManager.FindByNameAsync(userCreation.roleName) == null)
-                    await roleManager.CreateAsync(new IdentityRole(userCreation.roleName));
+                if (await roleAdmin.FindByNameAsync(userCreation.roleName) == null)
+                    await roleAdmin.CreateAsync(new IdentityRole(userCreation.roleName));
 
 
-                if (await userManager.FindByNameAsync(userCreation.username) == null)
+                if (await userAdmin.FindByNameAsync(userCreation.username) == null)
                 {
                     User user = new User { UserName = userCreation.username };
-                    var result = await userManager.CreateAsync(user, userCreation.password);
+                    var result = await userAdmin.CreateAsync(user, userCreation.password);
                     if (result.Succeeded)
-                        await userManager.AddToRoleAsync(user, userCreation.roleName);
+                        await userAdmin.AddToRoleAsync(user, userCreation.roleName);
                 }
             }
         }

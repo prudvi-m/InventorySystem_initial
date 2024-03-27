@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using IP_AmazonFreshIndia_Project.Models;
 
-namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
+namespace IP_AmazonFreshIndia_Project.Areas.Admin.Controllers
 {
 
-	[Authorize(Roles = "Manager")]
-	[Area("Manager")]
+	[Authorize(Roles = "Admin")]
+	[Area("Admin")]
 	public class WarehouseController : Controller
 	{
 		private Repository<Warehouse> data { get; set; }

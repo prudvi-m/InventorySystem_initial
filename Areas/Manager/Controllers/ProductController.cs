@@ -9,10 +9,10 @@ using Microsoft.AspNetCore.Http;
 
 
 
-namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
+namespace IP_AmazonFreshIndia_Project.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Manager")]
-    [Area("Manager")]
+    [Authorize(Roles = "Admin")]
+    [Area("Admin")]
     public class ProductController : Controller
     {
         private readonly IP_AmazonFreshIndia_ProjectUnitOfWork data;

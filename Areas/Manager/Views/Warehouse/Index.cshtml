@@ -6,7 +6,7 @@
 
 <h1 class="mb-2">Manage Warehouses</h1>
 
-<h5 class="mt-2"><a asp-action="Add" asp-area="Manager">Add a Warehouse</a></h5>
+<h5 class="mt-2"><a asp-action="Add" asp-area="Admin">Add a Warehouse</a></h5>
 
 <table class="table">
     <thead>
@@ -19,11 +19,11 @@
 					<td>@warehouse.WarehouseId</td>
 					<td>@warehouse.Name</td>
 					<td>
-						<a asp-action="ViewProducts" asp-area="Manager" asp-route-id="@warehouse.WarehouseId"
+						<a asp-action="ViewProducts" asp-area="Admin" asp-route-id="@warehouse.WarehouseId"
 							class="btn btn-primary btn-sm">View Products</a>
-						<a asp-action="Edit" asp-area="Manager" asp-route-id="@warehouse.WarehouseId"
+						<a asp-action="Edit" asp-area="Admin" asp-route-id="@warehouse.WarehouseId"
 							class="btn btn-primary btn-sm">Edit</a>
-						<a asp-action="Delete" asp-area="Manager" asp-route-id="@warehouse.WarehouseId"
+						<a asp-action="Delete" asp-area="Admin" asp-route-id="@warehouse.WarehouseId"
 							class="btn btn-primary btn-sm">Delete</a>
 					</td>
 				</tr>
