@@ -108,22 +108,22 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
         public ViewResult Add(int id) => GetProduct(id, "Add");
 
         [HttpPost]
-        public IActionResult Add(ProductViewModel vm)
+        public IActionResult Add(ProductViewModel vm, IFormFile updatedImage)
         {
             if (ModelState.IsValid)
             {
 
-                if (vm.ProductImage != null && vm.ProductImage.Length > 0)
+                if (updatedImage != null && updatedImage.Length > 0)
                 {
 
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(vm.ProductImage.FileName);
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(updatedImage.FileName);
 
                     var filePath = Path.Combine(webHostEnvironment.WebRootPath, "images/products", uniqueFileName);
 
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        vm.ProductImage.CopyTo(stream);
+                        updatedImage.CopyTo(stream);
                     }
 
 
@@ -135,7 +135,7 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
                 data.Save();
 
                 TempData["message"] = $"{vm.Product.Name} added to Products.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Search");
             }
             else
             {
@@ -144,37 +144,93 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
             }
         }
 
+
+        private ViewResult GetProduct(int id, string operation)
+        {
+            var product = new ProductViewModel();
+            Load(product, operation, id);
+            return View("Product", product);
+        }
+        private void Load(ProductViewModel vm, string op, int? id = null)
+        {
+            if (Operation.IsAdd(op))
+            {
+                vm.Product = new Product();
+            }
+            else
+            {
+                vm.Product = data.Products.Get(new QueryOptions<Product>
+                {
+                    Include = "ProductCategories.Category, Warehouse",
+                    Where = b => b.ProductId == (id ?? vm.Product.ProductId)
+                });
+
+                // Check if ProductImage filename exists in the database model
+                if (!string.IsNullOrEmpty(vm.Product.ProductImage))
+                {
+
+                    string imageProduct = webHostEnvironment.WebRootPath + vm.Product.ProductImage;
+                    if (System.IO.File.Exists(imageProduct))
+                    {
+                        // Open the image file as a FileStream
+                        using (FileStream fileStream = new FileStream(imageProduct, FileMode.Open, FileAccess.Read))
+                        {
+                            // Create a MemoryStream to store the file contents
+                            using (MemoryStream memoryStream = new MemoryStream())
+                            {
+                                // Copy the file contents from FileStream to MemoryStream
+                                fileStream.CopyTo(memoryStream);
+
+                                // Set the position of the MemoryStream to the beginning
+                                memoryStream.Position = 0;
+
+                                // Create a new FormFile instance from the MemoryStream
+                                vm.ProductImage = new FormFile(memoryStream, 0, memoryStream.Length, null, Path.GetFileName(imageProduct));
+                            }
+                        }
+                        vm.Filename = vm.ProductImage.FileName;
+                    }
+                }
+            }
+
+            vm.SelectedCategories = vm.Product.ProductCategories?.Select(
+                ba => ba.Category.CategoryId).ToArray();
+            vm.Categories = data.Categories.List(new QueryOptions<Category>
+            {
+                OrderBy = a => a.Name
+            });
+            vm.Warehouses = data.Warehouses.List(new QueryOptions<Warehouse>
+            {
+                OrderBy = g => g.Name
+            });
+        }
+
         [HttpGet]
         public ViewResult Edit(int id) => GetProduct(id, "Edit");
 
         [HttpPost]
-        public IActionResult Edit(ProductViewModel vm)
+        public IActionResult Edit(ProductViewModel vm,IFormFile updatedImage, string existingFile)
         {
-            if (ModelState.IsValid) {
-            
-                vm.Product.ProductImage = vm.ProductImage.FileName;
+            if (ModelState.IsValid)
+            {
+                if(updatedImage != null && updatedImage.Length > 0) {
 
-                if (vm.ProductImage != null && vm.ProductImage.Length > 0)
-                {
-
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(vm.ProductImage.FileName);
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(updatedImage.FileName);
 
                     var filePath = Path.Combine(webHostEnvironment.WebRootPath, "images/products", uniqueFileName);
 
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        vm.ProductImage.CopyTo(stream);
+                        updatedImage.CopyTo(stream);
                     }
-
-
                     vm.Product.ProductImage = Path.Combine("/images/products", uniqueFileName);
+
                 }
                 else {
-                    vm.Product.ProductImage = getExistingFileName(vm.Product.ProductId);
+                    vm.Product.ProductImage = Path.Combine("/images/products", existingFile);
                 }
-
-
+                
                 data.DeleteCurrentProductCategories(vm.Product);
                 vm.SelectedCategories = new int[] { vm.CategoryId != 0 ? vm.CategoryId : 1 };
                 data.LoadNewProductCategories(vm.Product, vm.SelectedCategories);
@@ -203,68 +259,5 @@ namespace IP_AmazonFreshIndia_Project.Areas.Manager.Controllers
             return RedirectToAction("Search");
         }
 
-        private ViewResult GetProduct(int id, string operation)
-        {
-            var product = new ProductViewModel();
-            Load(product, operation, id);
-            return View("Product", product);
-        }
-
-
-        public string getExistingFileName(int productId) => data.Products.Get(productId)?.ProductImage ?? "";
-
-
-        private void Load(ProductViewModel vm, string op, int? id = null)
-        {
-            if (Operation.IsAdd(op))
-            {
-                vm.Product = new Product();
-            }
-            else
-            {
-                vm.Product = data.Products.Get(new QueryOptions<Product>
-                {
-                    Include = "ProductCategories.Category, Warehouse",
-                    Where = b => b.ProductId == (id ?? vm.Product.ProductId)
-                });
-            }
-
-            // Check if ProductImage filename exists in the database model
-            if (!string.IsNullOrEmpty(vm.Product.ProductImage))
-            {
-
-                string imageProduct = webHostEnvironment.WebRootPath + vm.Product.ProductImage;
-                if (System.IO.File.Exists(imageProduct))
-                {
-                    // Open the image file as a FileStream
-                    using (FileStream fileStream = new FileStream(imageProduct, FileMode.Open, FileAccess.Read))
-                    {
-                        // Create a MemoryStream to store the file contents
-                        using (MemoryStream memoryStream = new MemoryStream())
-                        {
-                            // Copy the file contents from FileStream to MemoryStream
-                            fileStream.CopyTo(memoryStream);
-
-                            // Set the position of the MemoryStream to the beginning
-                            memoryStream.Position = 0;
-
-                            // Create a new FormFile instance from the MemoryStream
-                            vm.ProductImage = new FormFile(memoryStream, 0, memoryStream.Length, null, Path.GetFileName(imageProduct));
-                        }
-                    }
-                }
-            }
-
-            vm.SelectedCategories = vm.Product.ProductCategories?.Select(
-                ba => ba.Category.CategoryId).ToArray();
-            vm.Categories = data.Categories.List(new QueryOptions<Category>
-            {
-                OrderBy = a => a.Name
-            });
-            vm.Warehouses = data.Warehouses.List(new QueryOptions<Warehouse>
-            {
-                OrderBy = g => g.Name
-            });
-        }
-    }
+   }
 }

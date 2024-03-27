@@ -191,8 +191,6 @@ namespace IP_AmazonFreshIndia_Project.Controllers
         [HttpGet]
         public ViewResult Edit(int id) => GetProduct(id, "Edit");
 
-        // public string getExistingFileName(int productId) => data.Products.Get(productId)?.ProductImage ?? "";
-
         [HttpPost]
         public IActionResult Edit(ProductViewModel vm,IFormFile updatedImage, string existingFile)
         {
@@ -244,4 +242,5 @@ namespace IP_AmazonFreshIndia_Project.Controllers
             return RedirectToAction("List");
         }
     }
+    
 }
